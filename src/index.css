@@ -7,9 +7,9 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 * {
-  font-family: "Kumbh Sans" !important;
- 
+  font-family: "Kumbh Sans", sans-serif !important;
 }
+
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
