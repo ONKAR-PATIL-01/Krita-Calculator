@@ -1,13 +1,20 @@
 /* eslint-disable array-callback-return */
 /* eslint-disable react-hooks/exhaustive-deps */
-import { Button, Card, Grid, IconButton, Slider, Typography } from "@mui/material";
+import {
+  Button,
+  Card,
+  Grid,
+  IconButton,
+  Slider,
+  Typography,
+} from "@mui/material";
 import Tooltip from "@mui/material/Tooltip";
 import HelpOutlineIcon from "@mui/icons-material/HelpOutline";
 import React, { useEffect, useState } from "react";
 import NumberInput from "./NumberInput";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { ArrowDropUp } from "@mui/icons-material";
-import krita from '../krita.svg'
+import krita from "../krita.svg";
 
 const countryData = [
   {
@@ -99,7 +106,7 @@ const DetailedCalculator = ({
   sendCalculatedData,
   detailedFlag,
   onDetailedFlagChange,
-  onApplicationsPerRoleChange
+  onApplicationsPerRoleChange,
 }) => {
   const [stepInputs, setStepInputs] = useState({
     "Job Assets Creation & Publishing": { minPerJob: 60 },
@@ -138,7 +145,7 @@ const DetailedCalculator = ({
   const [kritahours, setKritaHours] = useState(0);
   const [normalCost, setNormalCost] = useState(0);
   const [kritaCost, setKritaCost] = useState(0);
-  
+
   const [candidatesInPipeline, setCandidatesInPipeline] = useState(0);
   useEffect(() => {
     calculateValues();
@@ -156,7 +163,7 @@ const DetailedCalculator = ({
     // Call the function to send the calculated data to App.js
     sendCalculatedData(calculatedData);
   }, [rolesPerYear, companyLocation, applicationsPerRole, stepInputs]);
-  useEffect(()=>{
+  useEffect(() => {
     calculateValues();
     setNormalHours(Math.round(totalTime));
     setNormalCost(Math.round(totalCost));
@@ -171,7 +178,7 @@ const DetailedCalculator = ({
 
     // Call the function to send the calculated data to App.js
     sendCalculatedData(calculatedData);
-  },[])
+  }, []);
   useEffect(() => {
     setCandidatesInPipeline(applicationsPerRole);
   }, [applicationsPerRole]);
@@ -379,9 +386,8 @@ const DetailedCalculator = ({
 
   console.log(candidatesInPipeline);
 
-
   const handleAddStage = () => {
-    setStages([...stages, { }]);
+    setStages([...stages, {}]);
   };
   const handleDeleteStep = (stepIndex) => {
     setStages((prevSteps) =>
@@ -420,23 +426,25 @@ const DetailedCalculator = ({
               <ArrowDropUp style={{ height: "25px" }} />
             </Typography>
           </div>
-         <div style={{marginLeft: "10%",marginBottom:'20px'}}>
-          <Typography style={{ fontSize: "16px", color: "#A3A0A0" }}>
-                How many applications do you receive per role ?
-              </Typography>
-              <Typography style={{ color: "#FFCD00", fontSize: "30px" }}>
-                {applicationsPerRole}
-              </Typography>
-              <Slider
-                aria-label="Hire/Year"
-                value={applicationsPerRole}
-                min={1}
-                max={5000}
-                step={1}
-                onChange={(event, newValue) => onApplicationsPerRoleChange(event, newValue)}
-                sx={{ color: "#FFCD00", width: "40%" }}
-              />
-              </div>
+          <div style={{ marginLeft: "10%", marginBottom: "20px" }}>
+            <Typography style={{ fontSize: "16px", color: "#A3A0A0" }}>
+              How many applications do you receive per role ?
+            </Typography>
+            <Typography style={{ color: "#FFCD00", fontSize: "30px" }}>
+              {applicationsPerRole}
+            </Typography>
+            <Slider
+              aria-label="Hire/Year"
+              value={applicationsPerRole}
+              min={1}
+              max={5000}
+              step={1}
+              onChange={(event, newValue) =>
+                onApplicationsPerRoleChange(event, newValue)
+              }
+              sx={{ color: "#FFCD00", width: "40%" }}
+            />
+          </div>
           {/* step 1 header */}
           <Grid container spacing={2}>
             <Grid item xs={4}>
@@ -1550,10 +1558,17 @@ const DetailedCalculator = ({
                   }}
                 >
                   US${" "}
-                  {normalCost.toLocaleString("en-US", {
-                    style: "currency",
-                    currency: "USD",
-                  })}
+                  {normalCost.toFixed(2) % 1 === 0
+                    ? normalCost
+                        .toLocaleString("en-US", {
+                          style: "currency",
+                          currency: "USD",
+                        })
+                        .slice(0, -3) // Remove the last three characters (".00")
+                    : normalCost.toLocaleString("en-US", {
+                        style: "currency",
+                        currency: "USD",
+                      })}
                 </Typography>
               </div>
               <div style={{ display: "flex", justifyContent: "space-between" }}>
@@ -1572,10 +1587,17 @@ const DetailedCalculator = ({
                   }}
                 >
                   US{" "}
-                  {(normalCost - kritaCost).toLocaleString("en-US", {
-                    style: "currency",
-                    currency: "USD",
-                  })}
+                  {(normalCost - kritaCost).toFixed(2) % 1 === 0
+                    ? (normalCost - kritaCost)
+                        .toLocaleString("en-US", {
+                          style: "currency",
+                          currency: "USD",
+                        })
+                        .slice(0, -3) // Remove the last three characters (".00")
+                    : (normalCost - kritaCost).toLocaleString("en-US", {
+                        style: "currency",
+                        currency: "USD",
+                      })}
                 </Typography>
               </div>
 
@@ -1585,7 +1607,8 @@ const DetailedCalculator = ({
                 variant="h6"
                 style={{ color: "#78A6D8", textAlign: "right" }}
               >
-                Save up to 115h per role with <img src={krita} alt="krita.ai"></img>
+                Save up to 115h per role with{" "}
+                <img src={krita} alt="krita.ai"></img>
               </Typography>
               <br />
               <br />
@@ -1610,15 +1633,29 @@ const DetailedCalculator = ({
                 }}
               >
                 US{" "}
-                {normalCost.toLocaleString("en-US", {
-                  style: "currency",
-                  currency: "USD",
-                })}{" "}
+                {normalCost.toFixed(2) % 1 === 0
+                  ? normalCost
+                      .toLocaleString("en-US", {
+                        style: "currency",
+                        currency: "USD",
+                      })
+                      .slice(0, -3) // Remove the last three characters (".00")
+                  : normalCost.toLocaleString("en-US", {
+                      style: "currency",
+                      currency: "USD",
+                    })}{" "}
                 - US{" "}
-                {kritaCost.toLocaleString("en-US", {
-                  style: "currency",
-                  currency: "USD",
-                })}
+                {kritaCost.toFixed(2) % 1 === 0
+                  ? kritaCost
+                      .toLocaleString("en-US", {
+                        style: "currency",
+                        currency: "USD",
+                      })
+                      .slice(0, -3) // Remove the last three characters (".00")
+                  : kritaCost.toLocaleString("en-US", {
+                      style: "currency",
+                      currency: "USD",
+                    })}
               </Typography>
               <Typography
                 variant="h3"
@@ -1629,10 +1666,17 @@ const DetailedCalculator = ({
                 }}
               >
                 US{" "}
-                {(normalCost - kritaCost).toLocaleString("en-US", {
-                  style: "currency",
-                  currency: "USD",
-                })}
+                {(normalCost - kritaCost).toFixed(2) % 1 === 0
+                  ? (normalCost - kritaCost)
+                      .toLocaleString("en-US", {
+                        style: "currency",
+                        currency: "USD",
+                      })
+                      .slice(0, -3) // Remove the last three characters (".00")
+                  : (normalCost - kritaCost).toLocaleString("en-US", {
+                      style: "currency",
+                      currency: "USD",
+                    })}
               </Typography>
               <br />
 
@@ -1658,7 +1702,10 @@ const DetailedCalculator = ({
                     },
                   }}
                   onClick={() => {
-                    window.open('https://meetings.hubspot.com/kesavan', '_blank');
+                    window.open(
+                      "https://meetings.hubspot.com/kesavan",
+                      "_blank"
+                    );
                   }}
                 >
                   schedule a demo

@@ -11,7 +11,7 @@ import {
 } from "@mui/material";
 import DetailedCalculator from "./DetailedCalculator";
 import { ArrowDropDown } from "@mui/icons-material";
-import krita from '../krita.svg'
+import krita from "../krita.svg";
 const regions = [
   "North America",
   "South America",
@@ -32,14 +32,11 @@ const Calculator = () => {
   const [calculatedData, setCalculatedData] = useState();
   const [detailedFlag, setDetailedFlag] = useState(false);
 
-
   // Event handler for role slider
   const handleRolesPerYearChange = (event, newValue) => {
     setRolesPerYear(newValue);
   };
-  useEffect(()=>{
-    
-  },[])
+  useEffect(() => {}, []);
   // Event handler for applications slider
   const handleApplicationsPerRoleChange = (event, newValue) => {
     setApplicationsPerRole(newValue);
@@ -55,9 +52,7 @@ const Calculator = () => {
   const receiveCalculatedData = (data) => {
     setCalculatedData(data);
   };
-  useEffect(()=>{
-
-  },[applicationsPerRole])
+  useEffect(() => {}, [applicationsPerRole]);
   return (
     <>
       {!detailedFlag && (
@@ -158,14 +153,29 @@ const Calculator = () => {
                 variant="h4"
                 style={{ color: "#78A6D8", textAlign: "right" }}
               >
-                US
+                US{" "}
                 {(
                   (calculatedData?.normalCost - calculatedData?.kritaCost) *
                   rolesPerYear
-                ).toLocaleString("en-US", {
-                  style: "currency",
-                  currency: "USD",
-                })}
+                ).toFixed(2) %
+                  1 ===
+                0
+                  ? (
+                      (calculatedData?.normalCost - calculatedData?.kritaCost) *
+                      rolesPerYear
+                    )
+                      .toLocaleString("en-US", {
+                        style: "currency",
+                        currency: "USD",
+                      })
+                      .slice(0, -3) // Remove the last three characters (".00")
+                  : (
+                      (calculatedData?.normalCost - calculatedData?.kritaCost) *
+                      rolesPerYear
+                    ).toLocaleString("en-US", {
+                      style: "currency",
+                      currency: "USD",
+                    })}
               </Typography>
               <br />
               <Typography
@@ -245,10 +255,17 @@ const Calculator = () => {
                   }}
                 >
                   US{" "}
-                  {(calculatedData?.normalCost - 0).toLocaleString("en-US", {
-                    style: "currency",
-                    currency: "USD",
-                  })}
+                  {(calculatedData?.normalCost - 0).toFixed(2) % 1 === 0
+                    ? (calculatedData?.normalCost - 0)
+                        .toLocaleString("en-US", {
+                          style: "currency",
+                          currency: "USD",
+                        })
+                        .slice(0, -3) // Remove the last three characters (".00")
+                    : (calculatedData?.normalCost - 0).toLocaleString("en-US", {
+                        style: "currency",
+                        currency: "USD",
+                      })}
                 </Typography>
               </div>
               <div style={{ display: "flex", justifyContent: "space-between" }}>
@@ -266,13 +283,24 @@ const Calculator = () => {
                     fontSize: "14px",
                   }}
                 >
-                  US
+                  US{" "}
                   {(
                     calculatedData?.normalCost - calculatedData?.kritaCost
-                  ).toLocaleString("en-US", {
-                    style: "currency",
-                    currency: "USD",
-                  })}
+                  ).toFixed(2) %
+                    1 ===
+                  0
+                    ? (calculatedData?.normalCost - calculatedData?.kritaCost)
+                        .toLocaleString("en-US", {
+                          style: "currency",
+                          currency: "USD",
+                        })
+                        .slice(0, -3) // Remove the last three characters (".00")
+                    : (
+                        calculatedData?.normalCost - calculatedData?.kritaCost
+                      ).toLocaleString("en-US", {
+                        style: "currency",
+                        currency: "USD",
+                      })}
                 </Typography>
               </div>
 
@@ -282,7 +310,8 @@ const Calculator = () => {
                 variant="h6"
                 style={{ color: "#78A6D8", textAlign: "right" }}
               >
-                Save up to 115h per role with <img src={krita} alt="krita.ai"></img>
+                Save up to 115h per role with{" "}
+                <img src={krita} alt="krita.ai"></img>
               </Typography>
               <br />
 
@@ -302,7 +331,10 @@ const Calculator = () => {
                     },
                   }}
                   onClick={() => {
-                    window.open('https://meetings.hubspot.com/kesavan', '_blank');
+                    window.open(
+                      "https://meetings.hubspot.com/kesavan",
+                      "_blank"
+                    );
                   }}
                 >
                   schedule a demo
@@ -313,7 +345,6 @@ const Calculator = () => {
           <div
             style={{ cursor: "pointer" }}
             onClick={() => {
-              
               setDetailedFlag(!detailedFlag);
             }}
           >
