@@ -76,7 +76,7 @@ const Calculator = () => {
             <Slider
               aria-label="Hire/Year"
               value={rolesPerYear}
-              min={0}
+              min={1}
               max={10000}
               step={50}
               onChange={handleRolesPerYearChange}
@@ -92,7 +92,7 @@ const Calculator = () => {
             <Slider
               aria-label="Hire/Year"
               value={applicationsPerRole}
-              min={0}
+              min={1}
               max={2000}
               step={100}
               onChange={handleApplicationsPerRoleChange}
