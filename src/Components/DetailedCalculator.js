@@ -121,9 +121,7 @@ const DetailedCalculator = ({
     "Misc Tasks": { timeSpent: 10 },
   });
   const [stages, setStages] = useState([]);
-  // console.log(rolesPerYear);
-  // console.log(applicationsPerRole);
-  // console.log(companyLocation);
+
   const handleInputChange = (stepName, field, value) => {
     setStepInputs((prevInputs) => ({
       ...prevInputs,
@@ -213,6 +211,8 @@ const DetailedCalculator = ({
      // const calculatedValues = {};
     totalTime=0;
     totalTimeKrita=0;
+    totalCost=0;
+    totalCostKrita=0;
     jobAssetsCreation = jobAssetsData/60;
     
     totalTime += jobAssetsCreation;
