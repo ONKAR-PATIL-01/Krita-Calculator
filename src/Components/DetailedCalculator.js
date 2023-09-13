@@ -508,6 +508,7 @@ const DetailedCalculator = ({
             </Grid>
           </Grid>
           <br />
+          <br/>
           {/* <hr/> */}
           {/* step 1 */}
           <Grid container spacing={2} style={{ marginBottom: "20px" }}>
@@ -1215,6 +1216,7 @@ const DetailedCalculator = ({
             </Grid>
           </Grid>
           <br />
+          <br/>
           {/* step 8 */}
           <Grid container spacing={2} style={{ marginBottom: "20px" }}>
             <Grid item xs={4}>

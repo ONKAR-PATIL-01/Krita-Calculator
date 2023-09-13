@@ -151,7 +151,11 @@ const Calculator = () => {
 
               <Typography
                 variant="h4"
-                style={{ color: "#78A6D8", textAlign: "right" }}
+                style={{
+                  color: "#78A6D8",
+                  textAlign: "right",
+                  fontWeight: "200",
+                }}
               >
                 US{" "}
                 {(
