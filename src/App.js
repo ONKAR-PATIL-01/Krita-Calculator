@@ -25,9 +25,7 @@ function App() {
           alt="How much you can save with krita ?"
         ></img>
         <Typography style={{ color: "#A3A0A0" }}>
-          Try our recruitment process automation calculator <br /> here below
-          and find out now.
-        </Typography>
+        Discover your savings potential with our genAI Recruiter Copilot!        </Typography>
       </Card>
    
         <Calculator />

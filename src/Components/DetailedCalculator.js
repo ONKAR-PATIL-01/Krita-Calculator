@@ -121,7 +121,9 @@ const DetailedCalculator = ({
     "Misc Tasks": { timeSpent: 10 },
   });
   const [stages, setStages] = useState([]);
-
+  // console.log(rolesPerYear);
+  // console.log(applicationsPerRole);
+  // console.log(companyLocation);
   const handleInputChange = (stepName, field, value) => {
     setStepInputs((prevInputs) => ({
       ...prevInputs,
@@ -206,8 +208,13 @@ const DetailedCalculator = ({
       Pipeline8,
       Pipeline9;
 
-    const jobAssetsData = stepInputs["Job Assets Creation & Publishing"];
-    jobAssetsCreation = jobAssetsData.minPerJob / 60; // const calculatedValues = {};
+    const jobAssetsData = stepInputs["Job Assets Creation & Publishing"]?.minPerJob;
+   
+     // const calculatedValues = {};
+    totalTime=0;
+    totalTimeKrita=0;
+    jobAssetsCreation = jobAssetsData/60;
+    
     totalTime += jobAssetsCreation;
     totalTimeKrita += (jobAssetsCreation * 0.1) / 100;
     totalCost += foundCountry.data.TalentMarketer * jobAssetsCreation;
@@ -384,7 +391,7 @@ const DetailedCalculator = ({
     });
   };
 
-  console.log(candidatesInPipeline);
+  // console.log(candidatesInPipeline);
 
   const handleAddStage = () => {
     setStages([...stages, {}]);
@@ -403,7 +410,7 @@ const DetailedCalculator = ({
             variant="h5"
             style={{ color: "#FFCD00", marginLeft: "10%" }}
           >
-            Detailed analysis for custom calculation
+          Detailed calculation of time taken at each stage
           </Typography>
           {/* onClick={handleToggleDetail} */}
           <div
@@ -417,8 +424,8 @@ const DetailedCalculator = ({
             <Typography
               style={{
                 display: "flex",
-                alignItems: "center",
-                marginLeft: "10%",
+                alignItems: "right",
+                marginLeft: "70%",
                 color: "#A3A0A0",
               }}
             >
@@ -426,7 +433,7 @@ const DetailedCalculator = ({
               <ArrowDropUp style={{ height: "25px" }} />
             </Typography>
           </div>
-          <div style={{ marginLeft: "10%", marginBottom: "20px" }}>
+          {/* <div style={{ marginLeft: "10%", marginBottom: "20px" }}>
             <Typography style={{ fontSize: "16px", color: "#A3A0A0" }}>
               How many applications do you receive per role ?
             </Typography>
@@ -444,7 +451,7 @@ const DetailedCalculator = ({
               }
               sx={{ color: "#FFCD00", width: "40%" }}
             />
-          </div>
+          </div> */}
           {/* step 1 header */}
           <Grid container spacing={2}>
             <Grid item xs={4}>
@@ -458,7 +465,7 @@ const DetailedCalculator = ({
                   textAlign: "center",
                 }}
               >
-                INITAL STEPS
+                RECRUITMENT STEPS
               </Typography>
             </Grid>
             <Grid item xs={3}>
@@ -472,7 +479,7 @@ const DetailedCalculator = ({
                   textAlign: "center",
                 }}
               >
-                MINS/ROLE
+                MINUTES TAKEN / ROLE
               </Typography>
             </Grid>
             <Grid item xs={2}>
@@ -487,7 +494,7 @@ const DetailedCalculator = ({
                 }}
               >
                 CANDIDATES IN PIPELINE{" "}
-                <Tooltip title="Pipeline calculations">
+                <Tooltip title="Calculated value. Represents the number of candidates selected for the next stage of the recruitment process.">
                   <HelpOutlineIcon />
                 </Tooltip>
               </Typography>
@@ -503,7 +510,7 @@ const DetailedCalculator = ({
                   textAlign: "center",
                 }}
               >
-                EFFORT
+               TOTAL EFFORT (HOURS)
               </Typography>
             </Grid>
           </Grid>
@@ -590,7 +597,7 @@ const DetailedCalculator = ({
                   textAlign: "center",
                 }}
               >
-                STAGE
+              RECRUITMENT  STAGE
               </Typography>
             </Grid>
             <Grid item xs={1.5}>
@@ -604,7 +611,7 @@ const DetailedCalculator = ({
                   textAlign: "center",
                 }}
               >
-                MINS/CANDIDATE
+              MINUTES TAKEN / CANDIDATE
               </Typography>
             </Grid>
             <Grid item xs={1.5}>
@@ -618,7 +625,10 @@ const DetailedCalculator = ({
                   textAlign: "center",
                 }}
               >
-                PASS RATE %
+              PASS RATE %
+              <Tooltip title="Represents the percentage of candidates who are selected for the next stage of the recruitment process.">
+                  <HelpOutlineIcon />
+                </Tooltip>
               </Typography>
             </Grid>
 
@@ -634,6 +644,9 @@ const DetailedCalculator = ({
                 }}
               >
                 CANDIDATES IN PIPELINE{" "}
+                <Tooltip title="Calculated value. Represents the number of candidates selected for the next stage of the recruitment process.">
+                  <HelpOutlineIcon />
+                </Tooltip>
               </Typography>
             </Grid>
             <Grid item xs={2}>
@@ -647,7 +660,7 @@ const DetailedCalculator = ({
                   textAlign: "center",
                 }}
               >
-                EFFORT
+               TOTAL EFFORT (HOURS)
               </Typography>
             </Grid>
           </Grid>
@@ -728,7 +741,7 @@ const DetailedCalculator = ({
                   textAlign: "center",
                 }}
               >
-                {stepwiseCalculations.two} hour
+                {stepwiseCalculations.two} hours
               </Typography>
             </Grid>
           </Grid>
@@ -745,7 +758,7 @@ const DetailedCalculator = ({
                   textAlign: "center",
                 }}
               >
-                Screening Applicants
+                 Applicant Screening
               </Typography>
             </Grid>
             <Grid
@@ -811,7 +824,7 @@ const DetailedCalculator = ({
                   textAlign: "center",
                 }}
               >
-                {stepwiseCalculations.three} hour
+                {stepwiseCalculations.three} hours
               </Typography>
             </Grid>
           </Grid>
@@ -886,7 +899,7 @@ const DetailedCalculator = ({
                   textAlign: "center",
                 }}
               >
-                {stepwiseCalculations.four} hour
+                {stepwiseCalculations.four} hours
               </Typography>
             </Grid>
           </Grid>
@@ -961,7 +974,7 @@ const DetailedCalculator = ({
                   textAlign: "center",
                 }}
               >
-                {stepwiseCalculations.five} hour
+                {stepwiseCalculations.five} hours
               </Typography>
             </Grid>
           </Grid>
@@ -1040,7 +1053,7 @@ const DetailedCalculator = ({
                   textAlign: "center",
                 }}
               >
-                {stepwiseCalculations.six}hour
+                {stepwiseCalculations.six} hours
               </Typography>
             </Grid>
           </Grid>
@@ -1137,7 +1150,7 @@ const DetailedCalculator = ({
                     textAlign: "center",
                   }}
                 >
-                  {stepwiseCalculations?.seven?.[index]} hour
+                  {stepwiseCalculations?.seven?.[index]} hours
                 </Typography>
               </Grid>
             </Grid>
@@ -1183,7 +1196,7 @@ const DetailedCalculator = ({
                   textAlign: "center",
                 }}
               >
-                MINS/CANDIDATE
+               MINUTES TAKEN / CANDIDATE
               </Typography>
             </Grid>
             <Grid item xs={2}>
@@ -1198,6 +1211,10 @@ const DetailedCalculator = ({
                 }}
               >
                 CANDIDATES IN PIPELINE{" "}
+                <Tooltip title="Calculated value. Represents the number of candidates selected for the next stage of the recruitment process.">
+                  <HelpOutlineIcon />
+                </Tooltip>
+ 
               </Typography>
             </Grid>
             <Grid item xs={2}>
@@ -1211,7 +1228,7 @@ const DetailedCalculator = ({
                   textAlign: "center",
                 }}
               >
-                EFFORT
+             TOTAL EFFORT (HOURS)
               </Typography>
             </Grid>
           </Grid>
@@ -1278,7 +1295,7 @@ const DetailedCalculator = ({
                   textAlign: "center",
                 }}
               >
-                {stepwiseCalculations.eight} hour
+                {stepwiseCalculations.eight} hours
               </Typography>
             </Grid>
           </Grid>
@@ -1342,7 +1359,7 @@ const DetailedCalculator = ({
                   textAlign: "center",
                 }}
               >
-                {stepwiseCalculations.nine} hour
+                {stepwiseCalculations.nine} hours
               </Typography>
             </Grid>
           </Grid>
@@ -1403,7 +1420,7 @@ const DetailedCalculator = ({
                   textAlign: "center",
                 }}
               >
-                {stepwiseCalculations.ten} hour
+                {stepwiseCalculations.ten} hours
               </Typography>
             </Grid>
           </Grid>
@@ -1463,7 +1480,7 @@ const DetailedCalculator = ({
                   textAlign: "center",
                 }}
               >
-                {stepwiseCalculations.eleven} hour
+                {stepwiseCalculations.eleven} hours
               </Typography>
             </Grid>
           </Grid>
@@ -1478,8 +1495,10 @@ const DetailedCalculator = ({
               borderRadius: "10px",
               border: "none",
               background: "linear-gradient(to right, #FFF, #E3F0FF)", // Set the background gradient here
-              margin: "5%",
-              padding: "20px",
+              marginLeft: "5%",
+              marginRight: "5%",
+            
+              padding: "10px",
             }}
           >
             <div style={{ width: "60%" }}>
@@ -1491,7 +1510,7 @@ const DetailedCalculator = ({
                   textDecorationThickness: "1px",
                 }}
               >
-                Effort/Role
+                 Effort saved per role
               </Typography>
               <hr />
 
@@ -1502,7 +1521,7 @@ const DetailedCalculator = ({
                     fontSize: "14px",
                   }}
                 >
-                  Averge hours spent
+                  Averge hours spent today 
                 </Typography>
                 <Typography
                   style={{
@@ -1510,7 +1529,7 @@ const DetailedCalculator = ({
                     fontSize: "14px",
                   }}
                 >
-                  {normalhours}h
+                  {normalhours}{" "}hrs
                 </Typography>
               </div>
               <div style={{ display: "flex", justifyContent: "space-between" }}>
@@ -1520,7 +1539,7 @@ const DetailedCalculator = ({
                     fontSize: "16px",
                   }}
                 >
-                  Averge hours saved with krita.ai
+                 Hours saved using Krita
                 </Typography>
                 <Typography
                   style={{
@@ -1528,7 +1547,9 @@ const DetailedCalculator = ({
                     fontSize: "16px",
                   }}
                 >
-                  {normalhours - kritahours}h
+                  <b>
+                  {normalhours - kritahours}{" "}hrs
+                  </b>
                 </Typography>
               </div>
               <br />
@@ -1540,7 +1561,7 @@ const DetailedCalculator = ({
                   textDecorationThickness: "1px",
                 }}
               >
-                Cost/Role
+                Cost saved per role
               </Typography>
               <hr />
 
@@ -1551,7 +1572,7 @@ const DetailedCalculator = ({
                     fontSize: "14px",
                   }}
                 >
-                  Averge spent
+                 Averge cost incurred today
                 </Typography>
                 <Typography
                   style={{
@@ -1580,7 +1601,7 @@ const DetailedCalculator = ({
                     fontSize: "16px",
                   }}
                 >
-                  Averge saved with krita.ai
+                   Cost saved using Krita
                 </Typography>
                 <Typography
                   style={{
@@ -1588,6 +1609,7 @@ const DetailedCalculator = ({
                     fontSize: "16px",
                   }}
                 >
+                  <b>
                   US{" "}
                   {(normalCost - kritaCost).toFixed(2) % 1 === 0
                     ? (normalCost - kritaCost)
@@ -1600,6 +1622,7 @@ const DetailedCalculator = ({
                         style: "currency",
                         currency: "USD",
                       })}
+                      </b>
                 </Typography>
               </div>
 
@@ -1609,7 +1632,7 @@ const DetailedCalculator = ({
                 variant="h6"
                 style={{ color: "#78A6D8", textAlign: "right" }}
               >
-                Save up to 115h per role with{" "}
+                Hire talent 10x faster using{" "}
                 <img src={krita} alt="krita.ai"></img>
               </Typography>
               <br />
@@ -1617,6 +1640,7 @@ const DetailedCalculator = ({
             </div>
             <div style={{ width: "40%" }}>
               <Typography
+              variant="h5"
                 style={{
                   color: "#A3A0A0",
                   fontWeight: "bold",
@@ -1624,9 +1648,9 @@ const DetailedCalculator = ({
                   textDecorationThickness: "2px",
                 }}
               >
-                Total savings per year
+             Potential savings per year for <span style={{color:"#78A6D8"}}>{rolesPerYear}</span> hires
               </Typography>
-              <Typography
+              {/* <Typography
                 style={{
                   color: "#A3A0A0",
                   fontSize: "18px",
@@ -1658,24 +1682,24 @@ const DetailedCalculator = ({
                       style: "currency",
                       currency: "USD",
                     })}
-              </Typography>
+              </Typography> */}
               <Typography
                 variant="h3"
                 style={{
                   color: "#78A6D8",
                   textAlign: "center",
-                  marginTop: "20px",
+                  marginTop: "60px",
                 }}
               >
                 US{" "}
-                {(normalCost - kritaCost).toFixed(2) % 1 === 0
-                  ? (normalCost - kritaCost)
+                {((normalCost - kritaCost)*rolesPerYear).toFixed(2) % 1 === 0
+                  ? ((normalCost - kritaCost)*rolesPerYear)
                       .toLocaleString("en-US", {
                         style: "currency",
                         currency: "USD",
                       })
                       .slice(0, -3) // Remove the last three characters (".00")
-                  : (normalCost - kritaCost).toLocaleString("en-US", {
+                  : ((normalCost - kritaCost)*rolesPerYear).toLocaleString("en-US", {
                       style: "currency",
                       currency: "USD",
                     })}
