@@ -12,6 +12,7 @@ import {
 import DetailedCalculator from "./DetailedCalculator";
 import { ArrowDropDown } from "@mui/icons-material";
 import krita from "../krita.svg";
+
 const regions = [
   "North America",
   "South America",
@@ -367,15 +368,16 @@ const Calculator = () => {
         </div>
       )}
 
-      <DetailedCalculator
-        rolesPerYear={rolesPerYear}
-        applicationsPerRole={applicationsPerRole}
-        companyLocation={companyLocation}
-        sendCalculatedData={receiveCalculatedData}
-        detailedFlag={detailedFlag}
-        onDetailedFlagChange={handleDetailedFlagChange}
-        onApplicationsPerRoleChange={handleApplicationsPerRoleChange}
-      />
+        <DetailedCalculator
+          rolesPerYear={rolesPerYear}
+          applicationsPerRole={applicationsPerRole}
+          companyLocation={companyLocation}
+          sendCalculatedData={receiveCalculatedData}
+          detailedFlag={detailedFlag}
+          onDetailedFlagChange={handleDetailedFlagChange}
+          onApplicationsPerRoleChange={handleApplicationsPerRoleChange}
+        />
+     
     </>
   );
 };

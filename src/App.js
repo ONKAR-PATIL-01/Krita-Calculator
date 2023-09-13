@@ -1,12 +1,15 @@
-import { Card, Typography } from "@mui/material";
+import { Button, Card, Typography } from "@mui/material";
 import "./App.css";
 import ResponsiveAppBar from "./Components/ResponsiveAppBar";
 import statement1 from "./statement1.svg";
 import Calculator from "./Components/Calculator";
+import { usePDF } from "react-to-pdf";
 function App() {
+  const { toPDF, targetRef } = usePDF({ filename: "page.pdf" });
   return (
     <>
-      <ResponsiveAppBar  />
+   <div ref={targetRef}>
+      <ResponsiveAppBar />
       <Card
         style={{
           marginTop: "50px",
@@ -26,7 +29,29 @@ function App() {
           and find out now.
         </Typography>
       </Card>
-      <Calculator />
+   
+        <Calculator />
+        </div>
+      <Button
+        variant="contained"
+        sx={{
+          textTransform: "none",
+          borderRadius: "50px", // Set border-radius to make it round
+          fontSize: "16px",
+          background: "linear-gradient(to bottom, #70A8DC, #70A8DC)",
+          backgroundSize: "100% 200%",
+          transition: "background-position 0.5s",
+          "&:hover": {
+            background: "linear-gradient(to bottom, #FFCD00, #FFCD00)",
+          },
+          position: "fixed",
+          bottom: "20px",
+          right: "20px",
+        }}
+        onClick={() => toPDF()}
+      >
+        Download PDF
+      </Button>
     </>
   );
 }
