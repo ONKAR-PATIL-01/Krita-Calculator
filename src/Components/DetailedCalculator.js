@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable array-callback-return */
 /* eslint-disable react-hooks/exhaustive-deps */
 import {
@@ -5,7 +6,6 @@ import {
   Card,
   Grid,
   IconButton,
-  Slider,
   Typography,
 } from "@mui/material";
 import Tooltip from "@mui/material/Tooltip";
@@ -1729,7 +1729,7 @@ const DetailedCalculator = ({
                   }}
                   onClick={() => {
                     window.open(
-                      "https://meetings.hubspot.com/kesavan",
+                      "https://calendly.com/krita/meet-kesavan",
                       "_blank"
                     );
                   }}

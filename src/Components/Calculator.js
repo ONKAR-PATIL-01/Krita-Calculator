@@ -32,6 +32,7 @@ const Calculator = () => {
   const [companyLocation, setCompanyLocation] = useState("North America");
   const [calculatedData, setCalculatedData] = useState();
   const [detailedFlag, setDetailedFlag] = useState(false);
+  const isSmallScreen = window.innerWidth <= 800;
 
   // Event handler for role slider
   const handleRolesPerYearChange = (event, newValue) => {
@@ -58,10 +59,15 @@ const Calculator = () => {
     <>
       <div>
         {" "}
-        <div style={{ display: "flex", flexDirection: "row" }}>
+        <div
+          style={{
+            display: "flex",
+            flexDirection: isSmallScreen ? "column" : "row",
+          }}
+        >
           <Card
             style={{
-              width: "50%",
+              width: isSmallScreen ? "100%" : "50%",
               boxShadow: "none",
               paddingLeft: "10%",
               paddingTop: "30px",
@@ -128,12 +134,13 @@ const Calculator = () => {
           </Card>
           <Card
             style={{
-              width: "25%",
+              width: isSmallScreen ? "70%" : "25%",
               boxShadow: "none",
               borderRadius: "10px",
               border: "none",
               background: "linear-gradient(to right, #FFF, #E3F0FF)", // Set the background gradient here
-
+              marginLeft: isSmallScreen ? "10%" : "0px",
+              // marginTop: isSmallScreen ? "20px" : "0px",
               padding: "20px",
             }}
           >
@@ -338,7 +345,10 @@ const Calculator = () => {
                   },
                 }}
                 onClick={() => {
-                  window.open("https://meetings.hubspot.com/kesavan", "_blank");
+                  window.open(
+                    "https://calendly.com/krita/meet-kesavan",
+                    "_blank"
+                  );
                 }}
               >
                 schedule a demo

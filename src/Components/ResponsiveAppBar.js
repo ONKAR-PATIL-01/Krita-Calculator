@@ -9,12 +9,12 @@ import MenuIcon from "@mui/icons-material/Menu";
 import Container from "@mui/material/Container";
 import Button from "@mui/material/Button";
 import MenuItem from "@mui/material/MenuItem";
-import logo from "../Group 1.svg";
+import logo from "../krita.svg";
 
 const pages = ["schedule a demo", "pricing", "about"];
 
 const pageUrls = {
-  "schedule a demo": "https://meetings.hubspot.com/kesavan",
+  "schedule a demo": "https://calendly.com/krita/meet-kesavan",
   "pricing": "https://krita.ai/pricing/",
   "about": "https://krita.ai/about-us/",
 };
@@ -48,7 +48,7 @@ function ResponsiveAppBar() {
         <Toolbar disableGutters>
           <Box sx={{ display: "flex", alignItems: "center", width: "100%" }}>
             <img
-              style={{ height: "25px", marginLeft: "30px", cursor: 'pointer' }}
+              style={{ height: "30px", marginLeft: "30px", cursor: 'pointer' }}
               src={logo}
               alt="Krita"
               onClick={() => {
