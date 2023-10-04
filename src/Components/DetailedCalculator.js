@@ -108,6 +108,7 @@ const DetailedCalculator = ({
   onDetailedFlagChange,
   onApplicationsPerRoleChange,
 }) => {
+  const isSmallScreen = window.innerWidth <= 800;
   const [stepInputs, setStepInputs] = useState({
     "Job Assets Creation & Publishing": { minPerJob: 60 },
     "Resume Filtering": { timeSpent: 5, selectionRate: 30 },
@@ -1490,7 +1491,7 @@ const DetailedCalculator = ({
           <Card
             style={{
               display: "flex",
-              flexDirection: "row",
+              flexDirection: isSmallScreen ? "column" : "row",
 
               borderRadius: "10px",
               border: "none",

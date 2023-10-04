@@ -67,18 +67,20 @@ const Calculator = () => {
         >
           <Card
             style={{
-              width: isSmallScreen ? "100%" : "50%",
+              width: isSmallScreen ? "90%" : "50%",
               boxShadow: "none",
               paddingLeft: "10%",
               paddingTop: "30px",
+              paddingRight: "5%",
+              marginBottom: isSmallScreen ? "20px" : "0px",
             }}
           >
-            <Typography style={{ fontSize: "16px", color: "#A3A0A0" }}>
+            <div style={{ fontSize: "16px", color: "#A3A0A0" }}>
               How many roles do you hire per year ?
-            </Typography>
-            <Typography style={{ color: "#FFCD00", fontSize: "30px" }}>
+            </div>
+            <div style={{ color: "#FFCD00", fontSize: "30px" }}>
               {rolesPerYear}
-            </Typography>
+            </div>
             <Slider
               aria-label="Hire/Year"
               value={rolesPerYear}
@@ -89,12 +91,19 @@ const Calculator = () => {
               sx={{ color: "#FFCD00", width: "80%" }}
             />
 
-            <Typography style={{ fontSize: "16px", color: "#A3A0A0" }}>
-              How many applications do you receive per job post ?
-            </Typography>
-            <Typography style={{ color: "#FFCD00", fontSize: "30px" }}>
+            <div
+              style={{
+                fontSize: "16px",
+                color: "#A3A0A0",
+                wordBreak: "break-word",
+              }}
+            >
+              How many applications do you receive per job post?
+            </div>
+
+            <div style={{ color: "#FFCD00", fontSize: "30px" }}>
               {applicationsPerRole}
-            </Typography>
+            </div>
             <Slider
               aria-label="Hire/Year"
               value={applicationsPerRole}
@@ -105,9 +114,9 @@ const Calculator = () => {
               sx={{ color: "#FFCD00", width: "80%" }}
             />
 
-            <Typography style={{ fontSize: "16px", color: "#A3A0A0" }}>
+            <div style={{ fontSize: "16px", color: "#A3A0A0" }}>
               In which geography do you primarily hire candidates?
-            </Typography>
+            </div>
             <FormControl fullWidth>
               <Select
                 labelId="demo-simple-select-label"

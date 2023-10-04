@@ -11,7 +11,7 @@ const Container = () => {
  
   return (
     <>
-    <div ref={targetRef}>
+    <div ref={targetRef} style={{width:'100%'}}>
        <ResponsiveAppBar />
        <Card
          style={{
@@ -23,12 +23,12 @@ const Container = () => {
          }}
        >
          <img
-           style={{ height: "40px", width: isSmallScreen ? "80%" : "40%", }}
+           style={{ height: "40px", width: isSmallScreen ? "80%" : "50%",marginBottom:'10px' }}
            src={statement1}
            alt="How much you can save with krita ?"
          ></img>
-         <Typography style={{ color: "#A3A0A0" ,fontSize: isSmallScreen ? "8px" : "16px", }}>
-         Discover your savings potential with our genAI Recruiter Copilot!        </Typography>
+         <div style={{ color: "#A3A0A0" ,fontSize: isSmallScreen ? "10px" : "16px", }}>
+         Discover your savings potential with our genAI Recruiter Copilot!        </div>
        </Card>
     
          <Calculator />
