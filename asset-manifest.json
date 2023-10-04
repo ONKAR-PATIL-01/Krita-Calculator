@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/Krita-Calculator/static/css/main.2bd8e5f2.css",
-    "main.js": "/Krita-Calculator/static/js/main.d4393dee.js",
+    "main.js": "/Krita-Calculator/static/js/main.a14dda63.js",
     "static/js/703.98f8870d.chunk.js": "/Krita-Calculator/static/js/703.98f8870d.chunk.js",
     "static/js/617.e3c775b9.chunk.js": "/Krita-Calculator/static/js/617.e3c775b9.chunk.js",
     "static/js/787.937ffe6d.chunk.js": "/Krita-Calculator/static/js/787.937ffe6d.chunk.js",
@@ -9,13 +9,13 @@
     "static/media/krita.svg": "/Krita-Calculator/static/media/krita.50a31afccb9a85dd39aa57610f459d7e.svg",
     "index.html": "/Krita-Calculator/index.html",
     "main.2bd8e5f2.css.map": "/Krita-Calculator/static/css/main.2bd8e5f2.css.map",
-    "main.d4393dee.js.map": "/Krita-Calculator/static/js/main.d4393dee.js.map",
+    "main.a14dda63.js.map": "/Krita-Calculator/static/js/main.a14dda63.js.map",
     "703.98f8870d.chunk.js.map": "/Krita-Calculator/static/js/703.98f8870d.chunk.js.map",
     "617.e3c775b9.chunk.js.map": "/Krita-Calculator/static/js/617.e3c775b9.chunk.js.map",
     "787.937ffe6d.chunk.js.map": "/Krita-Calculator/static/js/787.937ffe6d.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.2bd8e5f2.css",
-    "static/js/main.d4393dee.js"
+    "static/js/main.a14dda63.js"
   ]
 }
