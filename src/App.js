@@ -6,7 +6,7 @@ import "./App.css";
 
 function App() {
   return (
-    <Router>
+    <Router basename="/Krita-Calculator">
       <Routes>
         <Route path="/Krita-Calculator" element={<Container />} />
         <Route path="/Krita-Calculator2" element={<Container2 />} />

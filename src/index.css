@@ -14,7 +14,7 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
-/* Webkit Browsers (Chrome, Safari, etc.) */
+
 ::-webkit-scrollbar {
   width: 5px;
   height: 0px;
