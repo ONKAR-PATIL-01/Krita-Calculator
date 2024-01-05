@@ -5,7 +5,7 @@ import ResponsiveAppBar from "./ResponsiveAppBar";
 // import statement1 from "../statement1.svg";
 import Calculator from "./Calculator";
 import { usePDF } from "react-to-pdf";
-const Container2 = () => {
+const Container = () => {
   const isSmallScreen = window.innerWidth <= 800;
     const { toPDF, targetRef } = usePDF({ filename: "page.pdf" });
  
@@ -23,12 +23,12 @@ const Container2 = () => {
          }}
        >
          <Box
-           sx={{ height: "2%", width: isSmallScreen ? "80%" : "50%",marginBottom:'10px' ,color: "#A3A0A0" ,fontSize: isSmallScreen ? "20px" : "32px", }} 
+           sx={{ height: "2%", width: isSmallScreen ? "80%" : "50%",marginBottom:'10px' ,color: "#808080" ,fontSize: isSmallScreen ? "20px" : "32px", }} 
        
            
-         >Talent Marketing Cost Savings Calculator</Box>
+         >Calculate cost saving</Box>
          <div style={{ color: "#A3A0A0" ,fontSize: isSmallScreen ? "10px" : "16px", }}>
-         Calculate by using AI, how much cost you can reduce from your existing talent marketing efforts (which are manual / agency driven)       </div>
+Determine potential cost savings by leveraging AI to support your talent marketing efforts.            </div>
        </Card>
     
          <Calculator />
@@ -57,4 +57,4 @@ const Container2 = () => {
   )
 }
 
-export default Container2
+export default Container

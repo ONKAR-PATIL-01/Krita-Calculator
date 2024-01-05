@@ -60,7 +60,7 @@ const Calculator = () => {
             }}
           >
             <div style={{ fontSize: "16px", color: "#A3A0A0" }}>Your employee size</div>
-            <div style={{ color: "#FFCD00", fontSize: "30px" }}>{emplyeesize}</div>
+            <div style={{ color: "#FFCD00", fontSize: "24px" }}>{emplyeesize}</div>
             {/* <Slider
               aria-label="Hire/Year"
               value={emplyeesize}
@@ -83,7 +83,7 @@ const Calculator = () => {
              How many roles do you hire per year?
             </div>
 
-            <div style={{ color: "#FFCD00", fontSize: "30px" }}>
+            <div style={{ color: "#FFCD00", fontSize: "24px" }}>
               {hirePerYear}
             </div>
             <Slider
@@ -98,7 +98,7 @@ const Calculator = () => {
             />
             {/* <br/> */}
             <Box sx={{ marginTop: "30px" }} />
-            <div style={{ fontSize: "16px", color: "#A3A0A0" }}>Your country of operations ?</div>
+            <div style={{ fontSize: "16px", color: "#A3A0A0" }}>Primary country of operations ?</div>
             <FormControl fullWidth>
               <Select
                 labelId="demo-simple-select-label"
@@ -110,7 +110,7 @@ const Calculator = () => {
                   color: "#FFCD00",
                   backgroundColor: "#FFF",
                   width: "80%",
-                  fontSize: "30px",
+                  fontSize: "24px",
                   marginBottom: 0,
                 }}
                 label="Country"
@@ -125,26 +125,27 @@ const Calculator = () => {
           </Card>
           <Card
             style={{
-              width: isSmallScreen ? "70%" : "25%",
+              width: isSmallScreen ? "100%" : "40%",
               boxShadow: "none",
               borderRadius: "10px",
               border: "none",
               background: "linear-gradient(to right, #FFF, #E3F0FF)", // Set the background gradient here
               marginLeft: isSmallScreen ? "10%" : "0px",
+              marginRight:'5%',
               // marginTop: isSmallScreen ? "20px" : "0px",
               padding: "20px",
             }}
           >
             <br />
             <Typography
-              variant="h7"
+              variant="h6"
               style={{
                 color: "#A3A0A0",
 
                 textDecorationThickness: "1px",
               }}
             >
-              Effort spent
+              Effort Savings
             </Typography>
             <hr />
 
@@ -152,15 +153,15 @@ const Calculator = () => {
               <Typography
                 style={{
                   color: "#A3A0A0",
-                  fontSize: "12px",
+                  fontSize: "16px",
                 }}
               >
-                Effort spent today / year
+                Hours spent manual talent marketing efforts / year
               </Typography>
               <Typography
                 style={{
                   color: "#A3A0A0",
-                  fontSize: "12px",
+                  fontSize: "16px",
                 }}
               >
                 {calculatedData?.normalHours} hrs
@@ -170,15 +171,15 @@ const Calculator = () => {
               <Typography
                 style={{
                   color: "#78A6D8",
-                  fontSize: "14px",
+                  fontSize: "18px",
                 }}
               >
-                Effort saved with AI
+                Hours saved by automating using AI
               </Typography>
               <Typography
                 style={{
                   color: "#78A6D8",
-                  fontSize: "14px",
+                  fontSize: "22px",
                 }}
               >
                 <b>{calculatedData?.kritaHours} hrs</b>
@@ -186,14 +187,14 @@ const Calculator = () => {
             </div>
             <br />
             <Typography
-              variant="h7"
+              variant="h6"
               style={{
                 color: "#A3A0A0",
 
                 textDecorationThickness: "1px",
               }}
             >
-              Cost saved
+              Cost savings
             </Typography>
             <hr />
 
@@ -201,15 +202,15 @@ const Calculator = () => {
               <Typography
                 style={{
                   color: "#A3A0A0",
-                  fontSize: "12px",
+                  fontSize: "16px",
                 }}
               >
-                Averge cost incurred today /year
+                Averge cost incurred in talent marketing /year
               </Typography>
               <Typography
                 style={{
                   color: "#A3A0A0",
-                  fontSize: "12px",
+                  fontSize: "16px",
                 }}
               >
                 US{" "}
@@ -230,15 +231,15 @@ const Calculator = () => {
               <Typography
                 style={{
                   color: "#78A6D8",
-                  fontSize: "14px",
+                  fontSize: "18px",
                 }}
               >
-                Cost saved with AI
+                Cost saved by automating using AI
               </Typography>
               <Typography
                 style={{
                   color: "#78A6D8",
-                  fontSize: "14px",
+                  fontSize: "22px",
                 }}
               >
                 <b>
@@ -300,7 +301,7 @@ const Calculator = () => {
                 display: "flex",
                 alignItems: "center",
                 marginLeft: "10%",
-                color: "#A3A0A0",
+                color: "#808080",
                 marginTop:'40px'
               }}
             >

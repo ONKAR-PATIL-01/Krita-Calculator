@@ -8,7 +8,7 @@ import React, { useEffect, useState } from "react";
 import NumberInput from "./NumberInput";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { ArrowDropUp } from "@mui/icons-material";
-import krita from "../../krita.svg";
+import krita from "../krita.svg";
 const countryData = [
   {
     Geography: "North America",
@@ -155,594 +155,267 @@ const companyEffortsData = [
   },
 ];
 
-const DetailedCalculator = ({
-  emplyeesize,
-  hirePerYear,
-  companyLocation,
-  sendCalculatedData,
-  detailedFlag,
-  onDetailedFlagChange,
-}) => {
+const DetailedCalculator = ({ emplyeesize, hirePerYear, companyLocation, sendCalculatedData, detailedFlag, onDetailedFlagChange }) => {
   const isSmallScreen = window.innerWidth <= 800;
   var multiplier = hirePerYear / emplyeesize / (25 / 100);
 
   var effortsToday, effortsWithAI, costToday, costWithAI;
 
   effortsToday =
-    (((emplyeesize *
-      companyEffortsData?.find((company) => company.CompanySize === emplyeesize)
-        ?.ResearchPercentage) /
-      100) *
-      50) /
-      100 +
-    (((emplyeesize *
-      companyEffortsData?.find((company) => company.CompanySize === emplyeesize)
-        ?.ResearchPercentage) /
-      100) *
-      50) /
-      100 +
-    (emplyeesize *
-      companyEffortsData?.find((company) => company.CompanySize === emplyeesize)
-        ?.ResearchPercentage) /
-      100 +
-    (4 *
-      8 *
-      2 *
-      companyEffortsData?.find((company) => company.CompanySize === emplyeesize)
-        ?.ContentTeamMultiple +
-      12 *
-        4 *
-        companyEffortsData?.find((company) => company.CompanySize === emplyeesize)
-          ?.ContentTeamMultiple +
-      12 *
-        4 *
-        companyEffortsData?.find((company) => company.CompanySize === emplyeesize)
-          ?.ContentTeamMultiple) *
-      companyEffortsData?.find((company) => company.CompanySize === emplyeesize)
-        ?.ContentTeamMultiple +
-    (4 *
-      52 *
-      5 *
-      companyEffortsData?.find((company) => company.CompanySize === emplyeesize)
-        ?.ContentTeamMultiple +
+    (((emplyeesize * companyEffortsData?.find((company) => company.CompanySize === emplyeesize)?.ResearchPercentage) / 100) * 50) / 100 +
+    (((emplyeesize * companyEffortsData?.find((company) => company.CompanySize === emplyeesize)?.ResearchPercentage) / 100) * 50) / 100 +
+    (emplyeesize * companyEffortsData?.find((company) => company.CompanySize === emplyeesize)?.ResearchPercentage) / 100 +
+    (4 * 8 * 2 * companyEffortsData?.find((company) => company.CompanySize === emplyeesize)?.ContentTeamMultiple +
+      12 * 4 * companyEffortsData?.find((company) => company.CompanySize === emplyeesize)?.ContentTeamMultiple +
+      12 * 4 * companyEffortsData?.find((company) => company.CompanySize === emplyeesize)?.ContentTeamMultiple) *
+      companyEffortsData?.find((company) => company.CompanySize === emplyeesize)?.ContentTeamMultiple +
+    (4 * 52 * 5 * companyEffortsData?.find((company) => company.CompanySize === emplyeesize)?.ContentTeamMultiple +
       (50 / 100) *
-        (4 *
-          52 *
-          5 *
-          companyEffortsData?.find((company) => company.CompanySize === emplyeesize)
-            ?.ContentTeamMultiple) *
-        companyEffortsData?.find((company) => company.CompanySize === emplyeesize)
-          ?.ContentTeamMultiple +
+        (4 * 52 * 5 * companyEffortsData?.find((company) => company.CompanySize === emplyeesize)?.ContentTeamMultiple) *
+        companyEffortsData?.find((company) => company.CompanySize === emplyeesize)?.ContentTeamMultiple +
       (50 / 100) *
         ((50 / 100) *
-          (4 *
-            52 *
-            5 *
-            companyEffortsData?.find((company) => company.CompanySize === emplyeesize)
-              ?.ContentTeamMultiple) *
-          companyEffortsData?.find((company) => company.CompanySize === emplyeesize)
-            ?.ContentTeamMultiple) *
-        companyEffortsData?.find((company) => company.CompanySize === emplyeesize)
-          ?.ContentTeamMultiple) +
-    (2 *
-      52 *
-      companyEffortsData?.find((company) => company.CompanySize === emplyeesize)
-        ?.ContentTeamMultiple +
-      1 *
-        52 *
-        companyEffortsData?.find((company) => company.CompanySize === emplyeesize)
-          ?.ContentTeamMultiple +
-      2 *
-        52 *
-        companyEffortsData?.find((company) => company.CompanySize === emplyeesize)
-          ?.ContentTeamMultiple) +
-    52 *
-      5 *
-      0.25 *
-      companyEffortsData?.find((company) => company.CompanySize === emplyeesize)
-        ?.ContentTeamMultiple;
+          (4 * 52 * 5 * companyEffortsData?.find((company) => company.CompanySize === emplyeesize)?.ContentTeamMultiple) *
+          companyEffortsData?.find((company) => company.CompanySize === emplyeesize)?.ContentTeamMultiple) *
+        companyEffortsData?.find((company) => company.CompanySize === emplyeesize)?.ContentTeamMultiple) +
+    (2 * 52 * companyEffortsData?.find((company) => company.CompanySize === emplyeesize)?.ContentTeamMultiple +
+      1 * 52 * companyEffortsData?.find((company) => company.CompanySize === emplyeesize)?.ContentTeamMultiple +
+      2 * 52 * companyEffortsData?.find((company) => company.CompanySize === emplyeesize)?.ContentTeamMultiple) +
+    52 * 5 * 0.25 * companyEffortsData?.find((company) => company.CompanySize === emplyeesize)?.ContentTeamMultiple;
 
   costToday =
-    ((emplyeesize *
-      companyEffortsData?.find((company) => company.CompanySize === emplyeesize)
-        ?.ResearchPercentage) /
-      100) *
+    ((emplyeesize * companyEffortsData?.find((company) => company.CompanySize === emplyeesize)?.ResearchPercentage) / 100) *
       (countryData?.find((country) => country.Geography === companyLocation)).data.Others +
-    ((((emplyeesize *
-      companyEffortsData?.find((company) => company.CompanySize === emplyeesize)
-        ?.ResearchPercentage) /
-      100) *
-      50) /
-      100) *
+    ((((emplyeesize * companyEffortsData?.find((company) => company.CompanySize === emplyeesize)?.ResearchPercentage) / 100) * 50) / 100) *
       (countryData?.find((country) => country.Geography === companyLocation)).data.Others +
-    ((((emplyeesize *
-      companyEffortsData?.find((company) => company.CompanySize === emplyeesize)
-        ?.ResearchPercentage) /
-      100) *
-      50) /
-      100) *
+    ((((emplyeesize * companyEffortsData?.find((company) => company.CompanySize === emplyeesize)?.ResearchPercentage) / 100) * 50) / 100) *
       (countryData?.find((country) => country.Geography === companyLocation)).data.Others +
     (15 *
       6 *
-      companyEffortsData?.find((company) => company.CompanySize === emplyeesize)
-        ?.ContentTeamMultiple *
-      (countryData?.find((country) => country.Geography === companyLocation)).data
-        .MarketingManager +
+      companyEffortsData?.find((company) => company.CompanySize === emplyeesize)?.ContentTeamMultiple *
+      (countryData?.find((country) => country.Geography === companyLocation)).data.MarketingManager +
       (50 / 100) *
-        (15 *
-          6 *
-          companyEffortsData?.find((company) => company.CompanySize === emplyeesize)
-            ?.ContentTeamMultiple) *
-        companyEffortsData?.find((company) => company.CompanySize === emplyeesize)
-          ?.ContentTeamMultiple *
-        (countryData?.find((country) => country.Geography === companyLocation)).data
-          .MarketingManager +
+        (15 * 6 * companyEffortsData?.find((company) => company.CompanySize === emplyeesize)?.ContentTeamMultiple) *
+        companyEffortsData?.find((company) => company.CompanySize === emplyeesize)?.ContentTeamMultiple *
+        (countryData?.find((country) => country.Geography === companyLocation)).data.MarketingManager +
       4 *
         8 *
         2 *
-        companyEffortsData?.find((company) => company.CompanySize === emplyeesize)
-          ?.ContentTeamMultiple *
-        (countryData?.find((country) => country.Geography === companyLocation)).data
-          .MarketingManager +
+        companyEffortsData?.find((company) => company.CompanySize === emplyeesize)?.ContentTeamMultiple *
+        (countryData?.find((country) => country.Geography === companyLocation)).data.MarketingManager +
       12 *
         4 *
-        companyEffortsData?.find((company) => company.CompanySize === emplyeesize)
-          ?.ContentTeamMultiple *
-        (countryData?.find((country) => country.Geography === companyLocation)).data
-          .MarketingManager +
+        companyEffortsData?.find((company) => company.CompanySize === emplyeesize)?.ContentTeamMultiple *
+        (countryData?.find((country) => country.Geography === companyLocation)).data.MarketingManager +
       12 *
         4 *
-        companyEffortsData?.find((company) => company.CompanySize === emplyeesize)
-          ?.ContentTeamMultiple *
-        (countryData?.find((country) => country.Geography === companyLocation)).data
-          .MarketingManager) +
+        companyEffortsData?.find((company) => company.CompanySize === emplyeesize)?.ContentTeamMultiple *
+        (countryData?.find((country) => country.Geography === companyLocation)).data.MarketingManager) +
     (1 *
       8 *
       52 *
-      companyEffortsData?.find((company) => company.CompanySize === emplyeesize)
-        ?.ContentTeamMultiple *
-      (countryData?.find((country) => country.Geography === companyLocation)).data
-        .MarketingManager *
+      companyEffortsData?.find((company) => company.CompanySize === emplyeesize)?.ContentTeamMultiple *
+      (countryData?.find((country) => country.Geography === companyLocation)).data.MarketingManager *
       multiplier +
       4 *
         52 *
         5 *
-        companyEffortsData?.find((company) => company.CompanySize === emplyeesize)
-          ?.ContentTeamMultiple *
-        (countryData?.find((country) => country.Geography === companyLocation)).data
-          .ContentCreator *
+        companyEffortsData?.find((company) => company.CompanySize === emplyeesize)?.ContentTeamMultiple *
+        (countryData?.find((country) => country.Geography === companyLocation)).data.ContentCreator *
         multiplier +
       (50 / 100) *
-        (4 *
-          52 *
-          5 *
-          companyEffortsData?.find((company) => company.CompanySize === emplyeesize)
-            ?.ContentTeamMultiple) *
-        companyEffortsData?.find((company) => company.CompanySize === emplyeesize)
-          ?.ContentTeamMultiple *
-        (countryData?.find((country) => country.Geography === companyLocation)).data
-          .ContentCreator *
+        (4 * 52 * 5 * companyEffortsData?.find((company) => company.CompanySize === emplyeesize)?.ContentTeamMultiple) *
+        companyEffortsData?.find((company) => company.CompanySize === emplyeesize)?.ContentTeamMultiple *
+        (countryData?.find((country) => country.Geography === companyLocation)).data.ContentCreator *
         multiplier +
       (50 / 100) *
         ((50 / 100) *
-          (4 *
-            52 *
-            5 *
-            companyEffortsData?.find((company) => company.CompanySize === emplyeesize)
-              ?.ContentTeamMultiple) *
-          companyEffortsData?.find((company) => company.CompanySize === emplyeesize)
-            ?.ContentTeamMultiple) *
-        companyEffortsData?.find((company) => company.CompanySize === emplyeesize)
-          ?.ContentTeamMultiple *
-        (countryData?.find((country) => country.Geography === companyLocation)).data
-          .MarketingAssociate *
+          (4 * 52 * 5 * companyEffortsData?.find((company) => company.CompanySize === emplyeesize)?.ContentTeamMultiple) *
+          companyEffortsData?.find((company) => company.CompanySize === emplyeesize)?.ContentTeamMultiple) *
+        companyEffortsData?.find((company) => company.CompanySize === emplyeesize)?.ContentTeamMultiple *
+        (countryData?.find((country) => country.Geography === companyLocation)).data.MarketingAssociate *
         multiplier) +
     (1 *
       52 *
-      companyEffortsData?.find((company) => company.CompanySize === emplyeesize)
-        ?.ContentTeamMultiple *
-      (countryData?.find((country) => country.Geography === companyLocation)).data
-        .MarketingAssociate *
+      companyEffortsData?.find((company) => company.CompanySize === emplyeesize)?.ContentTeamMultiple *
+      (countryData?.find((country) => country.Geography === companyLocation)).data.MarketingAssociate *
       multiplier +
       2 *
         52 *
-        companyEffortsData?.find((company) => company.CompanySize === emplyeesize)
-          ?.ContentTeamMultiple *
-        (countryData?.find((country) => country.Geography === companyLocation)).data
-          .MarketingAssociate *
+        companyEffortsData?.find((company) => company.CompanySize === emplyeesize)?.ContentTeamMultiple *
+        (countryData?.find((country) => country.Geography === companyLocation)).data.MarketingAssociate *
         multiplier +
       1 *
         52 *
-        companyEffortsData?.find((company) => company.CompanySize === emplyeesize)
-          ?.ContentTeamMultiple *
-        (countryData?.find((country) => country.Geography === companyLocation)).data
-          .MarketingManager *
+        companyEffortsData?.find((company) => company.CompanySize === emplyeesize)?.ContentTeamMultiple *
+        (countryData?.find((country) => country.Geography === companyLocation)).data.MarketingManager *
         multiplier +
       2 *
         52 *
-        companyEffortsData?.find((company) => company.CompanySize === emplyeesize)
-          ?.ContentTeamMultiple *
-        (countryData?.find((country) => country.Geography === companyLocation)).data
-          .MarketingManager *
+        companyEffortsData?.find((company) => company.CompanySize === emplyeesize)?.ContentTeamMultiple *
+        (countryData?.find((country) => country.Geography === companyLocation)).data.MarketingManager *
         multiplier) +
     (52 *
       5 *
       0.25 *
-      companyEffortsData?.find((company) => company.CompanySize === emplyeesize)
-        ?.ContentTeamMultiple *
+      companyEffortsData?.find((company) => company.CompanySize === emplyeesize)?.ContentTeamMultiple *
       (countryData?.find((country) => country.Geography === companyLocation)).data.Others *
       multiplier +
       52 *
         5 *
         0.25 *
-        companyEffortsData?.find((company) => company.CompanySize === emplyeesize)
-          ?.ContentTeamMultiple *
+        companyEffortsData?.find((company) => company.CompanySize === emplyeesize)?.ContentTeamMultiple *
         (countryData?.find((country) => country.Geography === companyLocation)).data.Others *
         multiplier);
 
   effortsWithAI =
-    (((emplyeesize *
-      companyEffortsData?.find((company) => company.CompanySize === emplyeesize)
-        ?.ResearchPercentage) /
-      100) *
-      50) /
-      100 +
-    (((((emplyeesize *
-      companyEffortsData?.find((company) => company.CompanySize === emplyeesize)
-        ?.ResearchPercentage) /
-      100) *
-      50) /
-      100) *
-      25) /
-      100 +
-    ((75 / 100) *
-      4 *
-      8 *
-      2 *
-      companyEffortsData?.find((company) => company.CompanySize === emplyeesize)
-        ?.ContentTeamMultiple +
-      (25 / 100) *
-        12 *
-        4 *
-        companyEffortsData?.find((company) => company.CompanySize === emplyeesize)
-          ?.ContentTeamMultiple +
-      (50 / 100) *
-        12 *
-        4 *
-        companyEffortsData?.find((company) => company.CompanySize === emplyeesize)
-          ?.ContentTeamMultiple) +
-    ((80 / 100) *
-      (4 *
-        52 *
-        5 *
-        companyEffortsData?.find((company) => company.CompanySize === emplyeesize)
-          ?.ContentTeamMultiple) +
+    (((emplyeesize * companyEffortsData?.find((company) => company.CompanySize === emplyeesize)?.ResearchPercentage) / 100) * 50) / 100 +
+    (((((emplyeesize * companyEffortsData?.find((company) => company.CompanySize === emplyeesize)?.ResearchPercentage) / 100) * 50) / 100) * 25) / 100 +
+    ((75 / 100) * 4 * 8 * 2 * companyEffortsData?.find((company) => company.CompanySize === emplyeesize)?.ContentTeamMultiple +
+      (25 / 100) * 12 * 4 * companyEffortsData?.find((company) => company.CompanySize === emplyeesize)?.ContentTeamMultiple +
+      (50 / 100) * 12 * 4 * companyEffortsData?.find((company) => company.CompanySize === emplyeesize)?.ContentTeamMultiple) +
+    ((80 / 100) * (4 * 52 * 5 * companyEffortsData?.find((company) => company.CompanySize === emplyeesize)?.ContentTeamMultiple) +
       (75 / 100) *
         ((50 / 100) *
-          (4 *
-            52 *
-            5 *
-            companyEffortsData?.find((company) => company.CompanySize === emplyeesize)
-              ?.ContentTeamMultiple) *
-          companyEffortsData?.find((company) => company.CompanySize === emplyeesize)
-            ?.ContentTeamMultiple) +
+          (4 * 52 * 5 * companyEffortsData?.find((company) => company.CompanySize === emplyeesize)?.ContentTeamMultiple) *
+          companyEffortsData?.find((company) => company.CompanySize === emplyeesize)?.ContentTeamMultiple) +
       (25 / 100) *
         (50 / 100) *
         ((50 / 100) *
-          (4 *
-            52 *
-            5 *
-            companyEffortsData?.find((company) => company.CompanySize === emplyeesize)
-              ?.ContentTeamMultiple) *
-          companyEffortsData?.find((company) => company.CompanySize === emplyeesize)
-            ?.ContentTeamMultiple) *
-        companyEffortsData?.find((company) => company.CompanySize === emplyeesize)
-          ?.ContentTeamMultiple) +
-    ((75 / 100) *
-      2 *
-      52 *
-      companyEffortsData?.find((company) => company.CompanySize === emplyeesize)
-        ?.ContentTeamMultiple +
-      (50 / 100) *
-        2 *
-        52 *
-        companyEffortsData?.find((company) => company.CompanySize === emplyeesize)
-          ?.ContentTeamMultiple +
-      (25 / 100) *
-        1 *
-        52 *
-        companyEffortsData?.find((company) => company.CompanySize === emplyeesize)
-          ?.ContentTeamMultiple) +
+          (4 * 52 * 5 * companyEffortsData?.find((company) => company.CompanySize === emplyeesize)?.ContentTeamMultiple) *
+          companyEffortsData?.find((company) => company.CompanySize === emplyeesize)?.ContentTeamMultiple) *
+        companyEffortsData?.find((company) => company.CompanySize === emplyeesize)?.ContentTeamMultiple) +
+    ((75 / 100) * 2 * 52 * companyEffortsData?.find((company) => company.CompanySize === emplyeesize)?.ContentTeamMultiple +
+      (50 / 100) * 2 * 52 * companyEffortsData?.find((company) => company.CompanySize === emplyeesize)?.ContentTeamMultiple +
+      (25 / 100) * 1 * 52 * companyEffortsData?.find((company) => company.CompanySize === emplyeesize)?.ContentTeamMultiple) +
     0;
   costWithAI =
-    (((((emplyeesize *
-      companyEffortsData?.find((company) => company.CompanySize === emplyeesize)
-        ?.ResearchPercentage) /
-      100) *
-      50) /
-      100) *
+    (((((emplyeesize * companyEffortsData?.find((company) => company.CompanySize === emplyeesize)?.ResearchPercentage) / 100) * 50) / 100) *
       (countryData?.find((country) => country.Geography === companyLocation)).data.Others *
-      ((((((emplyeesize *
-        companyEffortsData?.find((company) => company.CompanySize === emplyeesize)
-          ?.ResearchPercentage) /
-        100) *
-        50) /
-        100) *
-        25) /
-        100)) /
-      ((((emplyeesize *
-        companyEffortsData?.find((company) => company.CompanySize === emplyeesize)
-          ?.ResearchPercentage) /
-        100) *
-        50) /
-        100) +
-    (((emplyeesize *
-      companyEffortsData?.find((company) => company.CompanySize === emplyeesize)
-        ?.ResearchPercentage) /
-      100) *
+      ((((((emplyeesize * companyEffortsData?.find((company) => company.CompanySize === emplyeesize)?.ResearchPercentage) / 100) * 50) / 100) * 25) / 100)) /
+      ((((emplyeesize * companyEffortsData?.find((company) => company.CompanySize === emplyeesize)?.ResearchPercentage) / 100) * 50) / 100) +
+    (((emplyeesize * companyEffortsData?.find((company) => company.CompanySize === emplyeesize)?.ResearchPercentage) / 100) *
       (countryData?.find((country) => country.Geography === companyLocation)).data.Others *
-      ((emplyeesize *
-        companyEffortsData?.find((company) => company.CompanySize === emplyeesize)
-          ?.ResearchPercentage) /
-        100) *
+      ((emplyeesize * companyEffortsData?.find((company) => company.CompanySize === emplyeesize)?.ResearchPercentage) / 100) *
       50) /
       100 /
-      ((emplyeesize *
-        companyEffortsData?.find((company) => company.CompanySize === emplyeesize)
-          ?.ResearchPercentage) /
-        100) +
+      ((emplyeesize * companyEffortsData?.find((company) => company.CompanySize === emplyeesize)?.ResearchPercentage) / 100) +
     ((15 *
       6 *
-      companyEffortsData?.find((company) => company.CompanySize === emplyeesize)
-        ?.ContentTeamMultiple *
-      (countryData?.find((country) => country.Geography === companyLocation)).data
-        .MarketingManager *
-      ((25 / 100) *
-        (15 *
-          6 *
-          companyEffortsData?.find((company) => company.CompanySize === emplyeesize)
-            ?.ContentTeamMultiple))) /
-      (15 *
-        6 *
-        companyEffortsData?.find((company) => company.CompanySize === emplyeesize)
-          ?.ContentTeamMultiple) +
+      companyEffortsData?.find((company) => company.CompanySize === emplyeesize)?.ContentTeamMultiple *
+      (countryData?.find((country) => country.Geography === companyLocation)).data.MarketingManager *
+      ((25 / 100) * (15 * 6 * companyEffortsData?.find((company) => company.CompanySize === emplyeesize)?.ContentTeamMultiple))) /
+      (15 * 6 * companyEffortsData?.find((company) => company.CompanySize === emplyeesize)?.ContentTeamMultiple) +
       ((50 / 100) *
-        (15 *
-          6 *
-          companyEffortsData?.find((company) => company.CompanySize === emplyeesize)
-            ?.ContentTeamMultiple) *
-        companyEffortsData?.find((company) => company.CompanySize === emplyeesize)
-          ?.ContentTeamMultiple *
-        (countryData?.find((country) => country.Geography === companyLocation)).data
-          .MarketingManager *
+        (15 * 6 * companyEffortsData?.find((company) => company.CompanySize === emplyeesize)?.ContentTeamMultiple) *
+        companyEffortsData?.find((company) => company.CompanySize === emplyeesize)?.ContentTeamMultiple *
+        (countryData?.find((country) => country.Geography === companyLocation)).data.MarketingManager *
         ((50 / 100) *
           (50 / 100) *
-          (15 *
-            6 *
-            companyEffortsData?.find((company) => company.CompanySize === emplyeesize)
-              ?.ContentTeamMultiple) *
-          companyEffortsData?.find((company) => company.CompanySize === emplyeesize)
-            ?.ContentTeamMultiple)) /
+          (15 * 6 * companyEffortsData?.find((company) => company.CompanySize === emplyeesize)?.ContentTeamMultiple) *
+          companyEffortsData?.find((company) => company.CompanySize === emplyeesize)?.ContentTeamMultiple)) /
         ((50 / 100) *
-          (15 *
-            6 *
-            companyEffortsData?.find((company) => company.CompanySize === emplyeesize)
-              ?.ContentTeamMultiple) *
-          companyEffortsData?.find((company) => company.CompanySize === emplyeesize)
-            ?.ContentTeamMultiple) +
+          (15 * 6 * companyEffortsData?.find((company) => company.CompanySize === emplyeesize)?.ContentTeamMultiple) *
+          companyEffortsData?.find((company) => company.CompanySize === emplyeesize)?.ContentTeamMultiple) +
       (12 *
         4 *
-        companyEffortsData?.find((company) => company.CompanySize === emplyeesize)
-          ?.ContentTeamMultiple *
-        (countryData?.find((country) => country.Geography === companyLocation)).data
-          .MarketingManager *
-        ((75 / 100) *
-          4 *
-          8 *
-          2 *
-          companyEffortsData?.find((company) => company.CompanySize === emplyeesize)
-            ?.ContentTeamMultiple)) /
-        (12 *
-          4 *
-          companyEffortsData?.find((company) => company.CompanySize === emplyeesize)
-            ?.ContentTeamMultiple) +
+        companyEffortsData?.find((company) => company.CompanySize === emplyeesize)?.ContentTeamMultiple *
+        (countryData?.find((country) => country.Geography === companyLocation)).data.MarketingManager *
+        ((75 / 100) * 4 * 8 * 2 * companyEffortsData?.find((company) => company.CompanySize === emplyeesize)?.ContentTeamMultiple)) /
+        (12 * 4 * companyEffortsData?.find((company) => company.CompanySize === emplyeesize)?.ContentTeamMultiple) +
       (12 *
         4 *
-        companyEffortsData?.find((company) => company.CompanySize === emplyeesize)
-          ?.ContentTeamMultiple *
-        (countryData?.find((country) => country.Geography === companyLocation)).data
-          .MarketingManager *
-        ((25 / 100) *
-          12 *
-          4 *
-          companyEffortsData?.find((company) => company.CompanySize === emplyeesize)
-            ?.ContentTeamMultiple)) /
-        (12 *
-          4 *
-          companyEffortsData?.find((company) => company.CompanySize === emplyeesize)
-            ?.ContentTeamMultiple) +
+        companyEffortsData?.find((company) => company.CompanySize === emplyeesize)?.ContentTeamMultiple *
+        (countryData?.find((country) => country.Geography === companyLocation)).data.MarketingManager *
+        ((25 / 100) * 12 * 4 * companyEffortsData?.find((company) => company.CompanySize === emplyeesize)?.ContentTeamMultiple)) /
+        (12 * 4 * companyEffortsData?.find((company) => company.CompanySize === emplyeesize)?.ContentTeamMultiple) +
       (12 *
         4 *
-        companyEffortsData?.find((company) => company.CompanySize === emplyeesize)
-          ?.ContentTeamMultiple *
-        (countryData?.find((country) => country.Geography === companyLocation)).data
-          .MarketingManager *
-        ((50 / 100) *
-          12 *
-          4 *
-          companyEffortsData?.find((company) => company.CompanySize === emplyeesize)
-            ?.ContentTeamMultiple)) /
-        (12 *
-          4 *
-          companyEffortsData?.find((company) => company.CompanySize === emplyeesize)
-            ?.ContentTeamMultiple)) +
+        companyEffortsData?.find((company) => company.CompanySize === emplyeesize)?.ContentTeamMultiple *
+        (countryData?.find((country) => country.Geography === companyLocation)).data.MarketingManager *
+        ((50 / 100) * 12 * 4 * companyEffortsData?.find((company) => company.CompanySize === emplyeesize)?.ContentTeamMultiple)) /
+        (12 * 4 * companyEffortsData?.find((company) => company.CompanySize === emplyeesize)?.ContentTeamMultiple)) +
     ((1 *
       8 *
       52 *
-      companyEffortsData?.find((company) => company.CompanySize === emplyeesize)
-        ?.ContentTeamMultiple *
-      (countryData?.find((country) => country.Geography === companyLocation)).data
-        .MarketingManager *
+      companyEffortsData?.find((company) => company.CompanySize === emplyeesize)?.ContentTeamMultiple *
+      (countryData?.find((country) => country.Geography === companyLocation)).data.MarketingManager *
       multiplier *
-      ((75 / 100) *
-        1 *
-        8 *
-        52 *
-        companyEffortsData?.find((company) => company.CompanySize === emplyeesize)
-          ?.ContentTeamMultiple)) /
-      (1 *
-        8 *
-        52 *
-        companyEffortsData?.find((company) => company.CompanySize === emplyeesize)
-          ?.ContentTeamMultiple) +
+      ((75 / 100) * 1 * 8 * 52 * companyEffortsData?.find((company) => company.CompanySize === emplyeesize)?.ContentTeamMultiple)) /
+      (1 * 8 * 52 * companyEffortsData?.find((company) => company.CompanySize === emplyeesize)?.ContentTeamMultiple) +
       ((80 / 100) *
+        (4 * 52 * 5 * companyEffortsData?.find((company) => company.CompanySize === emplyeesize)?.ContentTeamMultiple) *
         (4 *
           52 *
           5 *
-          companyEffortsData?.find((company) => company.CompanySize === emplyeesize)
-            ?.ContentTeamMultiple) *
-        (4 *
-          52 *
-          5 *
-          companyEffortsData?.find((company) => company.CompanySize === emplyeesize)
-            ?.ContentTeamMultiple *
-          (countryData?.find((country) => country.Geography === companyLocation)).data
-            .ContentCreator *
+          companyEffortsData?.find((company) => company.CompanySize === emplyeesize)?.ContentTeamMultiple *
+          (countryData?.find((country) => country.Geography === companyLocation)).data.ContentCreator *
           multiplier)) /
-        (4 *
-          52 *
-          5 *
-          companyEffortsData?.find((company) => company.CompanySize === emplyeesize)
-            ?.ContentTeamMultiple) +
+        (4 * 52 * 5 * companyEffortsData?.find((company) => company.CompanySize === emplyeesize)?.ContentTeamMultiple) +
       ((50 / 100) *
-        (4 *
-          52 *
-          5 *
-          companyEffortsData?.find((company) => company.CompanySize === emplyeesize)
-            ?.ContentTeamMultiple) *
-        companyEffortsData?.find((company) => company.CompanySize === emplyeesize)
-          ?.ContentTeamMultiple *
-        (countryData?.find((country) => country.Geography === companyLocation)).data
-          .ContentCreator *
+        (4 * 52 * 5 * companyEffortsData?.find((company) => company.CompanySize === emplyeesize)?.ContentTeamMultiple) *
+        companyEffortsData?.find((company) => company.CompanySize === emplyeesize)?.ContentTeamMultiple *
+        (countryData?.find((country) => country.Geography === companyLocation)).data.ContentCreator *
         multiplier *
         ((75 / 100) *
           ((50 / 100) *
-            (4 *
-              52 *
-              5 *
-              companyEffortsData?.find((company) => company.CompanySize === emplyeesize)
-                ?.ContentTeamMultiple) *
-            companyEffortsData?.find((company) => company.CompanySize === emplyeesize)
-              ?.ContentTeamMultiple))) /
+            (4 * 52 * 5 * companyEffortsData?.find((company) => company.CompanySize === emplyeesize)?.ContentTeamMultiple) *
+            companyEffortsData?.find((company) => company.CompanySize === emplyeesize)?.ContentTeamMultiple))) /
         ((50 / 100) *
-          (4 *
-            52 *
-            5 *
-            companyEffortsData?.find((company) => company.CompanySize === emplyeesize)
-              ?.ContentTeamMultiple) *
-          companyEffortsData?.find((company) => company.CompanySize === emplyeesize)
-            ?.ContentTeamMultiple) +
+          (4 * 52 * 5 * companyEffortsData?.find((company) => company.CompanySize === emplyeesize)?.ContentTeamMultiple) *
+          companyEffortsData?.find((company) => company.CompanySize === emplyeesize)?.ContentTeamMultiple) +
       ((25 / 100) *
         (50 / 100) *
         ((50 / 100) *
-          (4 *
-            52 *
-            5 *
-            companyEffortsData?.find((company) => company.CompanySize === emplyeesize)
-              ?.ContentTeamMultiple) *
-          companyEffortsData?.find((company) => company.CompanySize === emplyeesize)
-            ?.ContentTeamMultiple) *
-        companyEffortsData?.find((company) => company.CompanySize === emplyeesize)
-          ?.ContentTeamMultiple *
+          (4 * 52 * 5 * companyEffortsData?.find((company) => company.CompanySize === emplyeesize)?.ContentTeamMultiple) *
+          companyEffortsData?.find((company) => company.CompanySize === emplyeesize)?.ContentTeamMultiple) *
+        companyEffortsData?.find((company) => company.CompanySize === emplyeesize)?.ContentTeamMultiple *
         ((50 / 100) *
           ((50 / 100) *
-            (4 *
-              52 *
-              5 *
-              companyEffortsData?.find((company) => company.CompanySize === emplyeesize)
-                ?.ContentTeamMultiple) *
-            companyEffortsData?.find((company) => company.CompanySize === emplyeesize)
-              ?.ContentTeamMultiple) *
-          companyEffortsData?.find((company) => company.CompanySize === emplyeesize)
-            ?.ContentTeamMultiple *
-          (countryData?.find((country) => country.Geography === companyLocation)).data
-            .MarketingAssociate *
+            (4 * 52 * 5 * companyEffortsData?.find((company) => company.CompanySize === emplyeesize)?.ContentTeamMultiple) *
+            companyEffortsData?.find((company) => company.CompanySize === emplyeesize)?.ContentTeamMultiple) *
+          companyEffortsData?.find((company) => company.CompanySize === emplyeesize)?.ContentTeamMultiple *
+          (countryData?.find((country) => country.Geography === companyLocation)).data.MarketingAssociate *
           multiplier)) /
         ((50 / 100) *
           ((50 / 100) *
-            (4 *
-              52 *
-              5 *
-              companyEffortsData?.find((company) => company.CompanySize === emplyeesize)
-                ?.ContentTeamMultiple) *
-            companyEffortsData?.find((company) => company.CompanySize === emplyeesize)
-              ?.ContentTeamMultiple) *
-          companyEffortsData?.find((company) => company.CompanySize === emplyeesize)
-            ?.ContentTeamMultiple)) +
+            (4 * 52 * 5 * companyEffortsData?.find((company) => company.CompanySize === emplyeesize)?.ContentTeamMultiple) *
+            companyEffortsData?.find((company) => company.CompanySize === emplyeesize)?.ContentTeamMultiple) *
+          companyEffortsData?.find((company) => company.CompanySize === emplyeesize)?.ContentTeamMultiple)) +
     ((1 *
       52 *
-      companyEffortsData?.find((company) => company.CompanySize === emplyeesize)
-        ?.ContentTeamMultiple *
-      (countryData?.find((country) => country.Geography === companyLocation)).data
-        .MarketingAssociate *
+      companyEffortsData?.find((company) => company.CompanySize === emplyeesize)?.ContentTeamMultiple *
+      (countryData?.find((country) => country.Geography === companyLocation)).data.MarketingAssociate *
       multiplier *
-      ((50 / 100) *
-        1 *
-        52 *
-        companyEffortsData?.find((company) => company.CompanySize === emplyeesize)
-          ?.ContentTeamMultiple)) /
-      (1 *
-        52 *
-        companyEffortsData?.find((company) => company.CompanySize === emplyeesize)
-          ?.ContentTeamMultiple) +
+      ((50 / 100) * 1 * 52 * companyEffortsData?.find((company) => company.CompanySize === emplyeesize)?.ContentTeamMultiple)) /
+      (1 * 52 * companyEffortsData?.find((company) => company.CompanySize === emplyeesize)?.ContentTeamMultiple) +
       ((50 / 100) *
         2 *
         52 *
-        companyEffortsData?.find((company) => company.CompanySize === emplyeesize)
-          ?.ContentTeamMultiple *
+        companyEffortsData?.find((company) => company.CompanySize === emplyeesize)?.ContentTeamMultiple *
         (2 *
           52 *
-          companyEffortsData?.find((company) => company.CompanySize === emplyeesize)
-            ?.ContentTeamMultiple *
-          (countryData?.find((country) => country.Geography === companyLocation)).data
-            .MarketingAssociate *
+          companyEffortsData?.find((company) => company.CompanySize === emplyeesize)?.ContentTeamMultiple *
+          (countryData?.find((country) => country.Geography === companyLocation)).data.MarketingAssociate *
           multiplier)) /
-        (2 *
-          52 *
-          companyEffortsData?.find((company) => company.CompanySize === emplyeesize)
-            ?.ContentTeamMultiple) +
+        (2 * 52 * companyEffortsData?.find((company) => company.CompanySize === emplyeesize)?.ContentTeamMultiple) +
       (1 *
         52 *
-        companyEffortsData?.find((company) => company.CompanySize === emplyeesize)
-          ?.ContentTeamMultiple *
-        (countryData?.find((country) => country.Geography === companyLocation)).data
-          .MarketingManager *
+        companyEffortsData?.find((company) => company.CompanySize === emplyeesize)?.ContentTeamMultiple *
+        (countryData?.find((country) => country.Geography === companyLocation)).data.MarketingManager *
         multiplier *
-        ((25 / 100) *
-          1 *
-          52 *
-          companyEffortsData?.find((company) => company.CompanySize === emplyeesize)
-            ?.ContentTeamMultiple)) /
-        (1 *
-          52 *
-          companyEffortsData?.find((company) => company.CompanySize === emplyeesize)
-            ?.ContentTeamMultiple) +
+        ((25 / 100) * 1 * 52 * companyEffortsData?.find((company) => company.CompanySize === emplyeesize)?.ContentTeamMultiple)) /
+        (1 * 52 * companyEffortsData?.find((company) => company.CompanySize === emplyeesize)?.ContentTeamMultiple) +
       ((75 / 100) *
         2 *
         52 *
-        companyEffortsData?.find((company) => company.CompanySize === emplyeesize)
-          ?.ContentTeamMultiple *
+        companyEffortsData?.find((company) => company.CompanySize === emplyeesize)?.ContentTeamMultiple *
         (2 *
           52 *
-          companyEffortsData?.find((company) => company.CompanySize === emplyeesize)
-            ?.ContentTeamMultiple *
-          (countryData?.find((country) => country.Geography === companyLocation)).data
-            .MarketingManager *
+          companyEffortsData?.find((company) => company.CompanySize === emplyeesize)?.ContentTeamMultiple *
+          (countryData?.find((country) => country.Geography === companyLocation)).data.MarketingManager *
           multiplier)) /
-        (2 *
-          52 *
-          companyEffortsData?.find((company) => company.CompanySize === emplyeesize)
-            ?.ContentTeamMultiple)) +
+        (2 * 52 * companyEffortsData?.find((company) => company.CompanySize === emplyeesize)?.ContentTeamMultiple)) +
     0;
 
   const handleToggleDetail = () => {
@@ -769,10 +442,7 @@ const DetailedCalculator = ({
     <>
       {detailedFlag && (
         <div>
-          <Typography
-            variant="h5"
-            style={{ color: "#FFCD00", marginLeft: "10%", marginTop: "50px" }}
-          >
+          <Typography variant="h5" style={{ color: "#78A6D8", marginLeft: "10%", marginTop: "50px" }}>
             Detailed calculation of time taken at each stage
           </Typography>
           {/* onClick={handleToggleDetail} */}
@@ -789,7 +459,7 @@ const DetailedCalculator = ({
                 display: "flex",
                 alignItems: "right",
                 marginLeft: "70%",
-                color: "#A3A0A0",
+                color: "#808080",
               }}
             >
               Back to simplified analysis
@@ -810,22 +480,22 @@ const DetailedCalculator = ({
           >
             <Grid item xs={12}>
               <Typography
-                variant="h6"
+                variant="h5"
                 gutterBottom
                 sx={{
-                  textAlign: "center",
+                  textAlign: "left",
                   borderBottom: "2px solid #A3A0A0",
                   paddingBottom: "8px",
                   marginBottom: "12px",
-                  color: "#A3A0A0",
+                  color: "#808080",
                 }}
               >
-                Employer Branding
+                Research EVP
               </Typography>
             </Grid>
 
             {/* First grid */}
-            <Grid item xs={12} sm={9}>
+            <Grid item xs={12} sm={9} sx={{ paddingTop: "0px !important" }}>
               <Typography
                 variant="h6"
                 style={{
@@ -833,6 +503,7 @@ const DetailedCalculator = ({
                   overflow: "auto",
                   maxWidth: "100%",
                   textAlign: "center",
+                  marginBottom: "20px",
                 }}
               >
                 Current Effort & Cost (Manual)
@@ -841,7 +512,7 @@ const DetailedCalculator = ({
                 {/* Column headers */}
                 <Grid item xs={3}>
                   <Typography
-                    variant="subtitle1"
+                    variant="h6"
                     style={{
                       whiteSpace: "nowrap",
                       overflow: "auto",
@@ -853,7 +524,7 @@ const DetailedCalculator = ({
                 </Grid>
                 <Grid item xs={3}>
                   <Typography
-                    variant="subtitle1"
+                    variant="h6"
                     style={{
                       whiteSpace: "nowrap",
                       overflow: "auto",
@@ -865,19 +536,19 @@ const DetailedCalculator = ({
                 </Grid>
                 <Grid item xs={3}>
                   <Typography
-                    variant="subtitle1"
+                    variant="h6"
                     style={{
                       whiteSpace: "nowrap",
                       overflow: "auto",
                       maxWidth: "100%",
                     }}
                   >
-                    Effort Involved (Hours)
+                    Effort Involved (hrs)
                   </Typography>
                 </Grid>
                 <Grid item xs={3}>
                   <Typography
-                    variant="subtitle1"
+                    variant="h6"
                     style={{
                       whiteSpace: "nowrap",
                       overflow: "auto",
@@ -894,21 +565,23 @@ const DetailedCalculator = ({
                   <Typography
                     variant="body1"
                     style={{
-                      whiteSpace: "nowrap",
+                      // whiteSpace: "nowrap",
+                      height: "50px",
                       overflow: "auto",
                       maxWidth: "100%",
                     }}
                   >
-                    Employer Branding Research
+                    Research competitors and talent preferences.
                   </Typography>
                 </Grid>
                 <Grid item xs={3}>
                   <Typography
                     variant="body1"
                     style={{
-                      whiteSpace: "nowrap",
+                      // whiteSpace: "nowrap",
                       overflow: "auto",
                       maxWidth: "100%",
+                      height: "50px",
                     }}
                   >
                     Onetime
@@ -918,26 +591,23 @@ const DetailedCalculator = ({
                   <Typography
                     variant="body1"
                     style={{
-                      whiteSpace: "nowrap",
+                      // whiteSpace: "nowrap",
                       overflow: "auto",
                       maxWidth: "100%",
+                      height: "50px",
                     }}
                   >
-                    {Math.round(
-                      (emplyeesize *
-                        companyEffortsData?.find((company) => company.CompanySize === emplyeesize)
-                          ?.ResearchPercentage) /
-                        100
-                    )}
+                    {Math.round((emplyeesize * companyEffortsData?.find((company) => company.CompanySize === emplyeesize)?.ResearchPercentage) / 100)}
                   </Typography>
                 </Grid>
                 <Grid item xs={3}>
                   <Typography
                     variant="body1"
                     style={{
-                      whiteSpace: "nowrap",
+                      // whiteSpace: "nowrap",
                       overflow: "auto",
                       maxWidth: "100%",
+                      height: "50px",
                     }}
                   >
                     {new Intl.NumberFormat("en-US", {
@@ -947,12 +617,8 @@ const DetailedCalculator = ({
                       maximumFractionDigits: 2,
                     }).format(
                       Math.round(
-                        ((emplyeesize *
-                          companyEffortsData?.find((company) => company.CompanySize === emplyeesize)
-                            ?.ResearchPercentage) /
-                          100) *
-                          (countryData?.find((country) => country.Geography === companyLocation))
-                            .data.Others
+                        ((emplyeesize * companyEffortsData?.find((company) => company.CompanySize === emplyeesize)?.ResearchPercentage) / 100) *
+                          (countryData?.find((country) => country.Geography === companyLocation)).data.Others
                       )
                     )}
                   </Typography>
@@ -963,19 +629,20 @@ const DetailedCalculator = ({
                   <Typography
                     variant="body1"
                     style={{
-                      whiteSpace: "nowrap",
+                      // whiteSpace: "nowrap",
+                      height: "50px",
                       overflow: "auto",
                       maxWidth: "100%",
                     }}
                   >
-                    Develop Employer Branding
+                    Bubble up authentic, aspirational and differentiating values{" "}
                   </Typography>
                 </Grid>
                 <Grid item xs={3}>
                   <Typography
                     variant="body1"
                     style={{
-                      whiteSpace: "nowrap",
+                      // whiteSpace: "nowrap",
                       overflow: "auto",
                       maxWidth: "100%",
                     }}
@@ -987,28 +654,23 @@ const DetailedCalculator = ({
                   <Typography
                     variant="body1"
                     style={{
-                      whiteSpace: "nowrap",
+                      // whiteSpace: "nowrap",
                       overflow: "auto",
                       maxWidth: "100%",
+                      height: "50px",
                     }}
                   >
-                    {Math.round(
-                      (((emplyeesize *
-                        companyEffortsData?.find((company) => company.CompanySize === emplyeesize)
-                          ?.ResearchPercentage) /
-                        100) *
-                        50) /
-                        100
-                    )}
+                    {Math.round((((emplyeesize * companyEffortsData?.find((company) => company.CompanySize === emplyeesize)?.ResearchPercentage) / 100) * 50) / 100)}
                   </Typography>
                 </Grid>
                 <Grid item xs={3}>
                   <Typography
                     variant="body1"
                     style={{
-                      whiteSpace: "nowrap",
+                      // whiteSpace: "nowrap",
                       overflow: "auto",
                       maxWidth: "100%",
+                      height: "50px",
                     }}
                   >
                     {new Intl.NumberFormat("en-US", {
@@ -1018,14 +680,8 @@ const DetailedCalculator = ({
                       maximumFractionDigits: 2,
                     }).format(
                       Math.round(
-                        ((((emplyeesize *
-                          companyEffortsData?.find((company) => company.CompanySize === emplyeesize)
-                            ?.ResearchPercentage) /
-                          100) *
-                          50) /
-                          100) *
-                          (countryData?.find((country) => country.Geography === companyLocation))
-                            .data.Others
+                        ((((emplyeesize * companyEffortsData?.find((company) => company.CompanySize === emplyeesize)?.ResearchPercentage) / 100) * 50) / 100) *
+                          (countryData?.find((country) => country.Geography === companyLocation)).data.Others
                       )
                     )}
                   </Typography>
@@ -1038,18 +694,20 @@ const DetailedCalculator = ({
                       whiteSpace: "nowrap",
                       overflow: "auto",
                       maxWidth: "100%",
+                      height: "50px",
                     }}
                   >
-                    Create Brand Assets
+                    Create EVP and Brand Assets
                   </Typography>
                 </Grid>
                 <Grid item xs={3}>
                   <Typography
                     variant="body1"
                     style={{
-                      whiteSpace: "nowrap",
+                      // whiteSpace: "nowrap",
                       overflow: "auto",
                       maxWidth: "100%",
+                      height: "50px",
                     }}
                   >
                     Onetime
@@ -1059,28 +717,23 @@ const DetailedCalculator = ({
                   <Typography
                     variant="body1"
                     style={{
-                      whiteSpace: "nowrap",
+                      // whiteSpace: "nowrap",
                       overflow: "auto",
                       maxWidth: "100%",
+                      height: "50px",
                     }}
                   >
-                    {Math.round(
-                      (((emplyeesize *
-                        companyEffortsData?.find((company) => company.CompanySize === emplyeesize)
-                          ?.ResearchPercentage) /
-                        100) *
-                        50) /
-                        100
-                    )}
+                    {Math.round((((emplyeesize * companyEffortsData?.find((company) => company.CompanySize === emplyeesize)?.ResearchPercentage) / 100) * 50) / 100)}
                   </Typography>
                 </Grid>
                 <Grid item xs={3}>
                   <Typography
                     variant="body1"
                     style={{
-                      whiteSpace: "nowrap",
+                      // whiteSpace: "nowrap",
                       overflow: "auto",
                       maxWidth: "100%",
+                      height: "50px",
                     }}
                   >
                     {new Intl.NumberFormat("en-US", {
@@ -1090,14 +743,8 @@ const DetailedCalculator = ({
                       maximumFractionDigits: 2,
                     }).format(
                       Math.round(
-                        ((((emplyeesize *
-                          companyEffortsData?.find((company) => company.CompanySize === emplyeesize)
-                            ?.ResearchPercentage) /
-                          100) *
-                          50) /
-                          100) *
-                          (countryData?.find((country) => country.Geography === companyLocation))
-                            .data.Others
+                        ((((emplyeesize * companyEffortsData?.find((company) => company.CompanySize === emplyeesize)?.ResearchPercentage) / 100) * 50) / 100) *
+                          (countryData?.find((country) => country.Geography === companyLocation)).data.Others
                       )
                     )}
                   </Typography>
@@ -1110,6 +757,7 @@ const DetailedCalculator = ({
                       whiteSpace: "nowrap",
                       overflow: "auto",
                       maxWidth: "100%",
+                      height: "50px",
                     }}
                   ></Typography>
                 </Grid>
@@ -1118,6 +766,7 @@ const DetailedCalculator = ({
                     variant="body1"
                     style={{
                       whiteSpace: "nowrap",
+                      height: "50px",
                       overflow: "auto",
                       maxWidth: "100%",
                     }}
@@ -1127,29 +776,17 @@ const DetailedCalculator = ({
                   <Typography
                     variant="body1"
                     style={{
-                      whiteSpace: "nowrap",
+                      // whiteSpace: "nowrap",
+                      height: "50px",
                       overflow: "auto",
                       maxWidth: "100%",
                       fontWeight: "bold",
                     }}
                   >
                     {Math.round(
-                      (((emplyeesize *
-                        companyEffortsData?.find((company) => company.CompanySize === emplyeesize)
-                          ?.ResearchPercentage) /
-                        100) *
-                        50) /
-                        100 +
-                        (((emplyeesize *
-                          companyEffortsData?.find((company) => company.CompanySize === emplyeesize)
-                            ?.ResearchPercentage) /
-                          100) *
-                          50) /
-                          100 +
-                        (emplyeesize *
-                          companyEffortsData?.find((company) => company.CompanySize === emplyeesize)
-                            ?.ResearchPercentage) /
-                          100
+                      (((emplyeesize * companyEffortsData?.find((company) => company.CompanySize === emplyeesize)?.ResearchPercentage) / 100) * 50) / 100 +
+                        (((emplyeesize * companyEffortsData?.find((company) => company.CompanySize === emplyeesize)?.ResearchPercentage) / 100) * 50) / 100 +
+                        (emplyeesize * companyEffortsData?.find((company) => company.CompanySize === emplyeesize)?.ResearchPercentage) / 100
                     )}
                   </Typography>
                 </Grid>
@@ -1157,7 +794,8 @@ const DetailedCalculator = ({
                   <Typography
                     variant="body1"
                     style={{
-                      whiteSpace: "nowrap",
+                      // whiteSpace: "nowrap",
+                      height: "50px",
                       overflow: "auto",
                       maxWidth: "100%",
                       fontWeight: "bold",
@@ -1170,30 +808,12 @@ const DetailedCalculator = ({
                       maximumFractionDigits: 2,
                     }).format(
                       Math.round(
-                        ((emplyeesize *
-                          companyEffortsData?.find((company) => company.CompanySize === emplyeesize)
-                            ?.ResearchPercentage) /
-                          100) *
-                          (countryData?.find((country) => country.Geography === companyLocation))
-                            .data.Others +
-                          ((((emplyeesize *
-                            companyEffortsData?.find(
-                              (company) => company.CompanySize === emplyeesize
-                            )?.ResearchPercentage) /
-                            100) *
-                            50) /
-                            100) *
-                            (countryData?.find((country) => country.Geography === companyLocation))
-                              .data.Others +
-                          ((((emplyeesize *
-                            companyEffortsData?.find(
-                              (company) => company.CompanySize === emplyeesize
-                            )?.ResearchPercentage) /
-                            100) *
-                            50) /
-                            100) *
-                            (countryData?.find((country) => country.Geography === companyLocation))
-                              .data.Others
+                        ((emplyeesize * companyEffortsData?.find((company) => company.CompanySize === emplyeesize)?.ResearchPercentage) / 100) *
+                          (countryData?.find((country) => country.Geography === companyLocation)).data.Others +
+                          ((((emplyeesize * companyEffortsData?.find((company) => company.CompanySize === emplyeesize)?.ResearchPercentage) / 100) * 50) / 100) *
+                            (countryData?.find((country) => country.Geography === companyLocation)).data.Others +
+                          ((((emplyeesize * companyEffortsData?.find((company) => company.CompanySize === emplyeesize)?.ResearchPercentage) / 100) * 50) / 100) *
+                            (countryData?.find((country) => country.Geography === companyLocation)).data.Others
                       )
                     )}
                   </Typography>
@@ -1206,39 +826,36 @@ const DetailedCalculator = ({
             {/* grid 1.2 */}
 
             {/* Second grid */}
-            <Grid
-              item
-              xs={12}
-              sm={3}
-              style={{ borderLeft: " 1px solid #ccc", textAlign: "center" }}
-            >
+            <Grid item xs={12} sm={3} sx={{ borderLeft: " 1px solid #ccc", textAlign: "center", paddingTop: "0px !important" }}>
               <Typography
                 variant="h6"
                 style={{
                   whiteSpace: "nowrap",
+                  // height:'50px',
                   overflow: "auto",
                   maxWidth: "100%",
+                  marginBottom: "20px",
                 }}
               >
-                AI-Based Effort and Cost Savings
+                Cost and Effort Savings
               </Typography>
               <Grid container spacing={2} style={{ textAlign: "center" }}>
                 {/* Column headers */}
                 <Grid item xs={6}>
                   <Typography
-                    variant="subtitle1"
+                    variant="h6"
                     style={{
                       whiteSpace: "nowrap",
                       overflow: "auto",
                       maxWidth: "100%",
                     }}
                   >
-                    Effort Saved (Hours)
+                     Effort Saved(hrs)
                   </Typography>
                 </Grid>
                 <Grid item xs={6}>
                   <Typography
-                    variant="subtitle1"
+                    variant="h6"
                     style={{
                       whiteSpace: "nowrap",
                       overflow: "auto",
@@ -1255,26 +872,21 @@ const DetailedCalculator = ({
                   <Typography
                     variant="body1"
                     style={{
-                      whiteSpace: "nowrap",
+                      // whiteSpace: "nowrap",
+                      height: "50px",
                       overflow: "auto",
                       maxWidth: "100%",
                     }}
                   >
-                    {Math.round(
-                      (((emplyeesize *
-                        companyEffortsData?.find((company) => company.CompanySize === emplyeesize)
-                          ?.ResearchPercentage) /
-                        100) *
-                        50) /
-                        100
-                    )}
+                    {Math.round((((emplyeesize * companyEffortsData?.find((company) => company.CompanySize === emplyeesize)?.ResearchPercentage) / 100) * 50) / 100)}
                   </Typography>
                 </Grid>
                 <Grid item xs={6}>
                   <Typography
                     variant="body1"
                     style={{
-                      whiteSpace: "nowrap",
+                      // whiteSpace: "nowrap",
+                      height: "50px",
                       overflow: "auto",
                       maxWidth: "100%",
                     }}
@@ -1286,24 +898,12 @@ const DetailedCalculator = ({
                       maximumFractionDigits: 2,
                     }).format(
                       Math.round(
-                        (((emplyeesize *
-                          companyEffortsData?.find((company) => company.CompanySize === emplyeesize)
-                            ?.ResearchPercentage) /
-                          100) *
-                          (countryData?.find((country) => country.Geography === companyLocation))
-                            .data.Others *
-                          ((emplyeesize *
-                            companyEffortsData?.find(
-                              (company) => company.CompanySize === emplyeesize
-                            )?.ResearchPercentage) /
-                            100) *
+                        (((emplyeesize * companyEffortsData?.find((company) => company.CompanySize === emplyeesize)?.ResearchPercentage) / 100) *
+                          (countryData?.find((country) => country.Geography === companyLocation)).data.Others *
+                          ((emplyeesize * companyEffortsData?.find((company) => company.CompanySize === emplyeesize)?.ResearchPercentage) / 100) *
                           50) /
                           100 /
-                          ((emplyeesize *
-                            companyEffortsData?.find(
-                              (company) => company.CompanySize === emplyeesize
-                            )?.ResearchPercentage) /
-                            100)
+                          ((emplyeesize * companyEffortsData?.find((company) => company.CompanySize === emplyeesize)?.ResearchPercentage) / 100)
                       )
                     )}
                   </Typography>
@@ -1312,28 +912,21 @@ const DetailedCalculator = ({
                   <Typography
                     variant="body1"
                     style={{
-                      whiteSpace: "nowrap",
+                      // whiteSpace: "nowrap",
+                      height: "50px",
                       overflow: "auto",
                       maxWidth: "100%",
                     }}
                   >
-                    {Math.round(
-                      (((((emplyeesize *
-                        companyEffortsData?.find((company) => company.CompanySize === emplyeesize)
-                          ?.ResearchPercentage) /
-                        100) *
-                        50) /
-                        100) *
-                        25) /
-                        100
-                    )}
+                    {Math.round((((((emplyeesize * companyEffortsData?.find((company) => company.CompanySize === emplyeesize)?.ResearchPercentage) / 100) * 50) / 100) * 25) / 100)}
                   </Typography>
                 </Grid>
                 <Grid item xs={6}>
                   <Typography
                     variant="body1"
                     style={{
-                      whiteSpace: "nowrap",
+                      // whiteSpace: "nowrap",
+                      height: "50px",
                       overflow: "auto",
                       maxWidth: "100%",
                     }}
@@ -1345,30 +938,10 @@ const DetailedCalculator = ({
                       maximumFractionDigits: 2,
                     }).format(
                       Math.round(
-                        (((((emplyeesize *
-                          companyEffortsData?.find((company) => company.CompanySize === emplyeesize)
-                            ?.ResearchPercentage) /
-                          100) *
-                          50) /
-                          100) *
-                          (countryData?.find((country) => country.Geography === companyLocation))
-                            .data.Others *
-                          ((((((emplyeesize *
-                            companyEffortsData?.find(
-                              (company) => company.CompanySize === emplyeesize
-                            )?.ResearchPercentage) /
-                            100) *
-                            50) /
-                            100) *
-                            25) /
-                            100)) /
-                          ((((emplyeesize *
-                            companyEffortsData?.find(
-                              (company) => company.CompanySize === emplyeesize
-                            )?.ResearchPercentage) /
-                            100) *
-                            50) /
-                            100)
+                        (((((emplyeesize * companyEffortsData?.find((company) => company.CompanySize === emplyeesize)?.ResearchPercentage) / 100) * 50) / 100) *
+                          (countryData?.find((country) => country.Geography === companyLocation)).data.Others *
+                          ((((((emplyeesize * companyEffortsData?.find((company) => company.CompanySize === emplyeesize)?.ResearchPercentage) / 100) * 50) / 100) * 25) / 100)) /
+                          ((((emplyeesize * companyEffortsData?.find((company) => company.CompanySize === emplyeesize)?.ResearchPercentage) / 100) * 50) / 100)
                       )
                     )}
                   </Typography>
@@ -1377,7 +950,8 @@ const DetailedCalculator = ({
                   <Typography
                     variant="body1"
                     style={{
-                      whiteSpace: "nowrap",
+                      // whiteSpace: "nowrap",
+                      height: "50px",
                       overflow: "auto",
                       maxWidth: "100%",
                     }}
@@ -1389,7 +963,8 @@ const DetailedCalculator = ({
                   <Typography
                     variant="body1"
                     style={{
-                      whiteSpace: "nowrap",
+                      // whiteSpace: "nowrap",
+                      height: "50px",
                       overflow: "auto",
                       maxWidth: "100%",
                     }}
@@ -1408,20 +983,8 @@ const DetailedCalculator = ({
                     }}
                   >
                     {Math.round(
-                      (((emplyeesize *
-                        companyEffortsData?.find((company) => company.CompanySize === emplyeesize)
-                          ?.ResearchPercentage) /
-                        100) *
-                        50) /
-                        100 +
-                        (((((emplyeesize *
-                          companyEffortsData?.find((company) => company.CompanySize === emplyeesize)
-                            ?.ResearchPercentage) /
-                          100) *
-                          50) /
-                          100) *
-                          25) /
-                          100
+                      (((emplyeesize * companyEffortsData?.find((company) => company.CompanySize === emplyeesize)?.ResearchPercentage) / 100) * 50) / 100 +
+                        (((((emplyeesize * companyEffortsData?.find((company) => company.CompanySize === emplyeesize)?.ResearchPercentage) / 100) * 50) / 100) * 25) / 100
                     )}
                   </Typography>
                 </Grid>
@@ -1429,7 +992,8 @@ const DetailedCalculator = ({
                   <Typography
                     variant="body1"
                     style={{
-                      whiteSpace: "nowrap",
+                      // whiteSpace: "nowrap",
+                      height: "50px",
                       overflow: "auto",
                       maxWidth: "100%",
                       fontWeight: "bold",
@@ -1442,49 +1006,16 @@ const DetailedCalculator = ({
                       maximumFractionDigits: 2,
                     }).format(
                       Math.round(
-                        (((((emplyeesize *
-                          companyEffortsData?.find((company) => company.CompanySize === emplyeesize)
-                            ?.ResearchPercentage) /
-                          100) *
-                          50) /
-                          100) *
-                          (countryData?.find((country) => country.Geography === companyLocation))
-                            .data.Others *
-                          ((((((emplyeesize *
-                            companyEffortsData?.find(
-                              (company) => company.CompanySize === emplyeesize
-                            )?.ResearchPercentage) /
-                            100) *
-                            50) /
-                            100) *
-                            25) /
-                            100)) /
-                          ((((emplyeesize *
-                            companyEffortsData?.find(
-                              (company) => company.CompanySize === emplyeesize
-                            )?.ResearchPercentage) /
-                            100) *
-                            50) /
-                            100) +
-                          (((emplyeesize *
-                            companyEffortsData?.find(
-                              (company) => company.CompanySize === emplyeesize
-                            )?.ResearchPercentage) /
-                            100) *
-                            (countryData?.find((country) => country.Geography === companyLocation))
-                              .data.Others *
-                            ((emplyeesize *
-                              companyEffortsData?.find(
-                                (company) => company.CompanySize === emplyeesize
-                              )?.ResearchPercentage) /
-                              100) *
+                        (((((emplyeesize * companyEffortsData?.find((company) => company.CompanySize === emplyeesize)?.ResearchPercentage) / 100) * 50) / 100) *
+                          (countryData?.find((country) => country.Geography === companyLocation)).data.Others *
+                          ((((((emplyeesize * companyEffortsData?.find((company) => company.CompanySize === emplyeesize)?.ResearchPercentage) / 100) * 50) / 100) * 25) / 100)) /
+                          ((((emplyeesize * companyEffortsData?.find((company) => company.CompanySize === emplyeesize)?.ResearchPercentage) / 100) * 50) / 100) +
+                          (((emplyeesize * companyEffortsData?.find((company) => company.CompanySize === emplyeesize)?.ResearchPercentage) / 100) *
+                            (countryData?.find((country) => country.Geography === companyLocation)).data.Others *
+                            ((emplyeesize * companyEffortsData?.find((company) => company.CompanySize === emplyeesize)?.ResearchPercentage) / 100) *
                             50) /
                             100 /
-                            ((emplyeesize *
-                              companyEffortsData?.find(
-                                (company) => company.CompanySize === emplyeesize
-                              )?.ResearchPercentage) /
-                              100)
+                            ((emplyeesize * companyEffortsData?.find((company) => company.CompanySize === emplyeesize)?.ResearchPercentage) / 100)
                       )
                     )}
                   </Typography>
@@ -1507,22 +1038,22 @@ const DetailedCalculator = ({
           >
             <Grid item xs={12}>
               <Typography
-                variant="h6"
+                variant="h5"
                 gutterBottom
                 sx={{
-                  textAlign: "center",
+                  textAlign: "left",
                   borderBottom: "2px solid #A3A0A0",
                   paddingBottom: "8px",
                   marginBottom: "12px",
-                  color: "#A3A0A0",
+                  color: "#808080",
                 }}
               >
-                Talent Marketing Strategy & Planning
+                Develop strategy & plan
               </Typography>
             </Grid>
 
             {/* First grid */}
-            <Grid item xs={12} sm={9}>
+            <Grid item xs={12} sm={9} sx={{ paddingTop: "0px !important" }}>
               <Typography
                 variant="h6"
                 style={{
@@ -1530,6 +1061,7 @@ const DetailedCalculator = ({
                   overflow: "auto",
                   maxWidth: "100%",
                   textAlign: "center",
+                  marginBottom: "20px",
                 }}
               >
                 Current Effort & Cost (Manual)
@@ -1538,7 +1070,7 @@ const DetailedCalculator = ({
                 {/* Column headers */}
                 <Grid item xs={3}>
                   <Typography
-                    variant="subtitle1"
+                    variant="h6"
                     style={{
                       whiteSpace: "nowrap",
                       overflow: "auto",
@@ -1550,7 +1082,7 @@ const DetailedCalculator = ({
                 </Grid>
                 <Grid item xs={3}>
                   <Typography
-                    variant="subtitle1"
+                    variant="h6"
                     style={{
                       whiteSpace: "nowrap",
                       overflow: "auto",
@@ -1562,19 +1094,19 @@ const DetailedCalculator = ({
                 </Grid>
                 <Grid item xs={3}>
                   <Typography
-                    variant="subtitle1"
+                    variant="h6"
                     style={{
                       whiteSpace: "nowrap",
                       overflow: "auto",
                       maxWidth: "100%",
                     }}
                   >
-                    Effort Involved (Hours)
+                    Effort Involved (hrs)
                   </Typography>
                 </Grid>
                 <Grid item xs={3}>
                   <Typography
-                    variant="subtitle1"
+                    variant="h6"
                     style={{
                       whiteSpace: "nowrap",
                       overflow: "auto",
@@ -1592,19 +1124,20 @@ const DetailedCalculator = ({
                   <Typography
                     variant="body1"
                     style={{
-                      whiteSpace: "nowrap",
+                      // whiteSpace: "nowrap",
                       overflow: "auto",
                       maxWidth: "100%",
+                      height: "50px",
                     }}
                   >
-                    Plan Document
+                    Develop talent proposition for each target audience{" "}
                   </Typography>
                 </Grid>
                 <Grid item xs={3}>
                   <Typography
                     variant="body1"
                     style={{
-                      whiteSpace: "nowrap",
+                      // whiteSpace: "nowrap",
                       overflow: "auto",
                       maxWidth: "100%",
                     }}
@@ -1616,26 +1149,23 @@ const DetailedCalculator = ({
                   <Typography
                     variant="body1"
                     style={{
-                      whiteSpace: "nowrap",
+                      // whiteSpace: "nowrap",
                       overflow: "auto",
                       maxWidth: "100%",
+                      height: "50px",
                     }}
                   >
-                    {Math.round(
-                      15 *
-                        6 *
-                        companyEffortsData?.find((company) => company.CompanySize === emplyeesize)
-                          ?.ContentTeamMultiple
-                    )}
+                    {Math.round(15 * 6 * companyEffortsData?.find((company) => company.CompanySize === emplyeesize)?.ContentTeamMultiple)}
                   </Typography>
                 </Grid>
                 <Grid item xs={3}>
                   <Typography
                     variant="body1"
                     style={{
-                      whiteSpace: "nowrap",
+                      // whiteSpace: "nowrap",
                       overflow: "auto",
                       maxWidth: "100%",
+                      height: "50px",
                     }}
                   >
                     {new Intl.NumberFormat("en-US", {
@@ -1647,10 +1177,8 @@ const DetailedCalculator = ({
                       Math.round(
                         15 *
                           6 *
-                          companyEffortsData?.find((company) => company.CompanySize === emplyeesize)
-                            ?.ContentTeamMultiple *
-                          (countryData?.find((country) => country.Geography === companyLocation))
-                            .data.MarketingManager
+                          companyEffortsData?.find((company) => company.CompanySize === emplyeesize)?.ContentTeamMultiple *
+                          (countryData?.find((country) => country.Geography === companyLocation)).data.MarketingManager
                       )
                     )}
                   </Typography>
@@ -1661,21 +1189,23 @@ const DetailedCalculator = ({
                   <Typography
                     variant="body1"
                     style={{
-                      whiteSpace: "nowrap",
+                      // whiteSpace: "nowrap",
                       overflow: "auto",
                       maxWidth: "100%",
+                      height: "50px",
                     }}
                   >
-                    Document campaign & content calendar
+                    Create and manage talent marketing calender{" "}
                   </Typography>
                 </Grid>
                 <Grid item xs={3}>
                   <Typography
                     variant="body1"
                     style={{
-                      whiteSpace: "nowrap",
+                      // whiteSpace: "nowrap",
                       overflow: "auto",
                       maxWidth: "100%",
+                      height: "50px",
                     }}
                   >
                     Onetime
@@ -1685,19 +1215,16 @@ const DetailedCalculator = ({
                   <Typography
                     variant="body1"
                     style={{
-                      whiteSpace: "nowrap",
+                      // whiteSpace: "nowrap",
                       overflow: "auto",
                       maxWidth: "100%",
+                      height: "50px",
                     }}
                   >
                     {Math.round(
                       (50 / 100) *
-                        (15 *
-                          6 *
-                          companyEffortsData?.find((company) => company.CompanySize === emplyeesize)
-                            ?.ContentTeamMultiple) *
-                        companyEffortsData?.find((company) => company.CompanySize === emplyeesize)
-                          ?.ContentTeamMultiple
+                        (15 * 6 * companyEffortsData?.find((company) => company.CompanySize === emplyeesize)?.ContentTeamMultiple) *
+                        companyEffortsData?.find((company) => company.CompanySize === emplyeesize)?.ContentTeamMultiple
                     )}
                   </Typography>
                 </Grid>
@@ -1705,9 +1232,10 @@ const DetailedCalculator = ({
                   <Typography
                     variant="body1"
                     style={{
-                      whiteSpace: "nowrap",
+                      // whiteSpace: "nowrap",
                       overflow: "auto",
                       maxWidth: "100%",
+                      height: "50px",
                     }}
                   >
                     {new Intl.NumberFormat("en-US", {
@@ -1718,15 +1246,9 @@ const DetailedCalculator = ({
                     }).format(
                       Math.round(
                         (50 / 100) *
-                          (15 *
-                            6 *
-                            companyEffortsData?.find(
-                              (company) => company.CompanySize === emplyeesize
-                            )?.ContentTeamMultiple) *
-                          companyEffortsData?.find((company) => company.CompanySize === emplyeesize)
-                            ?.ContentTeamMultiple *
-                          (countryData?.find((country) => country.Geography === companyLocation))
-                            .data.MarketingManager
+                          (15 * 6 * companyEffortsData?.find((company) => company.CompanySize === emplyeesize)?.ContentTeamMultiple) *
+                          companyEffortsData?.find((company) => company.CompanySize === emplyeesize)?.ContentTeamMultiple *
+                          (countryData?.find((country) => country.Geography === companyLocation)).data.MarketingManager
                       )
                     )}
                   </Typography>
@@ -1737,52 +1259,50 @@ const DetailedCalculator = ({
                   <Typography
                     variant="body1"
                     style={{
-                      whiteSpace: "nowrap",
+                      // whiteSpace: "nowrap",
                       overflow: "auto",
                       maxWidth: "100%",
+                      height: "50px",
                     }}
                   >
                     {" "}
-                    Document Topics & Themes
+                    Weekly planning{" "}
                   </Typography>
                 </Grid>
                 <Grid item xs={3}>
                   <Typography
                     variant="body1"
                     style={{
-                      whiteSpace: "nowrap",
+                      // whiteSpace: "nowrap",
                       overflow: "auto",
                       maxWidth: "100%",
+                      height: "50px",
                     }}
                   >
-                    Frequent
+                    Recurring
                   </Typography>
                 </Grid>
                 <Grid item xs={3}>
                   <Typography
                     variant="body1"
                     style={{
-                      whiteSpace: "nowrap",
+                      // whiteSpace: "nowrap",
                       overflow: "auto",
                       maxWidth: "100%",
+                      height: "50px",
                     }}
                   >
-                    {Math.round(
-                      4 *
-                        8 *
-                        2 *
-                        companyEffortsData?.find((company) => company.CompanySize === emplyeesize)
-                          ?.ContentTeamMultiple
-                    )}
+                    {Math.round(4 * 8 * 2 * companyEffortsData?.find((company) => company.CompanySize === emplyeesize)?.ContentTeamMultiple)}
                   </Typography>
                 </Grid>
                 <Grid item xs={3}>
                   <Typography
                     variant="body1"
                     style={{
-                      whiteSpace: "nowrap",
+                      // whiteSpace: "nowrap",
                       overflow: "auto",
                       maxWidth: "100%",
+                      height: "50px",
                     }}
                   >
                     {new Intl.NumberFormat("en-US", {
@@ -1795,10 +1315,8 @@ const DetailedCalculator = ({
                         4 *
                           8 *
                           2 *
-                          companyEffortsData?.find((company) => company.CompanySize === emplyeesize)
-                            ?.ContentTeamMultiple *
-                          (countryData?.find((country) => country.Geography === companyLocation))
-                            .data.MarketingManager
+                          companyEffortsData?.find((company) => company.CompanySize === emplyeesize)?.ContentTeamMultiple *
+                          (countryData?.find((country) => country.Geography === companyLocation)).data.MarketingManager
                       )
                     )}
                   </Typography>
@@ -1809,51 +1327,50 @@ const DetailedCalculator = ({
                   <Typography
                     variant="body1"
                     style={{
-                      whiteSpace: "nowrap",
+                      // whiteSpace: "nowrap",
                       overflow: "auto",
                       maxWidth: "100%",
+                      height: "50px",
                     }}
                   >
                     {" "}
-                    Metrics & Measures
+                    Listening to competitor updates, trends and talent insights{" "}
                   </Typography>
                 </Grid>
                 <Grid item xs={3}>
                   <Typography
                     variant="body1"
                     style={{
-                      whiteSpace: "nowrap",
+                      // whiteSpace: "nowrap",
                       overflow: "auto",
                       maxWidth: "100%",
+                      height: "50px",
                     }}
                   >
-                    Frequent
+                    Recurring
                   </Typography>
                 </Grid>
                 <Grid item xs={3}>
                   <Typography
                     variant="body1"
                     style={{
-                      whiteSpace: "nowrap",
+                      // whiteSpace: "nowrap",
                       overflow: "auto",
                       maxWidth: "100%",
+                      height: "50px",
                     }}
                   >
-                    {Math.round(
-                      12 *
-                        4 *
-                        companyEffortsData?.find((company) => company.CompanySize === emplyeesize)
-                          ?.ContentTeamMultiple
-                    )}
+                    {Math.round(12 * 4 * companyEffortsData?.find((company) => company.CompanySize === emplyeesize)?.ContentTeamMultiple)}
                   </Typography>
                 </Grid>
                 <Grid item xs={3}>
                   <Typography
                     variant="body1"
                     style={{
-                      whiteSpace: "nowrap",
+                      // whiteSpace: "nowrap",
                       overflow: "auto",
                       maxWidth: "100%",
+                      height: "50px",
                     }}
                   >
                     {new Intl.NumberFormat("en-US", {
@@ -1865,10 +1382,8 @@ const DetailedCalculator = ({
                       Math.round(
                         12 *
                           4 *
-                          companyEffortsData?.find((company) => company.CompanySize === emplyeesize)
-                            ?.ContentTeamMultiple *
-                          (countryData?.find((country) => country.Geography === companyLocation))
-                            .data.MarketingManager
+                          companyEffortsData?.find((company) => company.CompanySize === emplyeesize)?.ContentTeamMultiple *
+                          (countryData?.find((country) => country.Geography === companyLocation)).data.MarketingManager
                       )
                     )}
                   </Typography>
@@ -1878,9 +1393,10 @@ const DetailedCalculator = ({
                   <Typography
                     variant="body1"
                     style={{
-                      whiteSpace: "nowrap",
+                      // whiteSpace: "nowrap",
                       overflow: "auto",
                       maxWidth: "100%",
+                      height: "50px",
                     }}
                   >
                     Dashboard & reporting
@@ -1890,38 +1406,36 @@ const DetailedCalculator = ({
                   <Typography
                     variant="body1"
                     style={{
-                      whiteSpace: "nowrap",
+                      // whiteSpace: "nowrap",
                       overflow: "auto",
                       maxWidth: "100%",
+                      height: "50px",
                     }}
                   >
-                    Frequent
+                    Recurring
                   </Typography>
                 </Grid>
                 <Grid item xs={3}>
                   <Typography
                     variant="body1"
                     style={{
-                      whiteSpace: "nowrap",
+                      // whiteSpace: "nowrap",
                       overflow: "auto",
                       maxWidth: "100%",
+                      height: "50px",
                     }}
                   >
-                    {Math.round(
-                      12 *
-                        4 *
-                        companyEffortsData?.find((company) => company.CompanySize === emplyeesize)
-                          ?.ContentTeamMultiple
-                    )}
+                    {Math.round(12 * 4 * companyEffortsData?.find((company) => company.CompanySize === emplyeesize)?.ContentTeamMultiple)}
                   </Typography>
                 </Grid>
                 <Grid item xs={3}>
                   <Typography
                     variant="body1"
                     style={{
-                      whiteSpace: "nowrap",
+                      // whiteSpace: "nowrap",
                       overflow: "auto",
                       maxWidth: "100%",
+                      height: "50px",
                     }}
                   >
                     {new Intl.NumberFormat("en-US", {
@@ -1933,10 +1447,8 @@ const DetailedCalculator = ({
                       Math.round(
                         12 *
                           4 *
-                          companyEffortsData?.find((company) => company.CompanySize === emplyeesize)
-                            ?.ContentTeamMultiple *
-                          (countryData?.find((country) => country.Geography === companyLocation))
-                            .data.MarketingManager
+                          companyEffortsData?.find((company) => company.CompanySize === emplyeesize)?.ContentTeamMultiple *
+                          (countryData?.find((country) => country.Geography === companyLocation)).data.MarketingManager
                       )
                     )}
                   </Typography>
@@ -1947,9 +1459,10 @@ const DetailedCalculator = ({
                   <Typography
                     variant="body1"
                     style={{
-                      whiteSpace: "nowrap",
+                      // whiteSpace: "nowrap",
                       overflow: "auto",
                       maxWidth: "100%",
+                      height: "50px",
                     }}
                   ></Typography>
                 </Grid>
@@ -1957,9 +1470,10 @@ const DetailedCalculator = ({
                   <Typography
                     variant="body1"
                     style={{
-                      whiteSpace: "nowrap",
+                      // whiteSpace: "nowrap",
                       overflow: "auto",
                       maxWidth: "100%",
+                      height: "50px",
                     }}
                   ></Typography>
                 </Grid>
@@ -1990,21 +1504,10 @@ const DetailedCalculator = ({
                       //   companyEffortsData?.find(
                       //     (company) => company.CompanySize === emplyeesize
                       //   )?.ContentTeamMultiple +
-                      (4 *
-                        8 *
-                        2 *
-                        companyEffortsData?.find((company) => company.CompanySize === emplyeesize)
-                          ?.ContentTeamMultiple +
-                        12 *
-                          4 *
-                          companyEffortsData?.find((company) => company.CompanySize === emplyeesize)
-                            ?.ContentTeamMultiple +
-                        12 *
-                          4 *
-                          companyEffortsData?.find((company) => company.CompanySize === emplyeesize)
-                            ?.ContentTeamMultiple) *
-                        companyEffortsData?.find((company) => company.CompanySize === emplyeesize)
-                          ?.ContentTeamMultiple
+                      (4 * 8 * 2 * companyEffortsData?.find((company) => company.CompanySize === emplyeesize)?.ContentTeamMultiple +
+                        12 * 4 * companyEffortsData?.find((company) => company.CompanySize === emplyeesize)?.ContentTeamMultiple +
+                        12 * 4 * companyEffortsData?.find((company) => company.CompanySize === emplyeesize)?.ContentTeamMultiple) *
+                        companyEffortsData?.find((company) => company.CompanySize === emplyeesize)?.ContentTeamMultiple
                     )}
                   </Typography>
                 </Grid>
@@ -2027,43 +1530,25 @@ const DetailedCalculator = ({
                       Math.round(
                         15 *
                           6 *
-                          companyEffortsData?.find((company) => company.CompanySize === emplyeesize)
-                            ?.ContentTeamMultiple *
-                          (countryData?.find((country) => country.Geography === companyLocation))
-                            .data.MarketingManager +
+                          companyEffortsData?.find((company) => company.CompanySize === emplyeesize)?.ContentTeamMultiple *
+                          (countryData?.find((country) => country.Geography === companyLocation)).data.MarketingManager +
                           (50 / 100) *
-                            (15 *
-                              6 *
-                              companyEffortsData?.find(
-                                (company) => company.CompanySize === emplyeesize
-                              )?.ContentTeamMultiple) *
-                            companyEffortsData?.find(
-                              (company) => company.CompanySize === emplyeesize
-                            )?.ContentTeamMultiple *
-                            (countryData?.find((country) => country.Geography === companyLocation))
-                              .data.MarketingManager +
+                            (15 * 6 * companyEffortsData?.find((company) => company.CompanySize === emplyeesize)?.ContentTeamMultiple) *
+                            companyEffortsData?.find((company) => company.CompanySize === emplyeesize)?.ContentTeamMultiple *
+                            (countryData?.find((country) => country.Geography === companyLocation)).data.MarketingManager +
                           4 *
                             8 *
                             2 *
-                            companyEffortsData?.find(
-                              (company) => company.CompanySize === emplyeesize
-                            )?.ContentTeamMultiple *
-                            (countryData?.find((country) => country.Geography === companyLocation))
-                              .data.MarketingManager +
+                            companyEffortsData?.find((company) => company.CompanySize === emplyeesize)?.ContentTeamMultiple *
+                            (countryData?.find((country) => country.Geography === companyLocation)).data.MarketingManager +
                           12 *
                             4 *
-                            companyEffortsData?.find(
-                              (company) => company.CompanySize === emplyeesize
-                            )?.ContentTeamMultiple *
-                            (countryData?.find((country) => country.Geography === companyLocation))
-                              .data.MarketingManager +
+                            companyEffortsData?.find((company) => company.CompanySize === emplyeesize)?.ContentTeamMultiple *
+                            (countryData?.find((country) => country.Geography === companyLocation)).data.MarketingManager +
                           12 *
                             4 *
-                            companyEffortsData?.find(
-                              (company) => company.CompanySize === emplyeesize
-                            )?.ContentTeamMultiple *
-                            (countryData?.find((country) => country.Geography === companyLocation))
-                              .data.MarketingManager
+                            companyEffortsData?.find((company) => company.CompanySize === emplyeesize)?.ContentTeamMultiple *
+                            (countryData?.find((country) => country.Geography === companyLocation)).data.MarketingManager
                       )
                     )}
                   </Typography>
@@ -2074,39 +1559,35 @@ const DetailedCalculator = ({
             </Grid>
 
             {/* Second grid */}
-            <Grid
-              item
-              xs={12}
-              sm={3}
-              style={{ borderLeft: " 1px solid #ccc", textAlign: "center" }}
-            >
+            <Grid item xs={12} sm={3} sx={{ borderLeft: " 1px solid #ccc", textAlign: "center", paddingTop: "0px !important" }}>
               <Typography
                 variant="h6"
                 style={{
                   whiteSpace: "nowrap",
                   overflow: "auto",
                   maxWidth: "100%",
+                  marginBottom: "20px",
                 }}
               >
-                AI-Based Effort and Cost Savings
+                Cost and Effort Savings
               </Typography>
               <Grid container spacing={2} style={{ textAlign: "center" }}>
                 {/* Column headers */}
                 <Grid item xs={6}>
                   <Typography
-                    variant="subtitle1"
+                    variant="h6"
                     style={{
                       whiteSpace: "nowrap",
                       overflow: "auto",
                       maxWidth: "100%",
                     }}
                   >
-                    Effort Saved (Hours)
+                     Effort Saved(hrs)
                   </Typography>
                 </Grid>
                 <Grid item xs={6}>
                   <Typography
-                    variant="subtitle1"
+                    variant="h6"
                     style={{
                       whiteSpace: "nowrap",
                       overflow: "auto",
@@ -2124,27 +1605,23 @@ const DetailedCalculator = ({
                   <Typography
                     variant="body1"
                     style={{
-                      whiteSpace: "nowrap",
+                      // whiteSpace: "nowrap",
                       overflow: "auto",
                       maxWidth: "100%",
+                      height: "50px",
                     }}
                   >
-                    {Math.round(
-                      (25 / 100) *
-                        (15 *
-                          6 *
-                          companyEffortsData?.find((company) => company.CompanySize === emplyeesize)
-                            ?.ContentTeamMultiple)
-                    )}
+                    {Math.round((25 / 100) * (15 * 6 * companyEffortsData?.find((company) => company.CompanySize === emplyeesize)?.ContentTeamMultiple))}
                   </Typography>
                 </Grid>
                 <Grid item xs={6}>
                   <Typography
                     variant="body1"
                     style={{
-                      whiteSpace: "nowrap",
+                      // whiteSpace: "nowrap",
                       overflow: "auto",
                       maxWidth: "100%",
+                      height: "50px",
                     }}
                   >
                     {new Intl.NumberFormat("en-US", {
@@ -2156,21 +1633,10 @@ const DetailedCalculator = ({
                       Math.round(
                         (15 *
                           6 *
-                          companyEffortsData?.find((company) => company.CompanySize === emplyeesize)
-                            ?.ContentTeamMultiple *
-                          (countryData?.find((country) => country.Geography === companyLocation))
-                            .data.MarketingManager *
-                          ((25 / 100) *
-                            (15 *
-                              6 *
-                              companyEffortsData?.find(
-                                (company) => company.CompanySize === emplyeesize
-                              )?.ContentTeamMultiple))) /
-                          (15 *
-                            6 *
-                            companyEffortsData?.find(
-                              (company) => company.CompanySize === emplyeesize
-                            )?.ContentTeamMultiple)
+                          companyEffortsData?.find((company) => company.CompanySize === emplyeesize)?.ContentTeamMultiple *
+                          (countryData?.find((country) => country.Geography === companyLocation)).data.MarketingManager *
+                          ((25 / 100) * (15 * 6 * companyEffortsData?.find((company) => company.CompanySize === emplyeesize)?.ContentTeamMultiple))) /
+                          (15 * 6 * companyEffortsData?.find((company) => company.CompanySize === emplyeesize)?.ContentTeamMultiple)
                       )
                     )}
                   </Typography>
@@ -2180,20 +1646,17 @@ const DetailedCalculator = ({
                   <Typography
                     variant="body1"
                     style={{
-                      whiteSpace: "nowrap",
+                      // whiteSpace: "nowrap",
                       overflow: "auto",
                       maxWidth: "100%",
+                      height: "50px",
                     }}
                   >
                     {Math.round(
                       (50 / 100) *
                         (50 / 100) *
-                        (15 *
-                          6 *
-                          companyEffortsData?.find((company) => company.CompanySize === emplyeesize)
-                            ?.ContentTeamMultiple) *
-                        companyEffortsData?.find((company) => company.CompanySize === emplyeesize)
-                          ?.ContentTeamMultiple
+                        (15 * 6 * companyEffortsData?.find((company) => company.CompanySize === emplyeesize)?.ContentTeamMultiple) *
+                        companyEffortsData?.find((company) => company.CompanySize === emplyeesize)?.ContentTeamMultiple
                     )}
                   </Typography>
                 </Grid>
@@ -2201,9 +1664,10 @@ const DetailedCalculator = ({
                   <Typography
                     variant="body1"
                     style={{
-                      whiteSpace: "nowrap",
+                      // whiteSpace: "nowrap",
                       overflow: "auto",
                       maxWidth: "100%",
+                      height: "50px",
                     }}
                   >
                     {new Intl.NumberFormat("en-US", {
@@ -2214,34 +1678,16 @@ const DetailedCalculator = ({
                     }).format(
                       Math.round(
                         ((50 / 100) *
-                          (15 *
-                            6 *
-                            companyEffortsData?.find(
-                              (company) => company.CompanySize === emplyeesize
-                            )?.ContentTeamMultiple) *
-                          companyEffortsData?.find((company) => company.CompanySize === emplyeesize)
-                            ?.ContentTeamMultiple *
-                          (countryData?.find((country) => country.Geography === companyLocation))
-                            .data.MarketingManager *
+                          (15 * 6 * companyEffortsData?.find((company) => company.CompanySize === emplyeesize)?.ContentTeamMultiple) *
+                          companyEffortsData?.find((company) => company.CompanySize === emplyeesize)?.ContentTeamMultiple *
+                          (countryData?.find((country) => country.Geography === companyLocation)).data.MarketingManager *
                           ((50 / 100) *
                             (50 / 100) *
-                            (15 *
-                              6 *
-                              companyEffortsData?.find(
-                                (company) => company.CompanySize === emplyeesize
-                              )?.ContentTeamMultiple) *
-                            companyEffortsData?.find(
-                              (company) => company.CompanySize === emplyeesize
-                            )?.ContentTeamMultiple)) /
+                            (15 * 6 * companyEffortsData?.find((company) => company.CompanySize === emplyeesize)?.ContentTeamMultiple) *
+                            companyEffortsData?.find((company) => company.CompanySize === emplyeesize)?.ContentTeamMultiple)) /
                           ((50 / 100) *
-                            (15 *
-                              6 *
-                              companyEffortsData?.find(
-                                (company) => company.CompanySize === emplyeesize
-                              )?.ContentTeamMultiple) *
-                            companyEffortsData?.find(
-                              (company) => company.CompanySize === emplyeesize
-                            )?.ContentTeamMultiple)
+                            (15 * 6 * companyEffortsData?.find((company) => company.CompanySize === emplyeesize)?.ContentTeamMultiple) *
+                            companyEffortsData?.find((company) => company.CompanySize === emplyeesize)?.ContentTeamMultiple)
                       )
                     )}
                   </Typography>
@@ -2252,28 +1698,23 @@ const DetailedCalculator = ({
                   <Typography
                     variant="body1"
                     style={{
-                      whiteSpace: "nowrap",
+                      // whiteSpace: "nowrap",
                       overflow: "auto",
                       maxWidth: "100%",
+                      height: "50px",
                     }}
                   >
-                    {Math.round(
-                      (75 / 100) *
-                        4 *
-                        8 *
-                        2 *
-                        companyEffortsData?.find((company) => company.CompanySize === emplyeesize)
-                          ?.ContentTeamMultiple
-                    )}
+                    {Math.round((75 / 100) * 4 * 8 * 2 * companyEffortsData?.find((company) => company.CompanySize === emplyeesize)?.ContentTeamMultiple)}
                   </Typography>
                 </Grid>
                 <Grid item xs={6}>
                   <Typography
                     variant="body1"
                     style={{
-                      whiteSpace: "nowrap",
+                      // whiteSpace: "nowrap",
                       overflow: "auto",
                       maxWidth: "100%",
+                      height: "50px",
                     }}
                   >
                     {new Intl.NumberFormat("en-US", {
@@ -2285,22 +1726,10 @@ const DetailedCalculator = ({
                       Math.round(
                         (12 *
                           4 *
-                          companyEffortsData?.find((company) => company.CompanySize === emplyeesize)
-                            ?.ContentTeamMultiple *
-                          (countryData?.find((country) => country.Geography === companyLocation))
-                            .data.MarketingManager *
-                          ((75 / 100) *
-                            4 *
-                            8 *
-                            2 *
-                            companyEffortsData?.find(
-                              (company) => company.CompanySize === emplyeesize
-                            )?.ContentTeamMultiple)) /
-                          (12 *
-                            4 *
-                            companyEffortsData?.find(
-                              (company) => company.CompanySize === emplyeesize
-                            )?.ContentTeamMultiple)
+                          companyEffortsData?.find((company) => company.CompanySize === emplyeesize)?.ContentTeamMultiple *
+                          (countryData?.find((country) => country.Geography === companyLocation)).data.MarketingManager *
+                          ((75 / 100) * 4 * 8 * 2 * companyEffortsData?.find((company) => company.CompanySize === emplyeesize)?.ContentTeamMultiple)) /
+                          (12 * 4 * companyEffortsData?.find((company) => company.CompanySize === emplyeesize)?.ContentTeamMultiple)
                       )
                     )}
                   </Typography>
@@ -2310,27 +1739,23 @@ const DetailedCalculator = ({
                   <Typography
                     variant="body1"
                     style={{
-                      whiteSpace: "nowrap",
+                      // whiteSpace: "nowrap",
                       overflow: "auto",
                       maxWidth: "100%",
+                      height: "50px",
                     }}
                   >
-                    {Math.round(
-                      (25 / 100) *
-                        12 *
-                        4 *
-                        companyEffortsData?.find((company) => company.CompanySize === emplyeesize)
-                          ?.ContentTeamMultiple
-                    )}
+                    {Math.round((25 / 100) * 12 * 4 * companyEffortsData?.find((company) => company.CompanySize === emplyeesize)?.ContentTeamMultiple)}
                   </Typography>
                 </Grid>
                 <Grid item xs={6}>
                   <Typography
                     variant="body1"
                     style={{
-                      whiteSpace: "nowrap",
+                      // whiteSpace: "nowrap",
                       overflow: "auto",
                       maxWidth: "100%",
+                      height: "50px",
                     }}
                   >
                     {new Intl.NumberFormat("en-US", {
@@ -2342,21 +1767,10 @@ const DetailedCalculator = ({
                       Math.round(
                         (12 *
                           4 *
-                          companyEffortsData?.find((company) => company.CompanySize === emplyeesize)
-                            ?.ContentTeamMultiple *
-                          (countryData?.find((country) => country.Geography === companyLocation))
-                            .data.MarketingManager *
-                          ((25 / 100) *
-                            12 *
-                            4 *
-                            companyEffortsData?.find(
-                              (company) => company.CompanySize === emplyeesize
-                            )?.ContentTeamMultiple)) /
-                          (12 *
-                            4 *
-                            companyEffortsData?.find(
-                              (company) => company.CompanySize === emplyeesize
-                            )?.ContentTeamMultiple)
+                          companyEffortsData?.find((company) => company.CompanySize === emplyeesize)?.ContentTeamMultiple *
+                          (countryData?.find((country) => country.Geography === companyLocation)).data.MarketingManager *
+                          ((25 / 100) * 12 * 4 * companyEffortsData?.find((company) => company.CompanySize === emplyeesize)?.ContentTeamMultiple)) /
+                          (12 * 4 * companyEffortsData?.find((company) => company.CompanySize === emplyeesize)?.ContentTeamMultiple)
                       )
                     )}
                   </Typography>
@@ -2366,27 +1780,23 @@ const DetailedCalculator = ({
                   <Typography
                     variant="body1"
                     style={{
-                      whiteSpace: "nowrap",
+                      // whiteSpace: "nowrap",
                       overflow: "auto",
                       maxWidth: "100%",
+                      height: "50px",
                     }}
                   >
-                    {Math.round(
-                      (50 / 100) *
-                        12 *
-                        4 *
-                        companyEffortsData?.find((company) => company.CompanySize === emplyeesize)
-                          ?.ContentTeamMultiple
-                    )}
+                    {Math.round((50 / 100) * 12 * 4 * companyEffortsData?.find((company) => company.CompanySize === emplyeesize)?.ContentTeamMultiple)}
                   </Typography>
                 </Grid>
                 <Grid item xs={6}>
                   <Typography
                     variant="body1"
                     style={{
-                      whiteSpace: "nowrap",
+                      // whiteSpace: "nowrap",
                       overflow: "auto",
                       maxWidth: "100%",
+                      height: "50px",
                     }}
                   >
                     {new Intl.NumberFormat("en-US", {
@@ -2398,21 +1808,10 @@ const DetailedCalculator = ({
                       Math.round(
                         (12 *
                           4 *
-                          companyEffortsData?.find((company) => company.CompanySize === emplyeesize)
-                            ?.ContentTeamMultiple *
-                          (countryData?.find((country) => country.Geography === companyLocation))
-                            .data.MarketingManager *
-                          ((50 / 100) *
-                            12 *
-                            4 *
-                            companyEffortsData?.find(
-                              (company) => company.CompanySize === emplyeesize
-                            )?.ContentTeamMultiple)) /
-                          (12 *
-                            4 *
-                            companyEffortsData?.find(
-                              (company) => company.CompanySize === emplyeesize
-                            )?.ContentTeamMultiple)
+                          companyEffortsData?.find((company) => company.CompanySize === emplyeesize)?.ContentTeamMultiple *
+                          (countryData?.find((country) => country.Geography === companyLocation)).data.MarketingManager *
+                          ((50 / 100) * 12 * 4 * companyEffortsData?.find((company) => company.CompanySize === emplyeesize)?.ContentTeamMultiple)) /
+                          (12 * 4 * companyEffortsData?.find((company) => company.CompanySize === emplyeesize)?.ContentTeamMultiple)
                       )
                     )}
                   </Typography>
@@ -2430,22 +1829,9 @@ const DetailedCalculator = ({
                     }}
                   >
                     {Math.round(
-                      (75 / 100) *
-                        4 *
-                        8 *
-                        2 *
-                        companyEffortsData?.find((company) => company.CompanySize === emplyeesize)
-                          ?.ContentTeamMultiple +
-                        (25 / 100) *
-                          12 *
-                          4 *
-                          companyEffortsData?.find((company) => company.CompanySize === emplyeesize)
-                            ?.ContentTeamMultiple +
-                        (50 / 100) *
-                          12 *
-                          4 *
-                          companyEffortsData?.find((company) => company.CompanySize === emplyeesize)
-                            ?.ContentTeamMultiple
+                      (75 / 100) * 4 * 8 * 2 * companyEffortsData?.find((company) => company.CompanySize === emplyeesize)?.ContentTeamMultiple +
+                        (25 / 100) * 12 * 4 * companyEffortsData?.find((company) => company.CompanySize === emplyeesize)?.ContentTeamMultiple +
+                        (50 / 100) * 12 * 4 * companyEffortsData?.find((company) => company.CompanySize === emplyeesize)?.ContentTeamMultiple
                     )}
                   </Typography>
                 </Grid>
@@ -2468,106 +1854,39 @@ const DetailedCalculator = ({
                       Math.round(
                         (15 *
                           6 *
-                          companyEffortsData?.find((company) => company.CompanySize === emplyeesize)
-                            ?.ContentTeamMultiple *
-                          (countryData?.find((country) => country.Geography === companyLocation))
-                            .data.MarketingManager *
-                          ((25 / 100) *
-                            (15 *
-                              6 *
-                              companyEffortsData?.find(
-                                (company) => company.CompanySize === emplyeesize
-                              )?.ContentTeamMultiple))) /
-                          (15 *
-                            6 *
-                            companyEffortsData?.find(
-                              (company) => company.CompanySize === emplyeesize
-                            )?.ContentTeamMultiple) +
+                          companyEffortsData?.find((company) => company.CompanySize === emplyeesize)?.ContentTeamMultiple *
+                          (countryData?.find((country) => country.Geography === companyLocation)).data.MarketingManager *
+                          ((25 / 100) * (15 * 6 * companyEffortsData?.find((company) => company.CompanySize === emplyeesize)?.ContentTeamMultiple))) /
+                          (15 * 6 * companyEffortsData?.find((company) => company.CompanySize === emplyeesize)?.ContentTeamMultiple) +
                           ((50 / 100) *
-                            (15 *
-                              6 *
-                              companyEffortsData?.find(
-                                (company) => company.CompanySize === emplyeesize
-                              )?.ContentTeamMultiple) *
-                            companyEffortsData?.find(
-                              (company) => company.CompanySize === emplyeesize
-                            )?.ContentTeamMultiple *
-                            (countryData?.find((country) => country.Geography === companyLocation))
-                              .data.MarketingManager *
+                            (15 * 6 * companyEffortsData?.find((company) => company.CompanySize === emplyeesize)?.ContentTeamMultiple) *
+                            companyEffortsData?.find((company) => company.CompanySize === emplyeesize)?.ContentTeamMultiple *
+                            (countryData?.find((country) => country.Geography === companyLocation)).data.MarketingManager *
                             ((50 / 100) *
                               (50 / 100) *
-                              (15 *
-                                6 *
-                                companyEffortsData?.find(
-                                  (company) => company.CompanySize === emplyeesize
-                                )?.ContentTeamMultiple) *
-                              companyEffortsData?.find(
-                                (company) => company.CompanySize === emplyeesize
-                              )?.ContentTeamMultiple)) /
+                              (15 * 6 * companyEffortsData?.find((company) => company.CompanySize === emplyeesize)?.ContentTeamMultiple) *
+                              companyEffortsData?.find((company) => company.CompanySize === emplyeesize)?.ContentTeamMultiple)) /
                             ((50 / 100) *
-                              (15 *
-                                6 *
-                                companyEffortsData?.find(
-                                  (company) => company.CompanySize === emplyeesize
-                                )?.ContentTeamMultiple) *
-                              companyEffortsData?.find(
-                                (company) => company.CompanySize === emplyeesize
-                              )?.ContentTeamMultiple) +
+                              (15 * 6 * companyEffortsData?.find((company) => company.CompanySize === emplyeesize)?.ContentTeamMultiple) *
+                              companyEffortsData?.find((company) => company.CompanySize === emplyeesize)?.ContentTeamMultiple) +
                           (12 *
                             4 *
-                            companyEffortsData?.find(
-                              (company) => company.CompanySize === emplyeesize
-                            )?.ContentTeamMultiple *
-                            (countryData?.find((country) => country.Geography === companyLocation))
-                              .data.MarketingManager *
-                            ((75 / 100) *
-                              4 *
-                              8 *
-                              2 *
-                              companyEffortsData?.find(
-                                (company) => company.CompanySize === emplyeesize
-                              )?.ContentTeamMultiple)) /
-                            (12 *
-                              4 *
-                              companyEffortsData?.find(
-                                (company) => company.CompanySize === emplyeesize
-                              )?.ContentTeamMultiple) +
+                            companyEffortsData?.find((company) => company.CompanySize === emplyeesize)?.ContentTeamMultiple *
+                            (countryData?.find((country) => country.Geography === companyLocation)).data.MarketingManager *
+                            ((75 / 100) * 4 * 8 * 2 * companyEffortsData?.find((company) => company.CompanySize === emplyeesize)?.ContentTeamMultiple)) /
+                            (12 * 4 * companyEffortsData?.find((company) => company.CompanySize === emplyeesize)?.ContentTeamMultiple) +
                           (12 *
                             4 *
-                            companyEffortsData?.find(
-                              (company) => company.CompanySize === emplyeesize
-                            )?.ContentTeamMultiple *
-                            (countryData?.find((country) => country.Geography === companyLocation))
-                              .data.MarketingManager *
-                            ((25 / 100) *
-                              12 *
-                              4 *
-                              companyEffortsData?.find(
-                                (company) => company.CompanySize === emplyeesize
-                              )?.ContentTeamMultiple)) /
-                            (12 *
-                              4 *
-                              companyEffortsData?.find(
-                                (company) => company.CompanySize === emplyeesize
-                              )?.ContentTeamMultiple) +
+                            companyEffortsData?.find((company) => company.CompanySize === emplyeesize)?.ContentTeamMultiple *
+                            (countryData?.find((country) => country.Geography === companyLocation)).data.MarketingManager *
+                            ((25 / 100) * 12 * 4 * companyEffortsData?.find((company) => company.CompanySize === emplyeesize)?.ContentTeamMultiple)) /
+                            (12 * 4 * companyEffortsData?.find((company) => company.CompanySize === emplyeesize)?.ContentTeamMultiple) +
                           (12 *
                             4 *
-                            companyEffortsData?.find(
-                              (company) => company.CompanySize === emplyeesize
-                            )?.ContentTeamMultiple *
-                            (countryData?.find((country) => country.Geography === companyLocation))
-                              .data.MarketingManager *
-                            ((50 / 100) *
-                              12 *
-                              4 *
-                              companyEffortsData?.find(
-                                (company) => company.CompanySize === emplyeesize
-                              )?.ContentTeamMultiple)) /
-                            (12 *
-                              4 *
-                              companyEffortsData?.find(
-                                (company) => company.CompanySize === emplyeesize
-                              )?.ContentTeamMultiple)
+                            companyEffortsData?.find((company) => company.CompanySize === emplyeesize)?.ContentTeamMultiple *
+                            (countryData?.find((country) => country.Geography === companyLocation)).data.MarketingManager *
+                            ((50 / 100) * 12 * 4 * companyEffortsData?.find((company) => company.CompanySize === emplyeesize)?.ContentTeamMultiple)) /
+                            (12 * 4 * companyEffortsData?.find((company) => company.CompanySize === emplyeesize)?.ContentTeamMultiple)
                       )
                     )}
                   </Typography>
@@ -2591,22 +1910,22 @@ const DetailedCalculator = ({
           >
             <Grid item xs={12}>
               <Typography
-                variant="h6"
+                variant="h5"
                 gutterBottom
                 sx={{
-                  textAlign: "center",
+                  textAlign: "left",
                   borderBottom: "2px solid #A3A0A0",
                   paddingBottom: "8px",
                   marginBottom: "12px",
-                  color: "#A3A0A0",
+                  color: "#808080",
                 }}
               >
-                Campaign Management
+                Build & Launch Campaigns
               </Typography>
             </Grid>
 
             {/* First grid */}
-            <Grid item xs={12} sm={9}>
+            <Grid item xs={12} sm={9} sx={{ paddingTop: "0px !important" }}>
               <Typography
                 variant="h6"
                 style={{
@@ -2614,6 +1933,7 @@ const DetailedCalculator = ({
                   overflow: "auto",
                   maxWidth: "100%",
                   textAlign: "center",
+                  marginBottom: "20px",
                 }}
               >
                 Current Effort & Cost (Manual)
@@ -2622,7 +1942,7 @@ const DetailedCalculator = ({
                 {/* Column headers */}
                 <Grid item xs={3}>
                   <Typography
-                    variant="subtitle1"
+                    variant="h6"
                     style={{
                       whiteSpace: "nowrap",
                       overflow: "auto",
@@ -2634,7 +1954,7 @@ const DetailedCalculator = ({
                 </Grid>
                 <Grid item xs={3}>
                   <Typography
-                    variant="subtitle1"
+                    variant="h6"
                     style={{
                       whiteSpace: "nowrap",
                       overflow: "auto",
@@ -2646,19 +1966,19 @@ const DetailedCalculator = ({
                 </Grid>
                 <Grid item xs={3}>
                   <Typography
-                    variant="subtitle1"
+                    variant="h6"
                     style={{
                       whiteSpace: "nowrap",
                       overflow: "auto",
                       maxWidth: "100%",
                     }}
                   >
-                    Effort Involved (Hours)
+                    Effort Involved (hrs)
                   </Typography>
                 </Grid>
                 <Grid item xs={3}>
                   <Typography
-                    variant="subtitle1"
+                    variant="h6"
                     style={{
                       whiteSpace: "nowrap",
                       overflow: "auto",
@@ -2676,9 +1996,10 @@ const DetailedCalculator = ({
                   <Typography
                     variant="body1"
                     style={{
-                      whiteSpace: "nowrap",
+                      // whiteSpace: "nowrap",
                       overflow: "auto",
                       maxWidth: "100%",
+                      height: "50px",
                     }}
                   >
                     Create campaigns
@@ -2688,39 +2009,36 @@ const DetailedCalculator = ({
                   <Typography
                     variant="body1"
                     style={{
-                      whiteSpace: "nowrap",
+                      // whiteSpace: "nowrap",
                       overflow: "auto",
                       maxWidth: "100%",
+                      height: "50px",
                     }}
                   >
-                    Frequent
+                    Recurring
                   </Typography>
                 </Grid>
                 <Grid item xs={3}>
                   <Typography
                     variant="body1"
                     style={{
-                      whiteSpace: "nowrap",
+                      // whiteSpace: "nowrap",
                       overflow: "auto",
                       maxWidth: "100%",
+                      height: "50px",
                     }}
                   >
-                    {Math.round(
-                      1 *
-                        8 *
-                        52 *
-                        companyEffortsData?.find((company) => company.CompanySize === emplyeesize)
-                          ?.ContentTeamMultiple
-                    )}
+                    {Math.round(1 * 8 * 52 * companyEffortsData?.find((company) => company.CompanySize === emplyeesize)?.ContentTeamMultiple)}
                   </Typography>
                 </Grid>
                 <Grid item xs={3}>
                   <Typography
                     variant="body1"
                     style={{
-                      whiteSpace: "nowrap",
+                      // whiteSpace: "nowrap",
                       overflow: "auto",
                       maxWidth: "100%",
+                      height: "50px",
                     }}
                   >
                     {new Intl.NumberFormat("en-US", {
@@ -2733,10 +2051,8 @@ const DetailedCalculator = ({
                         1 *
                           8 *
                           52 *
-                          companyEffortsData?.find((company) => company.CompanySize === emplyeesize)
-                            ?.ContentTeamMultiple *
-                          (countryData?.find((country) => country.Geography === companyLocation))
-                            .data.MarketingManager *
+                          companyEffortsData?.find((company) => company.CompanySize === emplyeesize)?.ContentTeamMultiple *
+                          (countryData?.find((country) => country.Geography === companyLocation)).data.MarketingManager *
                           multiplier
                       )
                     )}
@@ -2747,9 +2063,10 @@ const DetailedCalculator = ({
                   <Typography
                     variant="body1"
                     style={{
-                      whiteSpace: "nowrap",
+                      // whiteSpace: "nowrap",
                       overflow: "auto",
                       maxWidth: "100%",
+                      height: "50px",
                     }}
                   >
                     Create content
@@ -2759,39 +2076,36 @@ const DetailedCalculator = ({
                   <Typography
                     variant="body1"
                     style={{
-                      whiteSpace: "nowrap",
+                      // whiteSpace: "nowrap",
                       overflow: "auto",
                       maxWidth: "100%",
+                      height: "50px",
                     }}
                   >
-                    Frequent
+                    Recurring
                   </Typography>
                 </Grid>
                 <Grid item xs={3}>
                   <Typography
                     variant="body1"
                     style={{
-                      whiteSpace: "nowrap",
+                      // whiteSpace: "nowrap",
                       overflow: "auto",
                       maxWidth: "100%",
+                      height: "50px",
                     }}
                   >
-                    {Math.round(
-                      4 *
-                        52 *
-                        5 *
-                        companyEffortsData?.find((company) => company.CompanySize === emplyeesize)
-                          ?.ContentTeamMultiple
-                    )}
+                    {Math.round(4 * 52 * 5 * companyEffortsData?.find((company) => company.CompanySize === emplyeesize)?.ContentTeamMultiple)}
                   </Typography>
                 </Grid>
                 <Grid item xs={3}>
                   <Typography
                     variant="body1"
                     style={{
-                      whiteSpace: "nowrap",
+                      // whiteSpace: "nowrap",
                       overflow: "auto",
                       maxWidth: "100%",
+                      height: "50px",
                     }}
                   >
                     {new Intl.NumberFormat("en-US", {
@@ -2804,10 +2118,8 @@ const DetailedCalculator = ({
                         4 *
                           52 *
                           5 *
-                          companyEffortsData?.find((company) => company.CompanySize === emplyeesize)
-                            ?.ContentTeamMultiple *
-                          (countryData?.find((country) => country.Geography === companyLocation))
-                            .data.ContentCreator *
+                          companyEffortsData?.find((company) => company.CompanySize === emplyeesize)?.ContentTeamMultiple *
+                          (countryData?.find((country) => country.Geography === companyLocation)).data.ContentCreator *
                           multiplier
                       )
                     )}
@@ -2818,9 +2130,10 @@ const DetailedCalculator = ({
                   <Typography
                     variant="body1"
                     style={{
-                      whiteSpace: "nowrap",
+                      // whiteSpace: "nowrap",
                       overflow: "auto",
                       maxWidth: "100%",
+                      height: "50px",
                     }}
                   >
                     Review content
@@ -2830,32 +2143,29 @@ const DetailedCalculator = ({
                   <Typography
                     variant="body1"
                     style={{
-                      whiteSpace: "nowrap",
+                      // whiteSpace: "nowrap",
                       overflow: "auto",
                       maxWidth: "100%",
+                      height: "50px",
                     }}
                   >
-                    Frequent
+                    Recurring
                   </Typography>
                 </Grid>
                 <Grid item xs={3}>
                   <Typography
                     variant="body1"
                     style={{
-                      whiteSpace: "nowrap",
+                      // whiteSpace: "nowrap",
                       overflow: "auto",
                       maxWidth: "100%",
+                      height: "50px",
                     }}
                   >
                     {Math.round(
                       (50 / 100) *
-                        (4 *
-                          52 *
-                          5 *
-                          companyEffortsData?.find((company) => company.CompanySize === emplyeesize)
-                            ?.ContentTeamMultiple) *
-                        companyEffortsData?.find((company) => company.CompanySize === emplyeesize)
-                          ?.ContentTeamMultiple
+                        (4 * 52 * 5 * companyEffortsData?.find((company) => company.CompanySize === emplyeesize)?.ContentTeamMultiple) *
+                        companyEffortsData?.find((company) => company.CompanySize === emplyeesize)?.ContentTeamMultiple
                     )}
                   </Typography>
                 </Grid>
@@ -2863,9 +2173,10 @@ const DetailedCalculator = ({
                   <Typography
                     variant="body1"
                     style={{
-                      whiteSpace: "nowrap",
+                      // whiteSpace: "nowrap",
                       overflow: "auto",
                       maxWidth: "100%",
+                      height: "50px",
                     }}
                   >
                     {new Intl.NumberFormat("en-US", {
@@ -2876,16 +2187,9 @@ const DetailedCalculator = ({
                     }).format(
                       Math.round(
                         (50 / 100) *
-                          (4 *
-                            52 *
-                            5 *
-                            companyEffortsData?.find(
-                              (company) => company.CompanySize === emplyeesize
-                            )?.ContentTeamMultiple) *
-                          companyEffortsData?.find((company) => company.CompanySize === emplyeesize)
-                            ?.ContentTeamMultiple *
-                          (countryData?.find((country) => country.Geography === companyLocation))
-                            .data.ContentCreator *
+                          (4 * 52 * 5 * companyEffortsData?.find((company) => company.CompanySize === emplyeesize)?.ContentTeamMultiple) *
+                          companyEffortsData?.find((company) => company.CompanySize === emplyeesize)?.ContentTeamMultiple *
+                          (countryData?.find((country) => country.Geography === companyLocation)).data.ContentCreator *
                           multiplier
                       )
                     )}
@@ -2896,9 +2200,10 @@ const DetailedCalculator = ({
                   <Typography
                     variant="body1"
                     style={{
-                      whiteSpace: "nowrap",
+                      // whiteSpace: "nowrap",
                       overflow: "auto",
                       maxWidth: "100%",
+                      height: "50px",
                     }}
                   >
                     Publish content
@@ -2908,36 +2213,31 @@ const DetailedCalculator = ({
                   <Typography
                     variant="body1"
                     style={{
-                      whiteSpace: "nowrap",
+                      // whiteSpace: "nowrap",
                       overflow: "auto",
                       maxWidth: "100%",
+                      height: "50px",
                     }}
                   >
-                    Frequent
+                    Recurring
                   </Typography>
                 </Grid>
                 <Grid item xs={3}>
                   <Typography
                     variant="body1"
                     style={{
-                      whiteSpace: "nowrap",
+                      // whiteSpace: "nowrap",
                       overflow: "auto",
                       maxWidth: "100%",
+                      height: "50px",
                     }}
                   >
                     {Math.round(
                       (50 / 100) *
                         ((50 / 100) *
-                          (4 *
-                            52 *
-                            5 *
-                            companyEffortsData?.find(
-                              (company) => company.CompanySize === emplyeesize
-                            )?.ContentTeamMultiple) *
-                          companyEffortsData?.find((company) => company.CompanySize === emplyeesize)
-                            ?.ContentTeamMultiple) *
-                        companyEffortsData?.find((company) => company.CompanySize === emplyeesize)
-                          ?.ContentTeamMultiple
+                          (4 * 52 * 5 * companyEffortsData?.find((company) => company.CompanySize === emplyeesize)?.ContentTeamMultiple) *
+                          companyEffortsData?.find((company) => company.CompanySize === emplyeesize)?.ContentTeamMultiple) *
+                        companyEffortsData?.find((company) => company.CompanySize === emplyeesize)?.ContentTeamMultiple
                     )}
                   </Typography>
                 </Grid>
@@ -2945,9 +2245,10 @@ const DetailedCalculator = ({
                   <Typography
                     variant="body1"
                     style={{
-                      whiteSpace: "nowrap",
+                      // whiteSpace: "nowrap",
                       overflow: "auto",
                       maxWidth: "100%",
+                      height: "50px",
                     }}
                   >
                     {new Intl.NumberFormat("en-US", {
@@ -2959,19 +2260,10 @@ const DetailedCalculator = ({
                       Math.round(
                         (50 / 100) *
                           ((50 / 100) *
-                            (4 *
-                              52 *
-                              5 *
-                              companyEffortsData?.find(
-                                (company) => company.CompanySize === emplyeesize
-                              )?.ContentTeamMultiple) *
-                            companyEffortsData?.find(
-                              (company) => company.CompanySize === emplyeesize
-                            )?.ContentTeamMultiple) *
-                          companyEffortsData?.find((company) => company.CompanySize === emplyeesize)
-                            ?.ContentTeamMultiple *
-                          (countryData?.find((country) => country.Geography === companyLocation))
-                            .data.MarketingAssociate *
+                            (4 * 52 * 5 * companyEffortsData?.find((company) => company.CompanySize === emplyeesize)?.ContentTeamMultiple) *
+                            companyEffortsData?.find((company) => company.CompanySize === emplyeesize)?.ContentTeamMultiple) *
+                          companyEffortsData?.find((company) => company.CompanySize === emplyeesize)?.ContentTeamMultiple *
+                          (countryData?.find((country) => country.Geography === companyLocation)).data.MarketingAssociate *
                           multiplier
                       )
                     )}
@@ -2982,9 +2274,10 @@ const DetailedCalculator = ({
                   <Typography
                     variant="body1"
                     style={{
-                      whiteSpace: "nowrap",
+                      // whiteSpace: "nowrap",
                       overflow: "auto",
                       maxWidth: "100%",
+                      height: "50px",
                     }}
                   ></Typography>
                 </Grid>
@@ -2992,9 +2285,10 @@ const DetailedCalculator = ({
                   <Typography
                     variant="body1"
                     style={{
-                      whiteSpace: "nowrap",
+                      // whiteSpace: "nowrap",
                       overflow: "auto",
                       maxWidth: "100%",
+                      height: "50px",
                     }}
                   ></Typography>
                 </Grid>
@@ -3009,33 +2303,15 @@ const DetailedCalculator = ({
                     }}
                   >
                     {Math.round(
-                      4 *
-                        52 *
-                        5 *
-                        companyEffortsData?.find((company) => company.CompanySize === emplyeesize)
-                          ?.ContentTeamMultiple +
+                      4 * 52 * 5 * companyEffortsData?.find((company) => company.CompanySize === emplyeesize)?.ContentTeamMultiple +
                         (50 / 100) *
-                          (4 *
-                            52 *
-                            5 *
-                            companyEffortsData?.find(
-                              (company) => company.CompanySize === emplyeesize
-                            )?.ContentTeamMultiple) *
-                          companyEffortsData?.find((company) => company.CompanySize === emplyeesize)
-                            ?.ContentTeamMultiple +
+                          (4 * 52 * 5 * companyEffortsData?.find((company) => company.CompanySize === emplyeesize)?.ContentTeamMultiple) *
+                          companyEffortsData?.find((company) => company.CompanySize === emplyeesize)?.ContentTeamMultiple +
                         (50 / 100) *
                           ((50 / 100) *
-                            (4 *
-                              52 *
-                              5 *
-                              companyEffortsData?.find(
-                                (company) => company.CompanySize === emplyeesize
-                              )?.ContentTeamMultiple) *
-                            companyEffortsData?.find(
-                              (company) => company.CompanySize === emplyeesize
-                            )?.ContentTeamMultiple) *
-                          companyEffortsData?.find((company) => company.CompanySize === emplyeesize)
-                            ?.ContentTeamMultiple
+                            (4 * 52 * 5 * companyEffortsData?.find((company) => company.CompanySize === emplyeesize)?.ContentTeamMultiple) *
+                            companyEffortsData?.find((company) => company.CompanySize === emplyeesize)?.ContentTeamMultiple) *
+                          companyEffortsData?.find((company) => company.CompanySize === emplyeesize)?.ContentTeamMultiple
                     )}
                   </Typography>
                 </Grid>
@@ -3059,49 +2335,26 @@ const DetailedCalculator = ({
                         1 *
                           8 *
                           52 *
-                          companyEffortsData?.find((company) => company.CompanySize === emplyeesize)
-                            ?.ContentTeamMultiple *
-                          (countryData?.find((country) => country.Geography === companyLocation))
-                            .data.MarketingManager *
+                          companyEffortsData?.find((company) => company.CompanySize === emplyeesize)?.ContentTeamMultiple *
+                          (countryData?.find((country) => country.Geography === companyLocation)).data.MarketingManager *
                           multiplier +
                           4 *
                             52 *
                             5 *
-                            companyEffortsData?.find(
-                              (company) => company.CompanySize === emplyeesize
-                            )?.ContentTeamMultiple *
-                            (countryData?.find((country) => country.Geography === companyLocation))
-                              .data.ContentCreator *
+                            companyEffortsData?.find((company) => company.CompanySize === emplyeesize)?.ContentTeamMultiple *
+                            (countryData?.find((country) => country.Geography === companyLocation)).data.ContentCreator *
                             multiplier +
                           (50 / 100) *
-                            (4 *
-                              52 *
-                              5 *
-                              companyEffortsData?.find(
-                                (company) => company.CompanySize === emplyeesize
-                              )?.ContentTeamMultiple) *
-                            companyEffortsData?.find(
-                              (company) => company.CompanySize === emplyeesize
-                            )?.ContentTeamMultiple *
-                            (countryData?.find((country) => country.Geography === companyLocation))
-                              .data.ContentCreator *
+                            (4 * 52 * 5 * companyEffortsData?.find((company) => company.CompanySize === emplyeesize)?.ContentTeamMultiple) *
+                            companyEffortsData?.find((company) => company.CompanySize === emplyeesize)?.ContentTeamMultiple *
+                            (countryData?.find((country) => country.Geography === companyLocation)).data.ContentCreator *
                             multiplier +
                           (50 / 100) *
                             ((50 / 100) *
-                              (4 *
-                                52 *
-                                5 *
-                                companyEffortsData?.find(
-                                  (company) => company.CompanySize === emplyeesize
-                                )?.ContentTeamMultiple) *
-                              companyEffortsData?.find(
-                                (company) => company.CompanySize === emplyeesize
-                              )?.ContentTeamMultiple) *
-                            companyEffortsData?.find(
-                              (company) => company.CompanySize === emplyeesize
-                            )?.ContentTeamMultiple *
-                            (countryData?.find((country) => country.Geography === companyLocation))
-                              .data.MarketingAssociate *
+                              (4 * 52 * 5 * companyEffortsData?.find((company) => company.CompanySize === emplyeesize)?.ContentTeamMultiple) *
+                              companyEffortsData?.find((company) => company.CompanySize === emplyeesize)?.ContentTeamMultiple) *
+                            companyEffortsData?.find((company) => company.CompanySize === emplyeesize)?.ContentTeamMultiple *
+                            (countryData?.find((country) => country.Geography === companyLocation)).data.MarketingAssociate *
                             multiplier
                       )
                     )}
@@ -3113,39 +2366,35 @@ const DetailedCalculator = ({
             </Grid>
 
             {/* Second grid */}
-            <Grid
-              item
-              xs={12}
-              sm={3}
-              style={{ borderLeft: " 1px solid #ccc", textAlign: "center" }}
-            >
+            <Grid item xs={12} sm={3} sx={{ borderLeft: " 1px solid #ccc", textAlign: "center", paddingTop: "0px !important" }}>
               <Typography
                 variant="h6"
                 style={{
                   whiteSpace: "nowrap",
                   overflow: "auto",
                   maxWidth: "100%",
+                  marginBottom: "20px",
                 }}
               >
-                AI-Based Effort and Cost Savings
+                Cost and Effort Savings
               </Typography>
               <Grid container spacing={2} style={{ textAlign: "center" }}>
                 {/* Column headers */}
                 <Grid item xs={6}>
                   <Typography
-                    variant="subtitle1"
+                    variant="h6"
                     style={{
                       whiteSpace: "nowrap",
                       overflow: "auto",
                       maxWidth: "100%",
                     }}
                   >
-                    Effort Saved (Hours)
+                     Effort Saved(hrs)
                   </Typography>
                 </Grid>
                 <Grid item xs={6}>
                   <Typography
-                    variant="subtitle1"
+                    variant="h6"
                     style={{
                       whiteSpace: "nowrap",
                       overflow: "auto",
@@ -3163,28 +2412,23 @@ const DetailedCalculator = ({
                   <Typography
                     variant="body1"
                     style={{
-                      whiteSpace: "nowrap",
+                      // whiteSpace: "nowrap",
                       overflow: "auto",
                       maxWidth: "100%",
+                      height: "50px",
                     }}
                   >
-                    {Math.round(
-                      (75 / 100) *
-                        1 *
-                        8 *
-                        52 *
-                        companyEffortsData?.find((company) => company.CompanySize === emplyeesize)
-                          ?.ContentTeamMultiple
-                    )}
+                    {Math.round((75 / 100) * 1 * 8 * 52 * companyEffortsData?.find((company) => company.CompanySize === emplyeesize)?.ContentTeamMultiple)}
                   </Typography>
                 </Grid>
                 <Grid item xs={6}>
                   <Typography
                     variant="body1"
                     style={{
-                      whiteSpace: "nowrap",
+                      // whiteSpace: "nowrap",
                       overflow: "auto",
                       maxWidth: "100%",
+                      height: "50px",
                     }}
                   >
                     {new Intl.NumberFormat("en-US", {
@@ -3197,24 +2441,11 @@ const DetailedCalculator = ({
                         (1 *
                           8 *
                           52 *
-                          companyEffortsData?.find((company) => company.CompanySize === emplyeesize)
-                            ?.ContentTeamMultiple *
-                          (countryData?.find((country) => country.Geography === companyLocation))
-                            .data.MarketingManager *
+                          companyEffortsData?.find((company) => company.CompanySize === emplyeesize)?.ContentTeamMultiple *
+                          (countryData?.find((country) => country.Geography === companyLocation)).data.MarketingManager *
                           multiplier *
-                          ((75 / 100) *
-                            1 *
-                            8 *
-                            52 *
-                            companyEffortsData?.find(
-                              (company) => company.CompanySize === emplyeesize
-                            )?.ContentTeamMultiple)) /
-                          (1 *
-                            8 *
-                            52 *
-                            companyEffortsData?.find(
-                              (company) => company.CompanySize === emplyeesize
-                            )?.ContentTeamMultiple)
+                          ((75 / 100) * 1 * 8 * 52 * companyEffortsData?.find((company) => company.CompanySize === emplyeesize)?.ContentTeamMultiple)) /
+                          (1 * 8 * 52 * companyEffortsData?.find((company) => company.CompanySize === emplyeesize)?.ContentTeamMultiple)
                       )
                     )}
                   </Typography>
@@ -3224,28 +2455,23 @@ const DetailedCalculator = ({
                   <Typography
                     variant="body1"
                     style={{
-                      whiteSpace: "nowrap",
+                      // whiteSpace: "nowrap",
                       overflow: "auto",
                       maxWidth: "100%",
+                      height: "50px",
                     }}
                   >
-                    {Math.round(
-                      (80 / 100) *
-                        (4 *
-                          52 *
-                          5 *
-                          companyEffortsData?.find((company) => company.CompanySize === emplyeesize)
-                            ?.ContentTeamMultiple)
-                    )}
+                    {Math.round((80 / 100) * (4 * 52 * 5 * companyEffortsData?.find((company) => company.CompanySize === emplyeesize)?.ContentTeamMultiple))}
                   </Typography>
                 </Grid>
                 <Grid item xs={6}>
                   <Typography
                     variant="body1"
                     style={{
-                      whiteSpace: "nowrap",
+                      // whiteSpace: "nowrap",
                       overflow: "auto",
                       maxWidth: "100%",
+                      height: "50px",
                     }}
                   >
                     {new Intl.NumberFormat("en-US", {
@@ -3256,27 +2482,14 @@ const DetailedCalculator = ({
                     }).format(
                       Math.round(
                         ((80 / 100) *
+                          (4 * 52 * 5 * companyEffortsData?.find((company) => company.CompanySize === emplyeesize)?.ContentTeamMultiple) *
                           (4 *
                             52 *
                             5 *
-                            companyEffortsData?.find(
-                              (company) => company.CompanySize === emplyeesize
-                            )?.ContentTeamMultiple) *
-                          (4 *
-                            52 *
-                            5 *
-                            companyEffortsData?.find(
-                              (company) => company.CompanySize === emplyeesize
-                            )?.ContentTeamMultiple *
-                            (countryData?.find((country) => country.Geography === companyLocation))
-                              .data.ContentCreator *
+                            companyEffortsData?.find((company) => company.CompanySize === emplyeesize)?.ContentTeamMultiple *
+                            (countryData?.find((country) => country.Geography === companyLocation)).data.ContentCreator *
                             multiplier)) /
-                          (4 *
-                            52 *
-                            5 *
-                            companyEffortsData?.find(
-                              (company) => company.CompanySize === emplyeesize
-                            )?.ContentTeamMultiple)
+                          (4 * 52 * 5 * companyEffortsData?.find((company) => company.CompanySize === emplyeesize)?.ContentTeamMultiple)
                       )
                     )}
                   </Typography>
@@ -3286,22 +2499,17 @@ const DetailedCalculator = ({
                   <Typography
                     variant="body1"
                     style={{
-                      whiteSpace: "nowrap",
+                      // whiteSpace: "nowrap",
                       overflow: "auto",
                       maxWidth: "100%",
+                      height: "50px",
                     }}
                   >
                     {Math.round(
                       (75 / 100) *
                         ((50 / 100) *
-                          (4 *
-                            52 *
-                            5 *
-                            companyEffortsData?.find(
-                              (company) => company.CompanySize === emplyeesize
-                            )?.ContentTeamMultiple) *
-                          companyEffortsData?.find((company) => company.CompanySize === emplyeesize)
-                            ?.ContentTeamMultiple)
+                          (4 * 52 * 5 * companyEffortsData?.find((company) => company.CompanySize === emplyeesize)?.ContentTeamMultiple) *
+                          companyEffortsData?.find((company) => company.CompanySize === emplyeesize)?.ContentTeamMultiple)
                     )}
                   </Typography>
                 </Grid>
@@ -3309,9 +2517,10 @@ const DetailedCalculator = ({
                   <Typography
                     variant="body1"
                     style={{
-                      whiteSpace: "nowrap",
+                      // whiteSpace: "nowrap",
                       overflow: "auto",
                       maxWidth: "100%",
+                      height: "50px",
                     }}
                   >
                     {new Intl.NumberFormat("en-US", {
@@ -3322,38 +2531,17 @@ const DetailedCalculator = ({
                     }).format(
                       Math.round(
                         ((50 / 100) *
-                          (4 *
-                            52 *
-                            5 *
-                            companyEffortsData?.find(
-                              (company) => company.CompanySize === emplyeesize
-                            )?.ContentTeamMultiple) *
-                          companyEffortsData?.find((company) => company.CompanySize === emplyeesize)
-                            ?.ContentTeamMultiple *
-                          (countryData?.find((country) => country.Geography === companyLocation))
-                            .data.ContentCreator *
+                          (4 * 52 * 5 * companyEffortsData?.find((company) => company.CompanySize === emplyeesize)?.ContentTeamMultiple) *
+                          companyEffortsData?.find((company) => company.CompanySize === emplyeesize)?.ContentTeamMultiple *
+                          (countryData?.find((country) => country.Geography === companyLocation)).data.ContentCreator *
                           multiplier *
                           ((75 / 100) *
                             ((50 / 100) *
-                              (4 *
-                                52 *
-                                5 *
-                                companyEffortsData?.find(
-                                  (company) => company.CompanySize === emplyeesize
-                                )?.ContentTeamMultiple) *
-                              companyEffortsData?.find(
-                                (company) => company.CompanySize === emplyeesize
-                              )?.ContentTeamMultiple))) /
+                              (4 * 52 * 5 * companyEffortsData?.find((company) => company.CompanySize === emplyeesize)?.ContentTeamMultiple) *
+                              companyEffortsData?.find((company) => company.CompanySize === emplyeesize)?.ContentTeamMultiple))) /
                           ((50 / 100) *
-                            (4 *
-                              52 *
-                              5 *
-                              companyEffortsData?.find(
-                                (company) => company.CompanySize === emplyeesize
-                              )?.ContentTeamMultiple) *
-                            companyEffortsData?.find(
-                              (company) => company.CompanySize === emplyeesize
-                            )?.ContentTeamMultiple)
+                            (4 * 52 * 5 * companyEffortsData?.find((company) => company.CompanySize === emplyeesize)?.ContentTeamMultiple) *
+                            companyEffortsData?.find((company) => company.CompanySize === emplyeesize)?.ContentTeamMultiple)
                       )
                     )}
                   </Typography>
@@ -3363,25 +2551,19 @@ const DetailedCalculator = ({
                   <Typography
                     variant="body1"
                     style={{
-                      whiteSpace: "nowrap",
+                      // whiteSpace: "nowrap",
                       overflow: "auto",
                       maxWidth: "100%",
+                      height: "50px",
                     }}
                   >
                     {Math.round(
                       (25 / 100) *
                         (50 / 100) *
                         ((50 / 100) *
-                          (4 *
-                            52 *
-                            5 *
-                            companyEffortsData?.find(
-                              (company) => company.CompanySize === emplyeesize
-                            )?.ContentTeamMultiple) *
-                          companyEffortsData?.find((company) => company.CompanySize === emplyeesize)
-                            ?.ContentTeamMultiple) *
-                        companyEffortsData?.find((company) => company.CompanySize === emplyeesize)
-                          ?.ContentTeamMultiple
+                          (4 * 52 * 5 * companyEffortsData?.find((company) => company.CompanySize === emplyeesize)?.ContentTeamMultiple) *
+                          companyEffortsData?.find((company) => company.CompanySize === emplyeesize)?.ContentTeamMultiple) *
+                        companyEffortsData?.find((company) => company.CompanySize === emplyeesize)?.ContentTeamMultiple
                     )}
                   </Typography>
                 </Grid>
@@ -3389,9 +2571,10 @@ const DetailedCalculator = ({
                   <Typography
                     variant="body1"
                     style={{
-                      whiteSpace: "nowrap",
+                      // whiteSpace: "nowrap",
                       overflow: "auto",
                       maxWidth: "100%",
+                      height: "50px",
                     }}
                   >
                     {new Intl.NumberFormat("en-US", {
@@ -3404,48 +2587,21 @@ const DetailedCalculator = ({
                         ((25 / 100) *
                           (50 / 100) *
                           ((50 / 100) *
-                            (4 *
-                              52 *
-                              5 *
-                              companyEffortsData?.find(
-                                (company) => company.CompanySize === emplyeesize
-                              )?.ContentTeamMultiple) *
-                            companyEffortsData?.find(
-                              (company) => company.CompanySize === emplyeesize
-                            )?.ContentTeamMultiple) *
-                          companyEffortsData?.find((company) => company.CompanySize === emplyeesize)
-                            ?.ContentTeamMultiple *
+                            (4 * 52 * 5 * companyEffortsData?.find((company) => company.CompanySize === emplyeesize)?.ContentTeamMultiple) *
+                            companyEffortsData?.find((company) => company.CompanySize === emplyeesize)?.ContentTeamMultiple) *
+                          companyEffortsData?.find((company) => company.CompanySize === emplyeesize)?.ContentTeamMultiple *
                           ((50 / 100) *
                             ((50 / 100) *
-                              (4 *
-                                52 *
-                                5 *
-                                companyEffortsData?.find(
-                                  (company) => company.CompanySize === emplyeesize
-                                )?.ContentTeamMultiple) *
-                              companyEffortsData?.find(
-                                (company) => company.CompanySize === emplyeesize
-                              )?.ContentTeamMultiple) *
-                            companyEffortsData?.find(
-                              (company) => company.CompanySize === emplyeesize
-                            )?.ContentTeamMultiple *
-                            (countryData?.find((country) => country.Geography === companyLocation))
-                              .data.MarketingAssociate *
+                              (4 * 52 * 5 * companyEffortsData?.find((company) => company.CompanySize === emplyeesize)?.ContentTeamMultiple) *
+                              companyEffortsData?.find((company) => company.CompanySize === emplyeesize)?.ContentTeamMultiple) *
+                            companyEffortsData?.find((company) => company.CompanySize === emplyeesize)?.ContentTeamMultiple *
+                            (countryData?.find((country) => country.Geography === companyLocation)).data.MarketingAssociate *
                             multiplier)) /
                           ((50 / 100) *
                             ((50 / 100) *
-                              (4 *
-                                52 *
-                                5 *
-                                companyEffortsData?.find(
-                                  (company) => company.CompanySize === emplyeesize
-                                )?.ContentTeamMultiple) *
-                              companyEffortsData?.find(
-                                (company) => company.CompanySize === emplyeesize
-                              )?.ContentTeamMultiple) *
-                            companyEffortsData?.find(
-                              (company) => company.CompanySize === emplyeesize
-                            )?.ContentTeamMultiple)
+                              (4 * 52 * 5 * companyEffortsData?.find((company) => company.CompanySize === emplyeesize)?.ContentTeamMultiple) *
+                              companyEffortsData?.find((company) => company.CompanySize === emplyeesize)?.ContentTeamMultiple) *
+                            companyEffortsData?.find((company) => company.CompanySize === emplyeesize)?.ContentTeamMultiple)
                       )
                     )}
                   </Typography>
@@ -3462,37 +2618,17 @@ const DetailedCalculator = ({
                     }}
                   >
                     {Math.round(
-                      (80 / 100) *
-                        (4 *
-                          52 *
-                          5 *
-                          companyEffortsData?.find((company) => company.CompanySize === emplyeesize)
-                            ?.ContentTeamMultiple) +
+                      (80 / 100) * (4 * 52 * 5 * companyEffortsData?.find((company) => company.CompanySize === emplyeesize)?.ContentTeamMultiple) +
                         (75 / 100) *
                           ((50 / 100) *
-                            (4 *
-                              52 *
-                              5 *
-                              companyEffortsData?.find(
-                                (company) => company.CompanySize === emplyeesize
-                              )?.ContentTeamMultiple) *
-                            companyEffortsData?.find(
-                              (company) => company.CompanySize === emplyeesize
-                            )?.ContentTeamMultiple) +
+                            (4 * 52 * 5 * companyEffortsData?.find((company) => company.CompanySize === emplyeesize)?.ContentTeamMultiple) *
+                            companyEffortsData?.find((company) => company.CompanySize === emplyeesize)?.ContentTeamMultiple) +
                         (25 / 100) *
                           (50 / 100) *
                           ((50 / 100) *
-                            (4 *
-                              52 *
-                              5 *
-                              companyEffortsData?.find(
-                                (company) => company.CompanySize === emplyeesize
-                              )?.ContentTeamMultiple) *
-                            companyEffortsData?.find(
-                              (company) => company.CompanySize === emplyeesize
-                            )?.ContentTeamMultiple) *
-                          companyEffortsData?.find((company) => company.CompanySize === emplyeesize)
-                            ?.ContentTeamMultiple
+                            (4 * 52 * 5 * companyEffortsData?.find((company) => company.CompanySize === emplyeesize)?.ContentTeamMultiple) *
+                            companyEffortsData?.find((company) => company.CompanySize === emplyeesize)?.ContentTeamMultiple) *
+                          companyEffortsData?.find((company) => company.CompanySize === emplyeesize)?.ContentTeamMultiple
                     )}
                   </Typography>
                 </Grid>
@@ -3516,128 +2652,50 @@ const DetailedCalculator = ({
                         (1 *
                           8 *
                           52 *
-                          companyEffortsData?.find((company) => company.CompanySize === emplyeesize)
-                            ?.ContentTeamMultiple *
-                          (countryData?.find((country) => country.Geography === companyLocation))
-                            .data.MarketingManager *
+                          companyEffortsData?.find((company) => company.CompanySize === emplyeesize)?.ContentTeamMultiple *
+                          (countryData?.find((country) => country.Geography === companyLocation)).data.MarketingManager *
                           multiplier *
-                          ((75 / 100) *
-                            1 *
-                            8 *
-                            52 *
-                            companyEffortsData?.find(
-                              (company) => company.CompanySize === emplyeesize
-                            )?.ContentTeamMultiple)) /
-                          (1 *
-                            8 *
-                            52 *
-                            companyEffortsData?.find(
-                              (company) => company.CompanySize === emplyeesize
-                            )?.ContentTeamMultiple) +
+                          ((75 / 100) * 1 * 8 * 52 * companyEffortsData?.find((company) => company.CompanySize === emplyeesize)?.ContentTeamMultiple)) /
+                          (1 * 8 * 52 * companyEffortsData?.find((company) => company.CompanySize === emplyeesize)?.ContentTeamMultiple) +
                           ((80 / 100) *
+                            (4 * 52 * 5 * companyEffortsData?.find((company) => company.CompanySize === emplyeesize)?.ContentTeamMultiple) *
                             (4 *
                               52 *
                               5 *
-                              companyEffortsData?.find(
-                                (company) => company.CompanySize === emplyeesize
-                              )?.ContentTeamMultiple) *
-                            (4 *
-                              52 *
-                              5 *
-                              companyEffortsData?.find(
-                                (company) => company.CompanySize === emplyeesize
-                              )?.ContentTeamMultiple *
-                              (countryData?.find(
-                                (country) => country.Geography === companyLocation
-                              )).data.ContentCreator *
+                              companyEffortsData?.find((company) => company.CompanySize === emplyeesize)?.ContentTeamMultiple *
+                              (countryData?.find((country) => country.Geography === companyLocation)).data.ContentCreator *
                               multiplier)) /
-                            (4 *
-                              52 *
-                              5 *
-                              companyEffortsData?.find(
-                                (company) => company.CompanySize === emplyeesize
-                              )?.ContentTeamMultiple) +
+                            (4 * 52 * 5 * companyEffortsData?.find((company) => company.CompanySize === emplyeesize)?.ContentTeamMultiple) +
                           ((50 / 100) *
-                            (4 *
-                              52 *
-                              5 *
-                              companyEffortsData?.find(
-                                (company) => company.CompanySize === emplyeesize
-                              )?.ContentTeamMultiple) *
-                            companyEffortsData?.find(
-                              (company) => company.CompanySize === emplyeesize
-                            )?.ContentTeamMultiple *
-                            (countryData?.find((country) => country.Geography === companyLocation))
-                              .data.ContentCreator *
+                            (4 * 52 * 5 * companyEffortsData?.find((company) => company.CompanySize === emplyeesize)?.ContentTeamMultiple) *
+                            companyEffortsData?.find((company) => company.CompanySize === emplyeesize)?.ContentTeamMultiple *
+                            (countryData?.find((country) => country.Geography === companyLocation)).data.ContentCreator *
                             multiplier *
                             ((75 / 100) *
                               ((50 / 100) *
-                                (4 *
-                                  52 *
-                                  5 *
-                                  companyEffortsData?.find(
-                                    (company) => company.CompanySize === emplyeesize
-                                  )?.ContentTeamMultiple) *
-                                companyEffortsData?.find(
-                                  (company) => company.CompanySize === emplyeesize
-                                )?.ContentTeamMultiple))) /
+                                (4 * 52 * 5 * companyEffortsData?.find((company) => company.CompanySize === emplyeesize)?.ContentTeamMultiple) *
+                                companyEffortsData?.find((company) => company.CompanySize === emplyeesize)?.ContentTeamMultiple))) /
                             ((50 / 100) *
-                              (4 *
-                                52 *
-                                5 *
-                                companyEffortsData?.find(
-                                  (company) => company.CompanySize === emplyeesize
-                                )?.ContentTeamMultiple) *
-                              companyEffortsData?.find(
-                                (company) => company.CompanySize === emplyeesize
-                              )?.ContentTeamMultiple) +
+                              (4 * 52 * 5 * companyEffortsData?.find((company) => company.CompanySize === emplyeesize)?.ContentTeamMultiple) *
+                              companyEffortsData?.find((company) => company.CompanySize === emplyeesize)?.ContentTeamMultiple) +
                           ((25 / 100) *
                             (50 / 100) *
                             ((50 / 100) *
-                              (4 *
-                                52 *
-                                5 *
-                                companyEffortsData?.find(
-                                  (company) => company.CompanySize === emplyeesize
-                                )?.ContentTeamMultiple) *
-                              companyEffortsData?.find(
-                                (company) => company.CompanySize === emplyeesize
-                              )?.ContentTeamMultiple) *
-                            companyEffortsData?.find(
-                              (company) => company.CompanySize === emplyeesize
-                            )?.ContentTeamMultiple *
+                              (4 * 52 * 5 * companyEffortsData?.find((company) => company.CompanySize === emplyeesize)?.ContentTeamMultiple) *
+                              companyEffortsData?.find((company) => company.CompanySize === emplyeesize)?.ContentTeamMultiple) *
+                            companyEffortsData?.find((company) => company.CompanySize === emplyeesize)?.ContentTeamMultiple *
                             ((50 / 100) *
                               ((50 / 100) *
-                                (4 *
-                                  52 *
-                                  5 *
-                                  companyEffortsData?.find(
-                                    (company) => company.CompanySize === emplyeesize
-                                  )?.ContentTeamMultiple) *
-                                companyEffortsData?.find(
-                                  (company) => company.CompanySize === emplyeesize
-                                )?.ContentTeamMultiple) *
-                              companyEffortsData?.find(
-                                (company) => company.CompanySize === emplyeesize
-                              )?.ContentTeamMultiple *
-                              (countryData?.find(
-                                (country) => country.Geography === companyLocation
-                              )).data.MarketingAssociate *
+                                (4 * 52 * 5 * companyEffortsData?.find((company) => company.CompanySize === emplyeesize)?.ContentTeamMultiple) *
+                                companyEffortsData?.find((company) => company.CompanySize === emplyeesize)?.ContentTeamMultiple) *
+                              companyEffortsData?.find((company) => company.CompanySize === emplyeesize)?.ContentTeamMultiple *
+                              (countryData?.find((country) => country.Geography === companyLocation)).data.MarketingAssociate *
                               multiplier)) /
                             ((50 / 100) *
                               ((50 / 100) *
-                                (4 *
-                                  52 *
-                                  5 *
-                                  companyEffortsData?.find(
-                                    (company) => company.CompanySize === emplyeesize
-                                  )?.ContentTeamMultiple) *
-                                companyEffortsData?.find(
-                                  (company) => company.CompanySize === emplyeesize
-                                )?.ContentTeamMultiple) *
-                              companyEffortsData?.find(
-                                (company) => company.CompanySize === emplyeesize
-                              )?.ContentTeamMultiple)
+                                (4 * 52 * 5 * companyEffortsData?.find((company) => company.CompanySize === emplyeesize)?.ContentTeamMultiple) *
+                                companyEffortsData?.find((company) => company.CompanySize === emplyeesize)?.ContentTeamMultiple) *
+                              companyEffortsData?.find((company) => company.CompanySize === emplyeesize)?.ContentTeamMultiple)
                       )
                     )}
                   </Typography>
@@ -3661,22 +2719,22 @@ const DetailedCalculator = ({
           >
             <Grid item xs={12}>
               <Typography
-                variant="h6"
+                variant="h5"
                 gutterBottom
                 sx={{
-                  textAlign: "center",
+                  textAlign: "left",
                   borderBottom: "2px solid #A3A0A0",
                   paddingBottom: "8px",
                   marginBottom: "12px",
-                  color: "#A3A0A0",
+                  color: "#808080",
                 }}
               >
-                Tracking, Reporting & Tuning
+                Optimize Campaigns
               </Typography>
             </Grid>
 
             {/* First grid */}
-            <Grid item xs={12} sm={9}>
+            <Grid item xs={12} sm={9} sx={{ paddingTop: "0px !important" }}>
               <Typography
                 variant="h6"
                 style={{
@@ -3684,6 +2742,7 @@ const DetailedCalculator = ({
                   overflow: "auto",
                   maxWidth: "100%",
                   textAlign: "center",
+                  marginBottom: "20px",
                 }}
               >
                 Current Effort & Cost (Manual)
@@ -3692,7 +2751,7 @@ const DetailedCalculator = ({
                 {/* Column headers */}
                 <Grid item xs={3}>
                   <Typography
-                    variant="subtitle1"
+                    variant="h6"
                     style={{
                       whiteSpace: "nowrap",
                       overflow: "auto",
@@ -3704,7 +2763,7 @@ const DetailedCalculator = ({
                 </Grid>
                 <Grid item xs={3}>
                   <Typography
-                    variant="subtitle1"
+                    variant="h6"
                     style={{
                       whiteSpace: "nowrap",
                       overflow: "auto",
@@ -3716,19 +2775,19 @@ const DetailedCalculator = ({
                 </Grid>
                 <Grid item xs={3}>
                   <Typography
-                    variant="subtitle1"
+                    variant="h6"
                     style={{
                       whiteSpace: "nowrap",
                       overflow: "auto",
                       maxWidth: "100%",
                     }}
                   >
-                    Effort Involved (Hours)
+                    Effort Involved (hrs)
                   </Typography>
                 </Grid>
                 <Grid item xs={3}>
                   <Typography
-                    variant="subtitle1"
+                    variant="h6"
                     style={{
                       whiteSpace: "nowrap",
                       overflow: "auto",
@@ -3746,50 +2805,49 @@ const DetailedCalculator = ({
                   <Typography
                     variant="body1"
                     style={{
-                      whiteSpace: "nowrap",
+                      // whiteSpace: "nowrap",
                       overflow: "auto",
                       maxWidth: "100%",
+                      height: "50px",
                     }}
                   >
-                    Collect Metrics
+                    Engage with talent{" "}
                   </Typography>
                 </Grid>
                 <Grid item xs={3}>
                   <Typography
                     variant="body1"
                     style={{
-                      whiteSpace: "nowrap",
+                      // whiteSpace: "nowrap",
                       overflow: "auto",
                       maxWidth: "100%",
+                      height: "50px",
                     }}
                   >
-                    Frequent
+                    Recurring
                   </Typography>
                 </Grid>
                 <Grid item xs={3}>
                   <Typography
                     variant="body1"
                     style={{
-                      whiteSpace: "nowrap",
+                      // whiteSpace: "nowrap",
                       overflow: "auto",
                       maxWidth: "100%",
+                      height: "50px",
                     }}
                   >
-                    {Math.round(
-                      1 *
-                        52 *
-                        companyEffortsData?.find((company) => company.CompanySize === emplyeesize)
-                          ?.ContentTeamMultiple
-                    )}
+                    {Math.round(1 * 52 * companyEffortsData?.find((company) => company.CompanySize === emplyeesize)?.ContentTeamMultiple)}
                   </Typography>
                 </Grid>
                 <Grid item xs={3}>
                   <Typography
                     variant="body1"
                     style={{
-                      whiteSpace: "nowrap",
+                      // whiteSpace: "nowrap",
                       overflow: "auto",
                       maxWidth: "100%",
+                      height: "50px",
                     }}
                   >
                     {new Intl.NumberFormat("en-US", {
@@ -3801,10 +2859,8 @@ const DetailedCalculator = ({
                       Math.round(
                         1 *
                           52 *
-                          companyEffortsData?.find((company) => company.CompanySize === emplyeesize)
-                            ?.ContentTeamMultiple *
-                          (countryData?.find((country) => country.Geography === companyLocation))
-                            .data.MarketingAssociate *
+                          companyEffortsData?.find((company) => company.CompanySize === emplyeesize)?.ContentTeamMultiple *
+                          (countryData?.find((country) => country.Geography === companyLocation)).data.MarketingAssociate *
                           multiplier
                       )
                     )}
@@ -3815,48 +2871,49 @@ const DetailedCalculator = ({
                   <Typography
                     variant="body1"
                     style={{
-                      whiteSpace: "nowrap",
+                      // whiteSpace: "nowrap",
                       overflow: "auto",
                       maxWidth: "100%",
+                      height: "50px",
                     }}
                   >
-                    Create Dashboard / MIS
+                    Track performance matrics{" "}
                   </Typography>
                 </Grid>
                 <Grid item xs={3}>
                   <Typography
                     variant="body1"
                     style={{
-                      whiteSpace: "nowrap",
+                      // whiteSpace: "nowrap",
                       overflow: "auto",
                       maxWidth: "100%",
+                      height: "50px",
                     }}
                   >
-                    Frequent
+                    Recurring
                   </Typography>
                 </Grid>
                 <Grid item xs={3}>
                   <Typography
                     variant="body1"
                     style={{
-                      whiteSpace: "nowrap",
+                      // whiteSpace: "nowrap",
                       overflow: "auto",
                       maxWidth: "100%",
+                      height: "50px",
                     }}
                   >
-                    {2 *
-                      52 *
-                      companyEffortsData?.find((company) => company.CompanySize === emplyeesize)
-                        ?.ContentTeamMultiple}
+                    {2 * 52 * companyEffortsData?.find((company) => company.CompanySize === emplyeesize)?.ContentTeamMultiple}
                   </Typography>
                 </Grid>
                 <Grid item xs={3}>
                   <Typography
                     variant="body1"
                     style={{
-                      whiteSpace: "nowrap",
+                      // whiteSpace: "nowrap",
                       overflow: "auto",
                       maxWidth: "100%",
+                      height: "50px",
                     }}
                   >
                     {new Intl.NumberFormat("en-US", {
@@ -3868,10 +2925,8 @@ const DetailedCalculator = ({
                       Math.round(
                         2 *
                           52 *
-                          companyEffortsData?.find((company) => company.CompanySize === emplyeesize)
-                            ?.ContentTeamMultiple *
-                          (countryData?.find((country) => country.Geography === companyLocation))
-                            .data.MarketingAssociate *
+                          companyEffortsData?.find((company) => company.CompanySize === emplyeesize)?.ContentTeamMultiple *
+                          (countryData?.find((country) => country.Geography === companyLocation)).data.MarketingAssociate *
                           multiplier
                       )
                     )}
@@ -3882,50 +2937,49 @@ const DetailedCalculator = ({
                   <Typography
                     variant="body1"
                     style={{
-                      whiteSpace: "nowrap",
+                      // whiteSpace: "nowrap",
                       overflow: "auto",
                       maxWidth: "100%",
+                      height: "50px",
                     }}
                   >
-                    Review Data & Metrics
+                    Create dashboard and report{" "}
                   </Typography>
                 </Grid>
                 <Grid item xs={3}>
                   <Typography
                     variant="body1"
                     style={{
-                      whiteSpace: "nowrap",
+                      // whiteSpace: "nowrap",
                       overflow: "auto",
                       maxWidth: "100%",
+                      height: "50px",
                     }}
                   >
-                    Frequent
+                    Recurring
                   </Typography>
                 </Grid>
                 <Grid item xs={3}>
                   <Typography
                     variant="body1"
                     style={{
-                      whiteSpace: "nowrap",
+                      // whiteSpace: "nowrap",
                       overflow: "auto",
                       maxWidth: "100%",
+                      height: "50px",
                     }}
                   >
-                    {Math.round(
-                      1 *
-                        52 *
-                        companyEffortsData?.find((company) => company.CompanySize === emplyeesize)
-                          ?.ContentTeamMultiple
-                    )}
+                    {Math.round(1 * 52 * companyEffortsData?.find((company) => company.CompanySize === emplyeesize)?.ContentTeamMultiple)}
                   </Typography>
                 </Grid>
                 <Grid item xs={3}>
                   <Typography
                     variant="body1"
                     style={{
-                      whiteSpace: "nowrap",
+                      // whiteSpace: "nowrap",
                       overflow: "auto",
                       maxWidth: "100%",
+                      height: "50px",
                     }}
                   >
                     {new Intl.NumberFormat("en-US", {
@@ -3937,10 +2991,8 @@ const DetailedCalculator = ({
                       Math.round(
                         1 *
                           52 *
-                          companyEffortsData?.find((company) => company.CompanySize === emplyeesize)
-                            ?.ContentTeamMultiple *
-                          (countryData?.find((country) => country.Geography === companyLocation))
-                            .data.MarketingManager *
+                          companyEffortsData?.find((company) => company.CompanySize === emplyeesize)?.ContentTeamMultiple *
+                          (countryData?.find((country) => country.Geography === companyLocation)).data.MarketingManager *
                           multiplier
                       )
                     )}
@@ -3951,9 +3003,10 @@ const DetailedCalculator = ({
                   <Typography
                     variant="body1"
                     style={{
-                      whiteSpace: "nowrap",
+                      // whiteSpace: "nowrap",
                       overflow: "auto",
                       maxWidth: "100%",
+                      height: "50px",
                     }}
                   >
                     Fine tune plan, topics and content
@@ -3963,38 +3016,36 @@ const DetailedCalculator = ({
                   <Typography
                     variant="body1"
                     style={{
-                      whiteSpace: "nowrap",
+                      // whiteSpace: "nowrap",
                       overflow: "auto",
                       maxWidth: "100%",
+                      height: "50px",
                     }}
                   >
-                    Frequent
+                    Recurring
                   </Typography>
                 </Grid>
                 <Grid item xs={3}>
                   <Typography
                     variant="body1"
                     style={{
-                      whiteSpace: "nowrap",
+                      // whiteSpace: "nowrap",
                       overflow: "auto",
                       maxWidth: "100%",
+                      height: "50px",
                     }}
                   >
-                    {Math.round(
-                      2 *
-                        52 *
-                        companyEffortsData?.find((company) => company.CompanySize === emplyeesize)
-                          ?.ContentTeamMultiple
-                    )}
+                    {Math.round(2 * 52 * companyEffortsData?.find((company) => company.CompanySize === emplyeesize)?.ContentTeamMultiple)}
                   </Typography>
                 </Grid>
                 <Grid item xs={3}>
                   <Typography
                     variant="body1"
                     style={{
-                      whiteSpace: "nowrap",
+                      // whiteSpace: "nowrap",
                       overflow: "auto",
                       maxWidth: "100%",
+                      height: "50px",
                     }}
                   >
                     {new Intl.NumberFormat("en-US", {
@@ -4006,10 +3057,8 @@ const DetailedCalculator = ({
                       Math.round(
                         2 *
                           52 *
-                          companyEffortsData?.find((company) => company.CompanySize === emplyeesize)
-                            ?.ContentTeamMultiple *
-                          (countryData?.find((country) => country.Geography === companyLocation))
-                            .data.MarketingManager *
+                          companyEffortsData?.find((company) => company.CompanySize === emplyeesize)?.ContentTeamMultiple *
+                          (countryData?.find((country) => country.Geography === companyLocation)).data.MarketingManager *
                           multiplier
                       )
                     )}
@@ -4021,9 +3070,10 @@ const DetailedCalculator = ({
                   <Typography
                     variant="body1"
                     style={{
-                      whiteSpace: "nowrap",
+                      // whiteSpace: "nowrap",
                       overflow: "auto",
                       maxWidth: "100%",
+                      height: "50px",
                     }}
                   ></Typography>
                 </Grid>
@@ -4031,9 +3081,10 @@ const DetailedCalculator = ({
                   <Typography
                     variant="body1"
                     style={{
-                      whiteSpace: "nowrap",
+                      // whiteSpace: "nowrap",
                       overflow: "auto",
                       maxWidth: "100%",
+                      height: "50px",
                     }}
                   ></Typography>
                 </Grid>
@@ -4048,18 +3099,9 @@ const DetailedCalculator = ({
                     }}
                   >
                     {Math.round(
-                      2 *
-                        52 *
-                        companyEffortsData?.find((company) => company.CompanySize === emplyeesize)
-                          ?.ContentTeamMultiple +
-                        1 *
-                          52 *
-                          companyEffortsData?.find((company) => company.CompanySize === emplyeesize)
-                            ?.ContentTeamMultiple +
-                        2 *
-                          52 *
-                          companyEffortsData?.find((company) => company.CompanySize === emplyeesize)
-                            ?.ContentTeamMultiple
+                      2 * 52 * companyEffortsData?.find((company) => company.CompanySize === emplyeesize)?.ContentTeamMultiple +
+                        1 * 52 * companyEffortsData?.find((company) => company.CompanySize === emplyeesize)?.ContentTeamMultiple +
+                        2 * 52 * companyEffortsData?.find((company) => company.CompanySize === emplyeesize)?.ContentTeamMultiple
                     )}
                   </Typography>
                 </Grid>
@@ -4082,34 +3124,23 @@ const DetailedCalculator = ({
                       Math.round(
                         1 *
                           52 *
-                          companyEffortsData?.find((company) => company.CompanySize === emplyeesize)
-                            ?.ContentTeamMultiple *
-                          (countryData?.find((country) => country.Geography === companyLocation))
-                            .data.MarketingAssociate *
+                          companyEffortsData?.find((company) => company.CompanySize === emplyeesize)?.ContentTeamMultiple *
+                          (countryData?.find((country) => country.Geography === companyLocation)).data.MarketingAssociate *
                           multiplier +
                           2 *
                             52 *
-                            companyEffortsData?.find(
-                              (company) => company.CompanySize === emplyeesize
-                            )?.ContentTeamMultiple *
-                            (countryData?.find((country) => country.Geography === companyLocation))
-                              .data.MarketingAssociate *
+                            companyEffortsData?.find((company) => company.CompanySize === emplyeesize)?.ContentTeamMultiple *
+                            (countryData?.find((country) => country.Geography === companyLocation)).data.MarketingAssociate *
                             multiplier +
                           1 *
                             52 *
-                            companyEffortsData?.find(
-                              (company) => company.CompanySize === emplyeesize
-                            )?.ContentTeamMultiple *
-                            (countryData?.find((country) => country.Geography === companyLocation))
-                              .data.MarketingManager *
+                            companyEffortsData?.find((company) => company.CompanySize === emplyeesize)?.ContentTeamMultiple *
+                            (countryData?.find((country) => country.Geography === companyLocation)).data.MarketingManager *
                             multiplier +
                           2 *
                             52 *
-                            companyEffortsData?.find(
-                              (company) => company.CompanySize === emplyeesize
-                            )?.ContentTeamMultiple *
-                            (countryData?.find((country) => country.Geography === companyLocation))
-                              .data.MarketingManager *
+                            companyEffortsData?.find((company) => company.CompanySize === emplyeesize)?.ContentTeamMultiple *
+                            (countryData?.find((country) => country.Geography === companyLocation)).data.MarketingManager *
                             multiplier
                       )
                     )}
@@ -4121,39 +3152,35 @@ const DetailedCalculator = ({
             </Grid>
 
             {/* Second grid */}
-            <Grid
-              item
-              xs={12}
-              sm={3}
-              style={{ borderLeft: " 1px solid #ccc", textAlign: "center" }}
-            >
+            <Grid item xs={12} sm={3} sx={{ borderLeft: " 1px solid #ccc", textAlign: "center", paddingTop: "0px !important" }}>
               <Typography
                 variant="h6"
                 style={{
                   whiteSpace: "nowrap",
                   overflow: "auto",
                   maxWidth: "100%",
+                  marginBottom: "20px",
                 }}
               >
-                AI-Based Effort and Cost Savings
+                Cost and Effort Savings
               </Typography>
               <Grid container spacing={2} style={{ textAlign: "center" }}>
                 {/* Column headers */}
                 <Grid item xs={6}>
                   <Typography
-                    variant="subtitle1"
+                    variant="h6"
                     style={{
                       whiteSpace: "nowrap",
                       overflow: "auto",
                       maxWidth: "100%",
                     }}
                   >
-                    Effort Saved (Hours)
+                     Effort Saved(hrs)
                   </Typography>
                 </Grid>
                 <Grid item xs={6}>
                   <Typography
-                    variant="subtitle1"
+                    variant="h6"
                     style={{
                       whiteSpace: "nowrap",
                       overflow: "auto",
@@ -4171,27 +3198,23 @@ const DetailedCalculator = ({
                   <Typography
                     variant="body1"
                     style={{
-                      whiteSpace: "nowrap",
+                      // whiteSpace: "nowrap",
                       overflow: "auto",
                       maxWidth: "100%",
+                      height: "50px",
                     }}
                   >
-                    {Math.round(
-                      (50 / 100) *
-                        1 *
-                        52 *
-                        companyEffortsData?.find((company) => company.CompanySize === emplyeesize)
-                          ?.ContentTeamMultiple
-                    )}
+                    {Math.round((50 / 100) * 1 * 52 * companyEffortsData?.find((company) => company.CompanySize === emplyeesize)?.ContentTeamMultiple)}
                   </Typography>
                 </Grid>
                 <Grid item xs={6}>
                   <Typography
                     variant="body1"
                     style={{
-                      whiteSpace: "nowrap",
+                      // whiteSpace: "nowrap",
                       overflow: "auto",
                       maxWidth: "100%",
+                      height: "50px",
                     }}
                   >
                     {new Intl.NumberFormat("en-US", {
@@ -4203,22 +3226,11 @@ const DetailedCalculator = ({
                       Math.round(
                         (1 *
                           52 *
-                          companyEffortsData?.find((company) => company.CompanySize === emplyeesize)
-                            ?.ContentTeamMultiple *
-                          (countryData?.find((country) => country.Geography === companyLocation))
-                            .data.MarketingAssociate *
+                          companyEffortsData?.find((company) => company.CompanySize === emplyeesize)?.ContentTeamMultiple *
+                          (countryData?.find((country) => country.Geography === companyLocation)).data.MarketingAssociate *
                           multiplier *
-                          ((50 / 100) *
-                            1 *
-                            52 *
-                            companyEffortsData?.find(
-                              (company) => company.CompanySize === emplyeesize
-                            )?.ContentTeamMultiple)) /
-                          (1 *
-                            52 *
-                            companyEffortsData?.find(
-                              (company) => company.CompanySize === emplyeesize
-                            )?.ContentTeamMultiple)
+                          ((50 / 100) * 1 * 52 * companyEffortsData?.find((company) => company.CompanySize === emplyeesize)?.ContentTeamMultiple)) /
+                          (1 * 52 * companyEffortsData?.find((company) => company.CompanySize === emplyeesize)?.ContentTeamMultiple)
                       )
                     )}
                   </Typography>
@@ -4228,27 +3240,23 @@ const DetailedCalculator = ({
                   <Typography
                     variant="body1"
                     style={{
-                      whiteSpace: "nowrap",
+                      // whiteSpace: "nowrap",
                       overflow: "auto",
                       maxWidth: "100%",
+                      height: "50px",
                     }}
                   >
-                    {Math.round(
-                      (50 / 100) *
-                        2 *
-                        52 *
-                        companyEffortsData?.find((company) => company.CompanySize === emplyeesize)
-                          ?.ContentTeamMultiple
-                    )}
+                    {Math.round((50 / 100) * 2 * 52 * companyEffortsData?.find((company) => company.CompanySize === emplyeesize)?.ContentTeamMultiple)}
                   </Typography>
                 </Grid>
                 <Grid item xs={6}>
                   <Typography
                     variant="body1"
                     style={{
-                      whiteSpace: "nowrap",
+                      // whiteSpace: "nowrap",
                       overflow: "auto",
                       maxWidth: "100%",
+                      height: "50px",
                     }}
                   >
                     {new Intl.NumberFormat("en-US", {
@@ -4261,21 +3269,13 @@ const DetailedCalculator = ({
                         ((50 / 100) *
                           2 *
                           52 *
-                          companyEffortsData?.find((company) => company.CompanySize === emplyeesize)
-                            ?.ContentTeamMultiple *
+                          companyEffortsData?.find((company) => company.CompanySize === emplyeesize)?.ContentTeamMultiple *
                           (2 *
                             52 *
-                            companyEffortsData?.find(
-                              (company) => company.CompanySize === emplyeesize
-                            )?.ContentTeamMultiple *
-                            (countryData?.find((country) => country.Geography === companyLocation))
-                              .data.MarketingAssociate *
+                            companyEffortsData?.find((company) => company.CompanySize === emplyeesize)?.ContentTeamMultiple *
+                            (countryData?.find((country) => country.Geography === companyLocation)).data.MarketingAssociate *
                             multiplier)) /
-                          (2 *
-                            52 *
-                            companyEffortsData?.find(
-                              (company) => company.CompanySize === emplyeesize
-                            )?.ContentTeamMultiple)
+                          (2 * 52 * companyEffortsData?.find((company) => company.CompanySize === emplyeesize)?.ContentTeamMultiple)
                       )
                     )}
                   </Typography>
@@ -4285,27 +3285,23 @@ const DetailedCalculator = ({
                   <Typography
                     variant="body1"
                     style={{
-                      whiteSpace: "nowrap",
+                      // whiteSpace: "nowrap",
                       overflow: "auto",
                       maxWidth: "100%",
+                      height: "50px",
                     }}
                   >
-                    {Math.round(
-                      (25 / 100) *
-                        1 *
-                        52 *
-                        companyEffortsData?.find((company) => company.CompanySize === emplyeesize)
-                          ?.ContentTeamMultiple
-                    )}
+                    {Math.round((25 / 100) * 1 * 52 * companyEffortsData?.find((company) => company.CompanySize === emplyeesize)?.ContentTeamMultiple)}
                   </Typography>
                 </Grid>
                 <Grid item xs={6}>
                   <Typography
                     variant="body1"
                     style={{
-                      whiteSpace: "nowrap",
+                      // whiteSpace: "nowrap",
                       overflow: "auto",
                       maxWidth: "100%",
+                      height: "50px",
                     }}
                   >
                     {new Intl.NumberFormat("en-US", {
@@ -4317,22 +3313,11 @@ const DetailedCalculator = ({
                       Math.round(
                         (1 *
                           52 *
-                          companyEffortsData?.find((company) => company.CompanySize === emplyeesize)
-                            ?.ContentTeamMultiple *
-                          (countryData?.find((country) => country.Geography === companyLocation))
-                            .data.MarketingManager *
+                          companyEffortsData?.find((company) => company.CompanySize === emplyeesize)?.ContentTeamMultiple *
+                          (countryData?.find((country) => country.Geography === companyLocation)).data.MarketingManager *
                           multiplier *
-                          ((25 / 100) *
-                            1 *
-                            52 *
-                            companyEffortsData?.find(
-                              (company) => company.CompanySize === emplyeesize
-                            )?.ContentTeamMultiple)) /
-                          (1 *
-                            52 *
-                            companyEffortsData?.find(
-                              (company) => company.CompanySize === emplyeesize
-                            )?.ContentTeamMultiple)
+                          ((25 / 100) * 1 * 52 * companyEffortsData?.find((company) => company.CompanySize === emplyeesize)?.ContentTeamMultiple)) /
+                          (1 * 52 * companyEffortsData?.find((company) => company.CompanySize === emplyeesize)?.ContentTeamMultiple)
                       )
                     )}
                   </Typography>
@@ -4342,27 +3327,23 @@ const DetailedCalculator = ({
                   <Typography
                     variant="body1"
                     style={{
-                      whiteSpace: "nowrap",
+                      // whiteSpace: "nowrap",
                       overflow: "auto",
                       maxWidth: "100%",
+                      height: "50px",
                     }}
                   >
-                    {Math.round(
-                      (75 / 100) *
-                        2 *
-                        52 *
-                        companyEffortsData?.find((company) => company.CompanySize === emplyeesize)
-                          ?.ContentTeamMultiple
-                    )}
+                    {Math.round((75 / 100) * 2 * 52 * companyEffortsData?.find((company) => company.CompanySize === emplyeesize)?.ContentTeamMultiple)}
                   </Typography>
                 </Grid>
                 <Grid item xs={6}>
                   <Typography
                     variant="body1"
                     style={{
-                      whiteSpace: "nowrap",
+                      // whiteSpace: "nowrap",
                       overflow: "auto",
                       maxWidth: "100%",
+                      height: "50px",
                     }}
                   >
                     {new Intl.NumberFormat("en-US", {
@@ -4375,21 +3356,13 @@ const DetailedCalculator = ({
                         ((75 / 100) *
                           2 *
                           52 *
-                          companyEffortsData?.find((company) => company.CompanySize === emplyeesize)
-                            ?.ContentTeamMultiple *
+                          companyEffortsData?.find((company) => company.CompanySize === emplyeesize)?.ContentTeamMultiple *
                           (2 *
                             52 *
-                            companyEffortsData?.find(
-                              (company) => company.CompanySize === emplyeesize
-                            )?.ContentTeamMultiple *
-                            (countryData?.find((country) => country.Geography === companyLocation))
-                              .data.MarketingManager *
+                            companyEffortsData?.find((company) => company.CompanySize === emplyeesize)?.ContentTeamMultiple *
+                            (countryData?.find((country) => country.Geography === companyLocation)).data.MarketingManager *
                             multiplier)) /
-                          (2 *
-                            52 *
-                            companyEffortsData?.find(
-                              (company) => company.CompanySize === emplyeesize
-                            )?.ContentTeamMultiple)
+                          (2 * 52 * companyEffortsData?.find((company) => company.CompanySize === emplyeesize)?.ContentTeamMultiple)
                       )
                     )}
                   </Typography>
@@ -4406,21 +3379,9 @@ const DetailedCalculator = ({
                     }}
                   >
                     {Math.round(
-                      (75 / 100) *
-                        2 *
-                        52 *
-                        companyEffortsData?.find((company) => company.CompanySize === emplyeesize)
-                          ?.ContentTeamMultiple +
-                        (50 / 100) *
-                          2 *
-                          52 *
-                          companyEffortsData?.find((company) => company.CompanySize === emplyeesize)
-                            ?.ContentTeamMultiple +
-                        (25 / 100) *
-                          1 *
-                          52 *
-                          companyEffortsData?.find((company) => company.CompanySize === emplyeesize)
-                            ?.ContentTeamMultiple
+                      (75 / 100) * 2 * 52 * companyEffortsData?.find((company) => company.CompanySize === emplyeesize)?.ContentTeamMultiple +
+                        (50 / 100) * 2 * 52 * companyEffortsData?.find((company) => company.CompanySize === emplyeesize)?.ContentTeamMultiple +
+                        (25 / 100) * 1 * 52 * companyEffortsData?.find((company) => company.CompanySize === emplyeesize)?.ContentTeamMultiple
                     )}
                   </Typography>
                 </Grid>
@@ -4443,81 +3404,38 @@ const DetailedCalculator = ({
                       Math.round(
                         (1 *
                           52 *
-                          companyEffortsData?.find((company) => company.CompanySize === emplyeesize)
-                            ?.ContentTeamMultiple *
-                          (countryData?.find((country) => country.Geography === companyLocation))
-                            .data.MarketingAssociate *
+                          companyEffortsData?.find((company) => company.CompanySize === emplyeesize)?.ContentTeamMultiple *
+                          (countryData?.find((country) => country.Geography === companyLocation)).data.MarketingAssociate *
                           multiplier *
-                          ((50 / 100) *
-                            1 *
-                            52 *
-                            companyEffortsData?.find(
-                              (company) => company.CompanySize === emplyeesize
-                            )?.ContentTeamMultiple)) /
-                          (1 *
-                            52 *
-                            companyEffortsData?.find(
-                              (company) => company.CompanySize === emplyeesize
-                            )?.ContentTeamMultiple) +
+                          ((50 / 100) * 1 * 52 * companyEffortsData?.find((company) => company.CompanySize === emplyeesize)?.ContentTeamMultiple)) /
+                          (1 * 52 * companyEffortsData?.find((company) => company.CompanySize === emplyeesize)?.ContentTeamMultiple) +
                           ((50 / 100) *
                             2 *
                             52 *
-                            companyEffortsData?.find(
-                              (company) => company.CompanySize === emplyeesize
-                            )?.ContentTeamMultiple *
+                            companyEffortsData?.find((company) => company.CompanySize === emplyeesize)?.ContentTeamMultiple *
                             (2 *
                               52 *
-                              companyEffortsData?.find(
-                                (company) => company.CompanySize === emplyeesize
-                              )?.ContentTeamMultiple *
-                              (countryData?.find(
-                                (country) => country.Geography === companyLocation
-                              )).data.MarketingAssociate *
+                              companyEffortsData?.find((company) => company.CompanySize === emplyeesize)?.ContentTeamMultiple *
+                              (countryData?.find((country) => country.Geography === companyLocation)).data.MarketingAssociate *
                               multiplier)) /
-                            (2 *
-                              52 *
-                              companyEffortsData?.find(
-                                (company) => company.CompanySize === emplyeesize
-                              )?.ContentTeamMultiple) +
+                            (2 * 52 * companyEffortsData?.find((company) => company.CompanySize === emplyeesize)?.ContentTeamMultiple) +
                           (1 *
                             52 *
-                            companyEffortsData?.find(
-                              (company) => company.CompanySize === emplyeesize
-                            )?.ContentTeamMultiple *
-                            (countryData?.find((country) => country.Geography === companyLocation))
-                              .data.MarketingManager *
+                            companyEffortsData?.find((company) => company.CompanySize === emplyeesize)?.ContentTeamMultiple *
+                            (countryData?.find((country) => country.Geography === companyLocation)).data.MarketingManager *
                             multiplier *
-                            ((25 / 100) *
-                              1 *
-                              52 *
-                              companyEffortsData?.find(
-                                (company) => company.CompanySize === emplyeesize
-                              )?.ContentTeamMultiple)) /
-                            (1 *
-                              52 *
-                              companyEffortsData?.find(
-                                (company) => company.CompanySize === emplyeesize
-                              )?.ContentTeamMultiple) +
+                            ((25 / 100) * 1 * 52 * companyEffortsData?.find((company) => company.CompanySize === emplyeesize)?.ContentTeamMultiple)) /
+                            (1 * 52 * companyEffortsData?.find((company) => company.CompanySize === emplyeesize)?.ContentTeamMultiple) +
                           ((75 / 100) *
                             2 *
                             52 *
-                            companyEffortsData?.find(
-                              (company) => company.CompanySize === emplyeesize
-                            )?.ContentTeamMultiple *
+                            companyEffortsData?.find((company) => company.CompanySize === emplyeesize)?.ContentTeamMultiple *
                             (2 *
                               52 *
-                              companyEffortsData?.find(
-                                (company) => company.CompanySize === emplyeesize
-                              )?.ContentTeamMultiple *
-                              (countryData?.find(
-                                (country) => country.Geography === companyLocation
-                              )).data.MarketingManager *
+                              companyEffortsData?.find((company) => company.CompanySize === emplyeesize)?.ContentTeamMultiple *
+                              (countryData?.find((country) => country.Geography === companyLocation)).data.MarketingManager *
                               multiplier)) /
-                            (2 *
-                              52 *
-                              companyEffortsData?.find(
-                                (company) => company.CompanySize === emplyeesize
-                              )?.ContentTeamMultiple)
+                            (2 * 52 * companyEffortsData?.find((company) => company.CompanySize === emplyeesize)?.ContentTeamMultiple)
                       )
                     )}
                   </Typography>
@@ -4541,22 +3459,22 @@ const DetailedCalculator = ({
           >
             <Grid item xs={12}>
               <Typography
-                variant="h6"
+                variant="h5"
                 gutterBottom
                 sx={{
-                  textAlign: "center",
+                  textAlign: "left",
                   borderBottom: "2px solid #A3A0A0",
                   paddingBottom: "8px",
                   marginBottom: "12px",
-                  color: "#A3A0A0",
+                  color: "#808080",
                 }}
               >
-                Misc
+                Collaboration
               </Typography>
             </Grid>
 
             {/* First grid */}
-            <Grid item xs={12} sm={9}>
+            <Grid item xs={12} sm={9} sx={{ paddingTop: "0px !important" }}>
               <Typography
                 variant="h6"
                 style={{
@@ -4564,6 +3482,7 @@ const DetailedCalculator = ({
                   overflow: "auto",
                   textAlign: "center",
                   maxWidth: "100%",
+                  marginBottom: "20px",
                 }}
               >
                 Current Effort & Cost (Manual)
@@ -4572,7 +3491,7 @@ const DetailedCalculator = ({
                 {/* Column headers */}
                 <Grid item xs={3}>
                   <Typography
-                    variant="subtitle1"
+                    variant="h6"
                     style={{
                       whiteSpace: "nowrap",
                       overflow: "auto",
@@ -4584,7 +3503,7 @@ const DetailedCalculator = ({
                 </Grid>
                 <Grid item xs={3}>
                   <Typography
-                    variant="subtitle1"
+                    variant="h6"
                     style={{
                       whiteSpace: "nowrap",
                       overflow: "auto",
@@ -4596,19 +3515,19 @@ const DetailedCalculator = ({
                 </Grid>
                 <Grid item xs={3}>
                   <Typography
-                    variant="subtitle1"
+                    variant="h6"
                     style={{
                       whiteSpace: "nowrap",
                       overflow: "auto",
                       maxWidth: "100%",
                     }}
                   >
-                    Effort Involved (Hours)
+                    Effort Involved (hrs)
                   </Typography>
                 </Grid>
                 <Grid item xs={3}>
                   <Typography
-                    variant="subtitle1"
+                    variant="h6"
                     style={{
                       whiteSpace: "nowrap",
                       overflow: "auto",
@@ -4626,9 +3545,10 @@ const DetailedCalculator = ({
                   <Typography
                     variant="body1"
                     style={{
-                      whiteSpace: "nowrap",
+                      // whiteSpace: "nowrap",
                       overflow: "auto",
                       maxWidth: "100%",
+                      height: "50px",
                     }}
                   >
                     Coordination & Communication overheads
@@ -4638,39 +3558,36 @@ const DetailedCalculator = ({
                   <Typography
                     variant="body1"
                     style={{
-                      whiteSpace: "nowrap",
+                      // whiteSpace: "nowrap",
                       overflow: "auto",
                       maxWidth: "100%",
+                      height: "50px",
                     }}
                   >
-                    Frequent
+                    Recurring
                   </Typography>
                 </Grid>
                 <Grid item xs={3}>
                   <Typography
                     variant="body1"
                     style={{
-                      whiteSpace: "nowrap",
+                      // whiteSpace: "nowrap",
                       overflow: "auto",
                       maxWidth: "100%",
+                      height: "50px",
                     }}
                   >
-                    {Math.round(
-                      52 *
-                        5 *
-                        0.25 *
-                        companyEffortsData?.find((company) => company.CompanySize === emplyeesize)
-                          ?.ContentTeamMultiple
-                    )}
+                    {Math.round(52 * 5 * 0.25 * companyEffortsData?.find((company) => company.CompanySize === emplyeesize)?.ContentTeamMultiple)}
                   </Typography>
                 </Grid>
                 <Grid item xs={3}>
                   <Typography
                     variant="body1"
                     style={{
-                      whiteSpace: "nowrap",
+                      // whiteSpace: "nowrap",
                       overflow: "auto",
                       maxWidth: "100%",
+                      height: "50px",
                     }}
                   >
                     {new Intl.NumberFormat("en-US", {
@@ -4683,10 +3600,8 @@ const DetailedCalculator = ({
                         52 *
                           5 *
                           0.25 *
-                          companyEffortsData?.find((company) => company.CompanySize === emplyeesize)
-                            ?.ContentTeamMultiple *
-                          (countryData?.find((country) => country.Geography === companyLocation))
-                            .data.Others *
+                          companyEffortsData?.find((company) => company.CompanySize === emplyeesize)?.ContentTeamMultiple *
+                          (countryData?.find((country) => country.Geography === companyLocation)).data.Others *
                           multiplier
                       )
                     )}
@@ -4697,9 +3612,10 @@ const DetailedCalculator = ({
                   <Typography
                     variant="body1"
                     style={{
-                      whiteSpace: "nowrap",
+                      // whiteSpace: "nowrap",
                       overflow: "auto",
                       maxWidth: "100%",
+                      height: "50px",
                     }}
                   >
                     Management overhead in review meetings
@@ -4709,39 +3625,36 @@ const DetailedCalculator = ({
                   <Typography
                     variant="body1"
                     style={{
-                      whiteSpace: "nowrap",
+                      // whiteSpace: "nowrap",
                       overflow: "auto",
                       maxWidth: "100%",
+                      height: "50px",
                     }}
                   >
-                    Frequent
+                    Recurring
                   </Typography>
                 </Grid>
                 <Grid item xs={3}>
                   <Typography
                     variant="body1"
                     style={{
-                      whiteSpace: "nowrap",
+                      // whiteSpace: "nowrap",
                       overflow: "auto",
                       maxWidth: "100%",
+                      height: "50px",
                     }}
                   >
-                    {Math.round(
-                      52 *
-                        5 *
-                        0.25 *
-                        companyEffortsData?.find((company) => company.CompanySize === emplyeesize)
-                          ?.ContentTeamMultiple
-                    )}
+                    {Math.round(52 * 5 * 0.25 * companyEffortsData?.find((company) => company.CompanySize === emplyeesize)?.ContentTeamMultiple)}
                   </Typography>
                 </Grid>
                 <Grid item xs={3}>
                   <Typography
                     variant="body1"
                     style={{
-                      whiteSpace: "nowrap",
+                      // whiteSpace: "nowrap",
                       overflow: "auto",
                       maxWidth: "100%",
+                      height: "50px",
                     }}
                   >
                     {new Intl.NumberFormat("en-US", {
@@ -4754,10 +3667,8 @@ const DetailedCalculator = ({
                         52 *
                           5 *
                           0.25 *
-                          companyEffortsData?.find((company) => company.CompanySize === emplyeesize)
-                            ?.ContentTeamMultiple *
-                          (countryData?.find((country) => country.Geography === companyLocation))
-                            .data.Others *
+                          companyEffortsData?.find((company) => company.CompanySize === emplyeesize)?.ContentTeamMultiple *
+                          (countryData?.find((country) => country.Geography === companyLocation)).data.Others *
                           multiplier
                       )
                     )}
@@ -4769,9 +3680,10 @@ const DetailedCalculator = ({
                   <Typography
                     variant="body1"
                     style={{
-                      whiteSpace: "nowrap",
+                      // whiteSpace: "nowrap",
                       overflow: "auto",
                       maxWidth: "100%",
+                      height: "50px",
                     }}
                   ></Typography>
                 </Grid>
@@ -4779,9 +3691,10 @@ const DetailedCalculator = ({
                   <Typography
                     variant="body1"
                     style={{
-                      whiteSpace: "nowrap",
+                      // whiteSpace: "nowrap",
                       overflow: "auto",
                       maxWidth: "100%",
+                      height: "50px",
                     }}
                   ></Typography>
                 </Grid>
@@ -4795,13 +3708,7 @@ const DetailedCalculator = ({
                       fontWeight: "bold",
                     }}
                   >
-                    {Math.round(
-                      52 *
-                        5 *
-                        0.25 *
-                        companyEffortsData?.find((company) => company.CompanySize === emplyeesize)
-                          ?.ContentTeamMultiple
-                    )}
+                    {Math.round(52 * 5 * 0.25 * companyEffortsData?.find((company) => company.CompanySize === emplyeesize)?.ContentTeamMultiple)}
                   </Typography>
                 </Grid>
                 <Grid item xs={3}>
@@ -4824,19 +3731,14 @@ const DetailedCalculator = ({
                         52 *
                           5 *
                           0.25 *
-                          companyEffortsData?.find((company) => company.CompanySize === emplyeesize)
-                            ?.ContentTeamMultiple *
-                          (countryData?.find((country) => country.Geography === companyLocation))
-                            .data.Others *
+                          companyEffortsData?.find((company) => company.CompanySize === emplyeesize)?.ContentTeamMultiple *
+                          (countryData?.find((country) => country.Geography === companyLocation)).data.Others *
                           multiplier +
                           52 *
                             5 *
                             0.25 *
-                            companyEffortsData?.find(
-                              (company) => company.CompanySize === emplyeesize
-                            )?.ContentTeamMultiple *
-                            (countryData?.find((country) => country.Geography === companyLocation))
-                              .data.Others *
+                            companyEffortsData?.find((company) => company.CompanySize === emplyeesize)?.ContentTeamMultiple *
+                            (countryData?.find((country) => country.Geography === companyLocation)).data.Others *
                             multiplier
                       )
                     )}
@@ -4848,39 +3750,35 @@ const DetailedCalculator = ({
             </Grid>
 
             {/* Second grid */}
-            <Grid
-              item
-              xs={12}
-              sm={3}
-              style={{ borderLeft: " 1px solid #ccc", textAlign: "center" }}
-            >
+            <Grid item xs={12} sm={3} sx={{ borderLeft: " 1px solid #ccc", textAlign: "center", paddingTop: "0px !important" }}>
               <Typography
                 variant="h6"
                 style={{
                   whiteSpace: "nowrap",
                   overflow: "auto",
                   maxWidth: "100%",
+                  marginBottom: "20px",
                 }}
               >
-                AI-Based Effort and Cost Savings
+                Cost and Effort Savings
               </Typography>
               <Grid container spacing={2} style={{ textAlign: "center" }}>
                 {/* Column headers */}
                 <Grid item xs={6}>
                   <Typography
-                    variant="subtitle1"
+                    variant="h6"
                     style={{
                       whiteSpace: "nowrap",
                       overflow: "auto",
                       maxWidth: "100%",
                     }}
                   >
-                    Effort Saved (Hours)
+                     Effort Saved(hrs)
                   </Typography>
                 </Grid>
                 <Grid item xs={6}>
                   <Typography
-                    variant="subtitle1"
+                    variant="h6"
                     style={{
                       whiteSpace: "nowrap",
                       overflow: "auto",
@@ -4898,9 +3796,10 @@ const DetailedCalculator = ({
                   <Typography
                     variant="body1"
                     style={{
-                      whiteSpace: "nowrap",
+                      // whiteSpace: "nowrap",
                       overflow: "auto",
                       maxWidth: "100%",
+                      height: "50px",
                     }}
                   >
                     0
@@ -4910,9 +3809,10 @@ const DetailedCalculator = ({
                   <Typography
                     variant="body1"
                     style={{
-                      whiteSpace: "nowrap",
+                      // whiteSpace: "nowrap",
                       overflow: "auto",
                       maxWidth: "100%",
+                      height: "50px",
                     }}
                   >
                     $0
@@ -4923,9 +3823,10 @@ const DetailedCalculator = ({
                   <Typography
                     variant="body1"
                     style={{
-                      whiteSpace: "nowrap",
+                      // whiteSpace: "nowrap",
                       overflow: "auto",
                       maxWidth: "100%",
+                      height: "50px",
                     }}
                   >
                     0
@@ -4935,9 +3836,10 @@ const DetailedCalculator = ({
                   <Typography
                     variant="body1"
                     style={{
-                      whiteSpace: "nowrap",
+                      // whiteSpace: "nowrap",
                       overflow: "auto",
                       maxWidth: "100%",
+                      height: "50px",
                     }}
                   >
                     $0
