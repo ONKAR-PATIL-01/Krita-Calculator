@@ -8,7 +8,7 @@ import React, { useEffect, useState } from "react";
 import NumberInput from "./NumberInput";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { ArrowDropUp } from "@mui/icons-material";
-import krita from "../krita.svg";
+import krita from "../../krita.svg";
 const countryData = [
   {
     Geography: "North America",
