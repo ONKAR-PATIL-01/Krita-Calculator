@@ -9,7 +9,7 @@ const regions = ["North America", "South America", "Europe", "MENA", "Africa", "
 
 const Calculator = () => {
   // Define state variables for each input
-  const [emplyeesize, setemplyeesize] = useState(100);
+  const [emplyeesize, setemplyeesize] = useState(1000);
   const [hirePerYear, sethirePerYear] = useState(emplyeesize*25/100);
   const [companyLocation, setCompanyLocation] = useState("North America");
   const [calculatedData, setCalculatedData] = useState();

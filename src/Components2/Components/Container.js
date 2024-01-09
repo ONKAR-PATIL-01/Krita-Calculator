@@ -26,7 +26,7 @@ const Container = () => {
            sx={{ height: "2%", width: isSmallScreen ? "80%" : "50%",marginBottom:'10px' ,color: "#808080" ,fontSize: isSmallScreen ? "20px" : "32px", }} 
        
            
-         >Calculate cost saving</Box>
+         >Calculate Talent Marketing Costs Savings</Box>
          <div style={{ color: "#A3A0A0" ,fontSize: isSmallScreen ? "10px" : "16px", }}>
 Determine potential cost savings by leveraging AI to support your talent marketing efforts.            </div>
        </Card>
