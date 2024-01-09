@@ -130,7 +130,7 @@ const Calculator = () => {
               borderRadius: "10px",
               border: "none",
               background: "linear-gradient(to right, #FFF, #E3F0FF)", // Set the background gradient here
-              marginLeft: isSmallScreen ? "10%" : "0px",
+              marginLeft: isSmallScreen ? "20px" : "0px",
               marginRight:'5%',
               // marginTop: isSmallScreen ? "20px" : "0px",
               padding: "20px",
