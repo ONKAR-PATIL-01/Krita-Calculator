@@ -11,12 +11,12 @@ import Button from "@mui/material/Button";
 import MenuItem from "@mui/material/MenuItem";
 import logo from "../../krita.svg";
 
-const pages = ["schedule a demo", "pricing", "about"];
+const pages = ["schedule a demo", "Product", "Resources"];
 
 const pageUrls = {
   "schedule a demo": "https://calendly.com/krita/meet-kesavan",
-  "pricing": "https://krita.ai/pricing/",
-  "about": "https://krita.ai/about-us/",
+  "Product": "https://krita.ai/product/",
+  "Resources": "https://krita.ai/blogs/",
 };
 
 function ResponsiveAppBar() {
@@ -33,7 +33,8 @@ function ResponsiveAppBar() {
   const handleNavigateTo = (page) => {
     const url = pageUrls[page];
     if (url) {
-      window.open(url, '_blank');
+      window.open(url, '_self');
+
     }
   };
 
