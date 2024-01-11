@@ -10,7 +10,7 @@ const regions = ["North America", "South America", "Europe", "MENA", "Africa", "
 const Calculator = () => {
   // Define state variables for each input
   const [emplyeesize, setemplyeesize] = useState(1000);
-  const [hirePerYear, sethirePerYear] = useState(emplyeesize*25/100);
+  const [hirePerYear, sethirePerYear] = useState((emplyeesize * 25) / 100);
   const [companyLocation, setCompanyLocation] = useState("North America");
   const [calculatedData, setCalculatedData] = useState();
   const [detailedFlag, setDetailedFlag] = useState(false);
@@ -19,7 +19,7 @@ const Calculator = () => {
 
   // Event handler for role slider
   const handleemplyeesizeChange = (event, newValue) => {
-    sethirePerYear(newValue*25/100);
+    sethirePerYear((newValue * 25) / 100);
     setemplyeesize(newValue);
   };
   useEffect(() => {}, []);
@@ -70,9 +70,9 @@ const Calculator = () => {
               onChange={handleemplyeesizeChange}
               sx={{ color: "#FFCD00", width: "80%" }}
             /> */}
-            
+
             <Slider aria-label="Hire/Year" value={emplyeesize} min={10} max={15000} step={null} marks={marks} onChange={handleemplyeesizeChange} sx={{ color: "#FFCD00", width: "80%" }} />
-           <Box sx={{ marginTop: "30px" }} />
+            <Box sx={{ marginTop: "30px" }} />
             <div
               style={{
                 fontSize: "16px",
@@ -80,18 +80,16 @@ const Calculator = () => {
                 wordBreak: "break-word",
               }}
             >
-             How many roles do you hire per year?
+              How many roles do you hire per year?
             </div>
 
-            <div style={{ color: "#FFCD00", fontSize: "24px" }}>
-              {hirePerYear}
-            </div>
+            <div style={{ color: "#FFCD00", fontSize: "24px" }}>{hirePerYear}</div>
             <Slider
               aria-label="Hire/Year"
               value={hirePerYear}
               // defaultValue={(emplyeesize*25/100)}
               min={1}
-              max={(emplyeesize*5)}
+              max={emplyeesize * 5}
               step={1}
               onChange={handlehirePerYearChange}
               sx={{ color: "#FFCD00", width: "80%" }}
@@ -131,7 +129,7 @@ const Calculator = () => {
               border: "none",
               background: "linear-gradient(to right, #FFF, #E3F0FF)", // Set the background gradient here
               marginLeft: isSmallScreen ? "20px" : "0px",
-              marginRight:'5%',
+              marginRight: "5%",
               // marginTop: isSmallScreen ? "20px" : "0px",
               padding: "20px",
             }}
@@ -302,7 +300,7 @@ const Calculator = () => {
                 alignItems: "center",
                 marginLeft: "10%",
                 color: "#808080",
-                marginTop:'40px'
+                marginTop: "40px",
               }}
             >
               Expand for detailed analysis
@@ -312,7 +310,15 @@ const Calculator = () => {
         )}
       </div>
 
-      <DetailedCalculator emplyeesize={emplyeesize} hirePerYear={hirePerYear} companyLocation={companyLocation} sendCalculatedData={receiveCalculatedData} detailedFlag={detailedFlag} onDetailedFlagChange={handleDetailedFlagChange} onhirePerYearChange={handlehirePerYearChange} />
+      <DetailedCalculator
+        emplyeesize={emplyeesize}
+        hirePerYear={hirePerYear}
+        companyLocation={companyLocation}
+        sendCalculatedData={receiveCalculatedData}
+        detailedFlag={detailedFlag}
+        onDetailedFlagChange={handleDetailedFlagChange}
+        onhirePerYearChange={handlehirePerYearChange}
+      />
     </>
   );
 };
