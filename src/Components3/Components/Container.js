@@ -15,7 +15,7 @@ const Container = () => {
         <ResponsiveAppBar />
         <Card
           style={{
-            marginTop: "20px",
+            marginTop: "30px",
             paddingLeft: "10%",
             paddingBottom: "10px",
             boxShadow: "none",
@@ -28,7 +28,8 @@ const Container = () => {
               width: isSmallScreen ? "80%" : "50%",
               marginBottom: "10px",
               fontSize:'22px',
-              color:'#808080'
+              color:'#808080',
+              marginTop:'10px'
             }}
 
           >Talent Marketing ROI Calculator</Box>
@@ -39,7 +40,7 @@ const Container = () => {
             }}
           >
             {/* Discover your savings potential  with our genAI Recruiter Copilot!   */}
-            Calculate the total value companies can derive out of investing $500 for every open hire in talent marketing.          </div>
+            Calculate the total value companies can derive out of investing in talent marketing.         </div>
         </Card>
 
         <Calculator />

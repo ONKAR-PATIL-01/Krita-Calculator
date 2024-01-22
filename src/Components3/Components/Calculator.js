@@ -148,8 +148,8 @@ const Calculator = () => {
               <Avatar
                 sx={{
                   textAlign: "center",
-                  width: "70px",
-                  height: "70px",
+                  width: "60px",
+                  height: "60px",
                   fontSize: "18px",
                   marginLeft: "15px",
                   color: "#70A8DC", // Change the background color
