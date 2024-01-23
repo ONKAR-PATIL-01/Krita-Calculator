@@ -322,9 +322,11 @@ const DetailedCalculator = ({
               <ArrowDropUp sx={{ height: "25px" }} />
             </Box>
           </Box>
+
+          <Box sx={{marginLeft:'9%',marginRight:'7%'}}>
           {/* table 1 */}
 
-          <Box sx={{ color: "#808080", marginLeft: "2%", fontSize: "20px", fontWeight: "600" }}>Reduction in Cost Per Hire</Box>
+          <Box sx={{ color: "#808080", marginLeft: "2%", fontSize: "20px", fontWeight: "600" }}>Reduction in cost per hire</Box>
           <br />
           <Box sx={{ color: "#808080", marginLeft: "4%", fontSize: "20px", fontWeight: "500" }}>Corporate Costs</Box>
           <Box sx={{ display: "table", margin: "auto", width: "80%", marginBottom: "2%" }}>
@@ -835,27 +837,27 @@ const DetailedCalculator = ({
             <Box sx={{ width: "100% !important", overflowX: "auto" }}>
               {/* Row 1 */}
               <Grid container rowSpacing={1}>
-                <Grid item xs={2}></Grid>
-                <Grid item xs={5}>
+                <Grid item xs={3}></Grid>
+                <Grid item xs={4}>
                   <Box sx={{ padding: "5px", color: "#808080", textAlign: "center", overflow: "auto" }}>Current Process</Box>
                 </Grid>
                 <Grid item xs={5}>
-                  <Box sx={{ padding: "5px", color: "#808080", textAlign: "center", overflow: "auto" ,background:'#D3D3D3'}}>After Talent marketing using Krita</Box>
+                  <Box sx={{ padding: "5px", color: "#808080", textAlign: "center", overflow: "auto" ,background:'#D3D3D3'}}>After implementing Krita</Box>
                 </Grid>
               </Grid>
 
               {/* Row 2 */}
               <Grid container rowSpacing={1} sx={{ width: "100%" }}>
-                <Grid item xs={1}></Grid>
+                <Grid item xs={3}></Grid>
                 <Grid item xs={2}>
                   <Box sx={{ padding: "5px", color: "#808080", textAlign: "center", overflow: "auto" }}>Candidates in Pipeline</Box>
                 </Grid>
                 <Grid item xs={2}>
                   <Box sx={{ padding: "5px", color: "#808080", textAlign: "center", overflow: "auto" }}>Conversion Rate</Box>
                 </Grid>
-                <Grid item xs={2}>
+                {/* <Grid item xs={2}>
                   <Box sx={{ padding: "5px", color: "#808080", textAlign: "center", overflow: "auto" }}>Cost Per Stage</Box>
-                </Grid>
+                </Grid> */}
                 <Grid item xs={1}>
                   <Box sx={{ padding: "5px", color: "#808080", textAlign: "center", overflow: "auto" }}>Candidates in Pipeline</Box>
                 </Grid>
@@ -868,9 +870,9 @@ const DetailedCalculator = ({
               </Grid>
               {/* Row 3 */}
               <Grid container rowSpacing={1} sx={{ padding: "5px", color: "#808080", textAlign: "left" }}>
-                <Grid item xs={1}>
+                <Grid item xs={3}>
                   {" "}
-                  <Box sx={{ padding: "5px", color: "#808080", textAlign: "center", overflow: "auto" }}>Views</Box>
+                  <Box sx={{ padding: "5px", color: "#808080", textAlign: "left", overflow: "auto" }}>Views</Box>
                 </Grid>
                 <Grid item xs={2}>
                   <Box sx={{ padding: "5px", color: "#808080", textAlign: "center", overflow: "auto" }}>{view_candidatein_pipeline}</Box>
@@ -878,16 +880,7 @@ const DetailedCalculator = ({
                 <Grid item xs={2}>
                   <Box sx={{ padding: "5px", color: "#808080", textAlign: "center", overflow: "auto" }}>{(view_conversion_rate * 100).toFixed()}%</Box>
                 </Grid>
-                <Grid item xs={2}>
-                  <Box sx={{ padding: "5px", color: "#808080", textAlign: "center", overflow: "auto" }}>
-                    {/* {new Intl.NumberFormat("en-US", {
-                  sx: "currency",
-                  currency: "USD",
-                  minimumFractionDigits: 0,
-                  maximumFractionDigits: 2,
-                }).format(Math.round(view_cost_per_stage_1))} */}
-                  </Box>
-                </Grid>
+             
                 <Grid item xs={1}>
                   <Box sx={{ padding: "5px", color: "#808080", textAlign: "center", overflow: "auto" }}>{view_values}</Box>
                 </Grid>
@@ -908,9 +901,9 @@ const DetailedCalculator = ({
               {/* row 4 */}
 
               <Grid container rowSpacing={1} sx={{ padding: "5px", color: "#808080", textAlign: "left" }}>
-                <Grid item xs={1}>
+                <Grid item xs={3}>
                   {" "}
-                  <Box sx={{ padding: "5px", color: "#808080", textAlign: "center", overflow: "auto" }}>Applicants</Box>
+                  <Box sx={{ padding: "5px", color: "#808080", textAlign: "left", overflow: "auto" }}>Applicants</Box>
                 </Grid>
                 <Grid item xs={2}>
                   <Box sx={{ padding: "5px", color: "#808080", textAlign: "center", overflow: "auto" }}>{applicant_candidatein_pipeline}</Box>
@@ -918,16 +911,7 @@ const DetailedCalculator = ({
                 <Grid item xs={2}>
                   <Box sx={{ padding: "5px", color: "#808080", textAlign: "center", overflow: "auto" }}>{(applicant_conversion_rate * 100).toFixed()}%</Box>
                 </Grid>
-                <Grid item xs={2}>
-                  <Box sx={{ padding: "5px", color: "#808080", textAlign: "center", overflow: "auto" }}>
-                    {new Intl.NumberFormat("en-US", {
-                      sx: "currency",
-                      currency: "USD",
-                      minimumFractionDigits: 0,
-                      maximumFractionDigits: 2,
-                    }).format(Math.round(applicant_cost_per_stage_1))}
-                  </Box>
-                </Grid>
+         
                 <Grid item xs={1}>
                   <Box sx={{ padding: "5px", color: "#808080", textAlign: "center", overflow: "auto" }}>{applicant_values.toFixed()}</Box>
                 </Grid>
@@ -948,9 +932,9 @@ const DetailedCalculator = ({
 
               {/* row 5 */}
               <Grid container rowSpacing={1} sx={{ padding: "5px", color: "#808080", textAlign: "left" }}>
-                <Grid item xs={1}>
+                <Grid item xs={3}>
                   {" "}
-                  <Box sx={{ padding: "5px", color: "#808080", textAlign: "center", overflow: "auto" }}>Phone Screens</Box>
+                  <Box sx={{ padding: "5px", color: "#808080", textAlign: "left", overflow: "auto" }}>Phone Screens</Box>
                 </Grid>
                 <Grid item xs={2}>
                   <Box sx={{ padding: "5px", color: "#808080", textAlign: "center", overflow: "auto" }}>{phonescreens_candidatein_pipeline}</Box>
@@ -958,16 +942,7 @@ const DetailedCalculator = ({
                 <Grid item xs={2}>
                   <Box sx={{ padding: "5px", color: "#808080", textAlign: "center", overflow: "auto" }}>{(phonescreens_conversion_rate * 100).toFixed()}%</Box>
                 </Grid>
-                <Grid item xs={2}>
-                  <Box sx={{ padding: "5px", color: "#808080", textAlign: "center", overflow: "auto" }}>
-                    {new Intl.NumberFormat("en-US", {
-                      sx: "currency",
-                      currency: "USD",
-                      minimumFractionDigits: 0,
-                      maximumFractionDigits: 2,
-                    }).format(Math.round(phonescreens_cost_per_stage_1))}
-                  </Box>
-                </Grid>
+          
                 <Grid item xs={1}>
                   <Box sx={{ padding: "5px", color: "#808080", textAlign: "center", overflow: "auto" }}>{phonescreens_values.toFixed()}</Box>
                 </Grid>
@@ -989,9 +964,9 @@ const DetailedCalculator = ({
               {/* row 6 */}
 
               <Grid container rowSpacing={1} sx={{ padding: "5px", color: "#808080", textAlign: "left" }}>
-                <Grid item xs={1}>
+                <Grid item xs={3}>
                   {" "}
-                  <Box sx={{ padding: "5px", color: "#808080", textAlign: "center", overflow: "auto" }}>Interviews</Box>
+                  <Box sx={{ padding: "5px", color: "#808080", textAlign: "left", overflow: "auto" }}>Interviews</Box>
                 </Grid>
                 <Grid item xs={2}>
                   <Box sx={{ padding: "5px", color: "#808080", textAlign: "center", overflow: "auto" }}>{interviews_candidatein_pipeline}</Box>
@@ -999,16 +974,7 @@ const DetailedCalculator = ({
                 <Grid item xs={2}>
                   <Box sx={{ padding: "5px", color: "#808080", textAlign: "center", overflow: "auto" }}>{(interviews_conversion_rate * 100).toFixed()}%</Box>
                 </Grid>
-                <Grid item xs={2}>
-                  <Box sx={{ padding: "5px", color: "#808080", textAlign: "center", overflow: "auto" }}>
-                    {new Intl.NumberFormat("en-US", {
-                      sx: "currency",
-                      currency: "USD",
-                      minimumFractionDigits: 0,
-                      maximumFractionDigits: 2,
-                    }).format(Math.round(interviews_cost_per_stage_1))}
-                  </Box>
-                </Grid>
+       
                 <Grid item xs={1}>
                   <Box sx={{ padding: "5px", color: "#808080", textAlign: "center", overflow: "auto" }}>{interviews_values.toFixed()}</Box>
                 </Grid>
@@ -1029,9 +995,9 @@ const DetailedCalculator = ({
 
               {/* row 7 */}
               <Grid container rowSpacing={1} sx={{ padding: "5px", color: "#808080", textAlign: "left" }}>
-                <Grid item xs={1}>
+                <Grid item xs={3}>
                   {" "}
-                  <Box sx={{ padding: "5px", color: "#808080", textAlign: "center", overflow: "auto" }}>Hires</Box>
+                  <Box sx={{ padding: "5px", color: "#808080", textAlign: "left", overflow: "auto" }}>Hires</Box>
                 </Grid>
                 <Grid item xs={2}>
                   <Box sx={{ padding: "5px", color: "#808080", textAlign: "center", overflow: "auto" }}>{hires_candidatein_pipeline}</Box>
@@ -1039,16 +1005,7 @@ const DetailedCalculator = ({
                 <Grid item xs={2}>
                   <Box sx={{ padding: "5px", color: "#808080", textAlign: "center", overflow: "auto" }}>{(hires_conversion_rate * 100).toFixed()}%</Box>
                 </Grid>
-                <Grid item xs={2}>
-                  <Box sx={{ padding: "5px", color: "#808080", textAlign: "center", overflow: "auto" }}>
-                    {new Intl.NumberFormat("en-US", {
-                      sx: "currency",
-                      currency: "USD",
-                      minimumFractionDigits: 0,
-                      maximumFractionDigits: 2,
-                    }).format(Math.round(hires_cost_per_stage_1))}
-                  </Box>
-                </Grid>
+        
                 <Grid item xs={1}>
                   <Box sx={{ padding: "5px", color: "#808080", textAlign: "center", overflow: "auto" }}>{hires_values.toFixed()}</Box>
                 </Grid>
@@ -1069,9 +1026,9 @@ const DetailedCalculator = ({
 
               {/* row 8 */}
               <Grid container rowSpacing={1} sx={{ padding: "5px", color: "#808080", textAlign: "left" }}>
-                <Grid item xs={1}>
+                <Grid item xs={3}>
                   {" "}
-                  <Box sx={{ padding: "5px", color: "#808080", textAlign: "center", overflow: "auto" }}>Accepted</Box>
+                  <Box sx={{ padding: "5px", color: "#808080", textAlign: "left", overflow: "auto" }}>Accepted</Box>
                 </Grid>
                 <Grid item xs={2}>
                   <Box sx={{ padding: "5px", color: "#808080", textAlign: "center", overflow: "auto" }}>{accepted_candidatein_pipeline}</Box>
@@ -1079,16 +1036,7 @@ const DetailedCalculator = ({
                 <Grid item xs={2}>
                   <Box sx={{ padding: "5px", color: "#808080", textAlign: "center", overflow: "auto" }}>{(accepted_conversion_rate * 100).toFixed()}%</Box>
                 </Grid>
-                <Grid item xs={2}>
-                  <Box sx={{ padding: "5px", color: "#808080", textAlign: "center", overflow: "auto" }}>
-                    {new Intl.NumberFormat("en-US", {
-                      sx: "currency",
-                      currency: "USD",
-                      minimumFractionDigits: 0,
-                      maximumFractionDigits: 2,
-                    }).format(Math.round(accepted_cost_per_stage_1))}
-                  </Box>
-                </Grid>
+        
                 <Grid item xs={1}>
                   <Box sx={{ padding: "5px", color: "#808080", textAlign: "center", overflow: "auto" }}>{accepted_values.toFixed()}</Box>
                 </Grid>
@@ -1109,9 +1057,9 @@ const DetailedCalculator = ({
 
               {/* row 9 */}
               <Grid container rowSpacing={1} sx={{ padding: "5px", color: "#808080", textAlign: "left" }}>
-                <Grid item xs={1}>
+                <Grid item xs={3}>
                   {" "}
-                  <Box sx={{ padding: "5px", color: "#808080", textAlign: "center", overflow: "auto" }}>Ramped</Box>
+                  <Box sx={{ padding: "5px", color: "#808080", textAlign: "left", overflow: "auto" }}>Ramped</Box>
                 </Grid>
                 <Grid item xs={2}>
                   <Box sx={{ padding: "5px", color: "#808080", textAlign: "center", overflow: "auto" }}>{ramped_candidatein_pipeline}</Box>
@@ -1119,16 +1067,7 @@ const DetailedCalculator = ({
                 <Grid item xs={2}>
                   <Box sx={{ padding: "5px", color: "#808080", textAlign: "center", overflow: "auto" }}>{/* {(accepted_conversion_rate*100).toFixed()}% */}</Box>
                 </Grid>
-                <Grid item xs={2}>
-                  <Box sx={{ padding: "5px", color: "#808080", textAlign: "center", overflow: "auto" }}>
-                    {/* {new Intl.NumberFormat("en-US", {
-                  sx: "currency",
-                  currency: "USD",
-                  minimumFractionDigits: 0,
-                  maximumFractionDigits: 2,
-                }).format(Math.round(accepted_cost_per_stage_1))} */}
-                  </Box>
-                </Grid>
+      
                 <Grid item xs={1}>
                   <Box sx={{ padding: "5px", color: "#808080", textAlign: "center", overflow: "auto" }}>{accepted_values.toFixed()}</Box>
                 </Grid>
@@ -1150,9 +1089,9 @@ const DetailedCalculator = ({
               {/* row 10  */}
 {/* <hr/> */}
               <Grid container rowSpacing={1} sx={{ padding: "5px", color: "#808080", textAlign: "left", marginTop: "30px" }}>
-                <Grid item xs={1}>
+                <Grid item xs={3}>
                   {" "}
-                  <Box sx={{ padding: "5px", color: "#808080", textAlign: "center", overflow: "auto" }}>Cost Per Hire</Box>
+                  <Box sx={{ padding: "5px", color: "#808080", textAlign: "left", overflow: "auto" }}>Cost Per Hire</Box>
                 </Grid>
                 <Grid item xs={2}>
                   <Box sx={{ padding: "5px", color: "#808080", textAlign: "center", overflow: "auto" }}>{/* {ramped_candidatein_pipeline} */}</Box>
@@ -1190,9 +1129,9 @@ const DetailedCalculator = ({
 
               {/* row 11 */}
               <Grid container rowSpacing={1} sx={{ padding: "5px", color: "#808080", textAlign: "left" }}>
-                <Grid item xs={1}>
+                <Grid item xs={3}>
                   {" "}
-                  <Box sx={{ padding: "5px", color: "#808080", textAlign: "center", overflow: "auto" }}>New Cost/Hire</Box>
+                  <Box sx={{ padding: "5px", color: "#808080", textAlign: "left", overflow: "auto" }}>New Cost/Hire</Box>
                 </Grid>
                 <Grid item xs={2}>
                   <Box sx={{ padding: "5px", color: "#808080", textAlign: "center", overflow: "auto" }}>{/* {ramped_candidatein_pipeline} */}</Box>
@@ -1230,9 +1169,9 @@ const DetailedCalculator = ({
 
               {/* row 12 */}
               <Grid container rowSpacing={1} sx={{ padding: "5px", color: "#808080", textAlign: "left" }}>
-                <Grid item xs={1}>
+                <Grid item xs={3}>
                   {" "}
-                  <Box sx={{ padding: "5px", color: "#808080", textAlign: "center", overflow: "auto" }}>Difference</Box>
+                  <Box sx={{ padding: "5px", color: "#808080", textAlign: "left", overflow: "auto" }}>Difference</Box>
                 </Grid>
                 <Grid item xs={2}>
                   <Box sx={{ padding: "5px", color: "#808080", textAlign: "center", overflow: "auto" }}>{/* {ramped_candidatein_pipeline} */}</Box>
@@ -1270,9 +1209,9 @@ const DetailedCalculator = ({
 
               {/* row 13 */}
               <Grid container rowSpacing={1} sx={{ padding: "5px", color: "#808080", textAlign: "left" }}>
-                <Grid item xs={1}>
+                <Grid item xs={3}>
                   {" "}
-                  <Box sx={{ padding: "5px", color: "#808080", textAlign: "center", overflow: "auto", fontWeight: "600" }}>Total Savings</Box>
+                  <Box sx={{ padding: "5px", color: "#808080", textAlign: "left", overflow: "auto", fontWeight: "600" }}>Total Savings</Box>
                 </Grid>
                 <Grid item xs={2}>
                   <Box sx={{ padding: "5px", color: "#808080", textAlign: "center", overflow: "auto" }}>{/* {ramped_candidatein_pipeline} */}</Box>
@@ -1309,6 +1248,7 @@ const DetailedCalculator = ({
               </Grid>
             </Box>
             {/* Add more rows as needed */}
+          </Box>
           </Box>
         </Box>
       )}

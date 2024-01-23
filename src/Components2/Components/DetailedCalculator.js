@@ -1048,7 +1048,7 @@ const DetailedCalculator = ({ emplyeesize, hirePerYear, companyLocation, sendCal
                   color: "#808080",
                 }}
               >
-                Develop strategy & plan
+                Develop Strategy & Plan
               </Typography>
             </Grid>
 

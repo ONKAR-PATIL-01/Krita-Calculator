@@ -525,9 +525,8 @@ const DetailedCalculator = ({
                 variant="h7"
                 sx={{
                   color: "#A3A0A0",
-                  display: "flex",
-                  justifyContent: "center",
-                  textAlign: "center",
+                  marginLeft:'27%',
+                  textAlign: "left",
                 }}
               >
                 Time to create and post job opening{" "}
@@ -675,9 +674,8 @@ const DetailedCalculator = ({
                 variant="h7"
                 sx={{
                   color: "#A3A0A0",
-                  display: "flex",
-                  justifyContent: "center",
-                  textAlign: "center",
+                  marginLeft:'27%',
+                  textAlign: "left",
                 }}
               >
                 Resume Filtering
@@ -754,9 +752,8 @@ const DetailedCalculator = ({
                 variant="h7"
                 sx={{
                   color: "#A3A0A0",
-                  display: "flex",
-                  justifyContent: "center",
-                  textAlign: "center",
+                  marginLeft:'27%',
+                  textAlign: "left",
                 }}
               >
                  Applicant Screening
@@ -837,9 +834,8 @@ const DetailedCalculator = ({
                 variant="h7"
                 sx={{
                   color: "#A3A0A0",
-                  display: "flex",
-                  justifyContent: "center",
-                  textAlign: "center",
+                  marginLeft:'27%',
+                  textAlign: "left",
                 }}
               >
                 Interview 1
@@ -912,9 +908,8 @@ const DetailedCalculator = ({
                 variant="h7"
                 sx={{
                   color: "#A3A0A0",
-                  display: "flex",
-                  justifyContent: "center",
-                  textAlign: "center",
+                  marginLeft:'27%',
+                  textAlign: "left",
                 }}
               >
                 Interview 2
@@ -987,9 +982,8 @@ const DetailedCalculator = ({
                 variant="h7"
                 sx={{
                   color: "#A3A0A0",
-                  display: "flex",
-                  justifyContent: "center",
-                  textAlign: "center",
+                  marginLeft:'27%',
+                  textAlign: "left",
                 }}
               >
                 Final Interview
@@ -1072,9 +1066,8 @@ const DetailedCalculator = ({
                   variant="h7"
                   sx={{
                     color: "#A3A0A0",
-                    display: "flex",
-                    justifyContent: "center",
-                    textAlign: "center",
+                    marginLeft:'25%',
+                    textAlign: "left",
                   }}
                 >
                   Custom Stage {index}
@@ -1242,9 +1235,8 @@ const DetailedCalculator = ({
                 variant="h7"
                 sx={{
                   color: "#A3A0A0",
-                  display: "flex",
-                  justifyContent: "center",
-                  textAlign: "center",
+                  marginLeft:'27%',
+                  textAlign: "left",
                 }}
               >
                 Candidate communication and coordination
@@ -1309,9 +1301,8 @@ const DetailedCalculator = ({
                 variant="h7"
                 sx={{
                   color: "#A3A0A0",
-                  display: "flex",
-                  justifyContent: "center",
-                  textAlign: "center",
+                  marginLeft:'27%',
+                  textAlign: "left",
                 }}
               >
                 Interview preparation
@@ -1374,9 +1365,8 @@ const DetailedCalculator = ({
                 variant="h7"
                 sx={{
                   color: "#A3A0A0",
-                  display: "flex",
-                  justifyContent: "center",
-                  textAlign: "center",
+                  marginLeft:'27%',
+                  textAlign: "left",
                 }}
               >
                 Interview feedback
@@ -1434,9 +1424,10 @@ const DetailedCalculator = ({
                 variant="h7"
                 sx={{
                   color: "#A3A0A0",
-                  display: "flex",
-                  justifyContent: "center",
-                  textAlign: "center",
+                  // display: "flex",
+                  // justifyContent: "center",
+                  marginLeft:'27%',
+                  textAlign: "left",
                 }}
               >
                 Misc Tasks
