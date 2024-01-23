@@ -569,6 +569,8 @@ const DetailedCalculator = ({ emplyeesize, hirePerYear, companyLocation, sendCal
                       height: "50px",
                       overflow: "auto",
                       maxWidth: "100%",
+               
+                      textAlign: "left",
                     }}
                   >
                     Research competitors and talent preferences.
@@ -633,6 +635,7 @@ const DetailedCalculator = ({ emplyeesize, hirePerYear, companyLocation, sendCal
                       height: "50px",
                       overflow: "auto",
                       maxWidth: "100%",
+                      textAlign: "left",
                     }}
                   >
                     Bubble up authentic, aspirational and differentiating values{" "}
@@ -695,6 +698,7 @@ const DetailedCalculator = ({ emplyeesize, hirePerYear, companyLocation, sendCal
                       overflow: "auto",
                       maxWidth: "100%",
                       height: "50px",
+                      textAlign: "left",
                     }}
                   >
                     Create EVP and Brand Assets
@@ -1128,6 +1132,7 @@ const DetailedCalculator = ({ emplyeesize, hirePerYear, companyLocation, sendCal
                       overflow: "auto",
                       maxWidth: "100%",
                       height: "50px",
+                      textAlign:'left'
                     }}
                   >
                     Develop talent proposition for each target audience{" "}
@@ -1193,6 +1198,7 @@ const DetailedCalculator = ({ emplyeesize, hirePerYear, companyLocation, sendCal
                       overflow: "auto",
                       maxWidth: "100%",
                       height: "50px",
+                      textAlign:'left'
                     }}
                   >
                     Create and manage talent marketing calender{" "}
@@ -1263,6 +1269,7 @@ const DetailedCalculator = ({ emplyeesize, hirePerYear, companyLocation, sendCal
                       overflow: "auto",
                       maxWidth: "100%",
                       height: "50px",
+                      textAlign:'left'
                     }}
                   >
                     {" "}
@@ -1331,6 +1338,7 @@ const DetailedCalculator = ({ emplyeesize, hirePerYear, companyLocation, sendCal
                       overflow: "auto",
                       maxWidth: "100%",
                       height: "50px",
+                      textAlign:'left'
                     }}
                   >
                     {" "}
@@ -1397,6 +1405,7 @@ const DetailedCalculator = ({ emplyeesize, hirePerYear, companyLocation, sendCal
                       overflow: "auto",
                       maxWidth: "100%",
                       height: "50px",
+                       textAlign:'left'
                     }}
                   >
                     Dashboard & reporting
@@ -2000,6 +2009,7 @@ const DetailedCalculator = ({ emplyeesize, hirePerYear, companyLocation, sendCal
                       overflow: "auto",
                       maxWidth: "100%",
                       height: "50px",
+                      textAlign:'left'
                     }}
                   >
                     Create campaigns
@@ -2067,6 +2077,7 @@ const DetailedCalculator = ({ emplyeesize, hirePerYear, companyLocation, sendCal
                       overflow: "auto",
                       maxWidth: "100%",
                       height: "50px",
+                      textAlign:'left'
                     }}
                   >
                     Create content
@@ -2134,6 +2145,7 @@ const DetailedCalculator = ({ emplyeesize, hirePerYear, companyLocation, sendCal
                       overflow: "auto",
                       maxWidth: "100%",
                       height: "50px",
+                      textAlign:'left'
                     }}
                   >
                     Review content
@@ -2204,6 +2216,7 @@ const DetailedCalculator = ({ emplyeesize, hirePerYear, companyLocation, sendCal
                       overflow: "auto",
                       maxWidth: "100%",
                       height: "50px",
+                      textAlign:'left'
                     }}
                   >
                     Publish content
@@ -2809,6 +2822,7 @@ const DetailedCalculator = ({ emplyeesize, hirePerYear, companyLocation, sendCal
                       overflow: "auto",
                       maxWidth: "100%",
                       height: "50px",
+                      textAlign:'left'
                     }}
                   >
                     Engage with talent{" "}
@@ -2875,6 +2889,7 @@ const DetailedCalculator = ({ emplyeesize, hirePerYear, companyLocation, sendCal
                       overflow: "auto",
                       maxWidth: "100%",
                       height: "50px",
+                      textAlign:'left'
                     }}
                   >
                     Track performance matrics{" "}
@@ -2941,6 +2956,7 @@ const DetailedCalculator = ({ emplyeesize, hirePerYear, companyLocation, sendCal
                       overflow: "auto",
                       maxWidth: "100%",
                       height: "50px",
+                      textAlign:'left'
                     }}
                   >
                     Create dashboard and report{" "}
@@ -3007,6 +3023,7 @@ const DetailedCalculator = ({ emplyeesize, hirePerYear, companyLocation, sendCal
                       overflow: "auto",
                       maxWidth: "100%",
                       height: "50px",
+                      textAlign:'left'
                     }}
                   >
                     Fine tune plan, topics and content
@@ -3549,6 +3566,7 @@ const DetailedCalculator = ({ emplyeesize, hirePerYear, companyLocation, sendCal
                       overflow: "auto",
                       maxWidth: "100%",
                       height: "50px",
+                      textAlign:'left'
                     }}
                   >
                     Coordination & Communication overheads
@@ -3616,6 +3634,7 @@ const DetailedCalculator = ({ emplyeesize, hirePerYear, companyLocation, sendCal
                       overflow: "auto",
                       maxWidth: "100%",
                       height: "50px",
+                      textAlign:'left'
                     }}
                   >
                     Management overhead in review meetings
